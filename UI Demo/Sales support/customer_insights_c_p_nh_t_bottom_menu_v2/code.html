@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sales Enablement - TPBank CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#2b0747",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-surface-variant": "#4c444f",
+                        "on-secondary-container": "#5d2300",
+                        "surface-variant": "#d3e4fe",
+                        "on-tertiary-container": "#b992d6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdbcb",
+                        "primary": "#390259",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#502070",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#f4daff",
+                        "secondary-container": "#fc7728",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#7a499a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#33104e",
+                        "on-primary-fixed": "#2f004c",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#c18ce3",
+                        "on-secondary-fixed": "#341000",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#a04100",
+                        "outline": "#7d7480",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#603180",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#f2daff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "outline-variant": "#cfc3d1",
+                        "inverse-primary": "#e3b5ff",
+                        "tertiary-container": "#4a2865",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "on-surface": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-glow {
+            box-shadow: 0 0 15px rgba(122, 73, 154, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #f4daff 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white dark:bg-slate-900 shadow-sm dark:shadow-none border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-70">
+<span class="material-symbols-outlined text-[#502070] dark:text-[#a855f7]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg text-[#502070] dark:text-[#a855f7]">Customer Insights</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container">
+<img alt="RM Profile Picture" class="w-full h-full object-cover" data-alt="professional portrait of a bank relationship manager in business attire with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQKYY9JvdU42ZjtIm9t3etpEZ5QI5t6OUTsWNQjCtv6__iyOe69kih0jka18Bu9-72Jnv09ptWM4CTEnlK417KBYpJTuC8Try_wPAdqBlGMe_NtrDtUekgc961hKio9hFMp7AkV-nFC9-g_nsVXwS6bqsTSFw3lNK0icNXow-UiGZZTZGlec28Y5LXjlPfIRU0_KQKUXR1IJbhpio3KOn0dNvabe6ql-zpLjB2ck4f69AvPj-EG8e3PUZ2cJ97Ja1McmOqIT-t3lQ"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-4 max-w-md mx-auto space-y-6">
+<!-- Customer Profile Card -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant flex items-start gap-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary-container">
+<img alt="Đặng Khánh Vy" class="w-full h-full object-cover" data-alt="Close-up portrait of a young Vietnamese woman, sophisticated and elegant, professional lighting, soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDktgwPLXbSK7xfVpz1oheRgDzXqGMfx6UUnno-wHwtLQd1ngatI1eqTPMiXuuAaaHnLEq_cyYSR1x4PhpyLQTj9PxKAMfMmOmOLdBdLO6cUoI0BB3Xg9ha4umRugaXtuSv45cymBlM1O1soci8qD_sY69dwGasAQ4tzOVvMMv138bmR2EbPPUf2bNNVrMKoiAl26cJvPPT8zJXIfnWOOFSNXDHInri6EayiUknH-tUhWdz-krLwzt7P3l2jB5iJZ04Zxi5hgdKYk"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-secondary-container text-white px-2 py-0.5 rounded-full text-[10px] font-bold">GOLD</div>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-sm text-primary">Đặng Khánh Vy</h2>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="inline-flex items-center gap-1 bg-surface-container text-primary text-label-sm px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]" data-icon="stars">stars</span>
+                        Ưu tiên
+                    </span>
+<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant text-label-sm px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]" data-icon="home">home</span>
+                        Vay mua nhà
+                    </span>
+</div>
+</div>
+</section>
+<!-- Status & Timer Section -->
+<section class="bg-primary-container text-white rounded-xl p-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</div>
+<span class="font-label-md text-white/90">Đang tư vấn trực tiếp</span>
+</div>
+<div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" data-icon="timer">timer</span>
+<span class="font-headline-sm tabular-nums">15:00</span>
+</div>
+</section>
+<!-- Main AI Action Cards -->
+<div class="grid grid-cols-1 gap-4">
+<!-- AI script -->
+<button class="ai-glow group text-left p-4 rounded-xl border border-primary/10 transition-all active:scale-95">
+<div class="flex justify-between items-start mb-3">
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[28px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="material-symbols-outlined text-primary/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<h3 class="font-headline-sm text-primary mb-1">AI Gợi ý kịch bản bán</h3>
+<p class="font-body-md text-on-surface-variant">Kịch bản cá nhân hóa dựa trên lịch sử giao dịch và nhu cầu của Vy.</p>
+</button>
+<!-- AI Objection Handling -->
+<button class="bg-white group text-left p-4 rounded-xl border border-outline-variant transition-all active:scale-95 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[28px]" data-icon="psychology_alt" style="font-variation-settings: 'FILL' 1;">psychology_alt</span>
+</div>
+<span class="material-symbols-outlined text-primary/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<h3 class="font-headline-sm text-primary mb-1">AI Đề xuất theo tình huống</h3>
+<p class="font-body-md text-on-surface-variant">Trợ lý ảo hỗ trợ xử lý từ chối, giải đáp thắc mắc lãi suất tức thì.</p>
+</button>
+<!-- Product Handbook -->
+<button class="bg-white group text-left p-4 rounded-xl border border-outline-variant transition-all active:scale-95 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="menu_book" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+</div>
+<span class="material-symbols-outlined text-primary/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<h3 class="font-headline-sm text-primary mb-1">Cẩm nang sản phẩm</h3>
+<p class="font-body-md text-on-surface-variant">Tổng hợp USP nổi bật và các câu "mồi" tư vấn đắt giá cho khách GOLD.</p>
+</button>
+</div>
+<!-- Products of Interest -->
+<section class="space-y-3">
+<h3 class="font-label-md text-on-surface-variant uppercase tracking-wider">Sản phẩm quan tâm</h3>
+<div class="space-y-2">
+<div class="bg-white p-3 rounded-lg border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-6 bg-gradient-to-br from-primary to-primary-container rounded flex items-center justify-center">
+<div class="w-3 h-3 border border-white/30 rounded-full"></div>
+</div>
+<div>
+<p class="font-label-md text-primary">Thẻ Platinum Visa</p>
+<p class="text-[11px] text-on-surface-variant">Hoàn tiền 0.5% mọi giao dịch</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="bg-white p-3 rounded-lg border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="real_estate_agent">real_estate_agent</span>
+</div>
+<div>
+<p class="font-label-md text-primary">Gói vay HomeLoan</p>
+<p class="text-[11px] text-on-surface-variant">Lãi suất ưu đãi 6.5% năm đầu</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-white dark:bg-slate-900 px-2 pb-safe h-20 shadow-[0_-2px_8px_rgba(0,0,0,0.04)] border-t border-slate-100 dark:border-slate-800">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] font-medium text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center active:scale-95 transition-transform duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person_search</span>
+<span class="font-['Manrope'] font-medium text-[10px]">Cus360</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Manrope'] font-medium text-[10px]">Leads</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+<span class="font-['Manrope'] font-medium text-[10px]">Tasks</span>
+</button>
+<button class="flex flex-col items-center justify-center hover:text-secondary transition-colors active:scale-95 duration-150 text-secondary font-bold">
+<span class="material-symbols-outlined" data-icon="more_horiz" style="font-variation-settings: 'FILL' 1;">more_horiz</span>
+<span class="font-['Manrope'] font-medium text-[10px]">More</span>
+</button>
+</nav>
+</body></html>

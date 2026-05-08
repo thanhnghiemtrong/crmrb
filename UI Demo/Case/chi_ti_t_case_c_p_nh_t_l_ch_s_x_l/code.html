@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#603180",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#e3b5ff",
+                        "primary-container": "#502070",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed": "#2f004c",
+                        "background": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "on-primary-container": "#c18ce3",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#ffdbcb",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#4a2865",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#b992d6",
+                        "primary-fixed": "#f4daff",
+                        "tertiary": "#33104e",
+                        "surface-tint": "#7a499a",
+                        "outline": "#7d7480",
+                        "on-tertiary-fixed": "#2b0747",
+                        "primary": "#390259",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#a04100",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb693",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#5d2300",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#fc7728",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#4c444f",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-secondary-fixed": "#341000",
+                        "tertiary-fixed": "#f2daff",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#cfc3d1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1rem",
+                        "gutter": "1rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background: #e5eeff;
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-sm fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 duration-150 p-2 rounded-full hover:bg-slate-50">
+<span class="material-symbols-outlined text-[#502070] dark:text-purple-400">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg tracking-tight text-[#502070] dark:text-purple-400">Case Management</h1>
+</div>
+<button class="active:scale-95 duration-150 p-2 rounded-full hover:bg-slate-50">
+<span class="material-symbols-outlined text-[#502070] dark:text-purple-400">search</span>
+</button>
+</header>
+<main class="pt-20 pb-32 px-4 max-w-2xl mx-auto space-y-4">
+<!-- Quick Stats & Case ID Header -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Case ID</span>
+<h2 class="text-headline-sm font-headline-sm text-primary">CAS-00123</h2>
+</div>
+<div class="bg-orange-50 px-3 py-1 rounded-full flex items-center gap-1.5 border border-orange-100">
+<span class="material-symbols-outlined text-[16px] text-secondary" style='font-variation-settings: "FILL" 1;'>timer</span>
+<span class="text-label-md font-label-md text-secondary">SLA: 1h 30p</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-purple-50 text-primary-container rounded-full text-label-md font-label-md border border-purple-100">
+                    Đang xử lý
+                </span>
+<span class="text-outline text-label-md">•</span>
+<span class="text-outline text-label-md">Tạo lúc 08:30, 24/10/2023</span>
+</div>
+</section>
+<!-- Timeline Progress (Bento Style) -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant/30">
+<h3 class="text-label-md font-label-md text-outline uppercase mb-6">Tiến độ xử lý</h3>
+<div class="relative flex justify-between items-start px-2"><!-- Progress Line Background -->
+<div class="absolute top-[14px] left-6 right-6 h-[2px] bg-surface-container"></div>
+<!-- Progress Line Active -->
+<div class="absolute top-[14px] left-6 w-1/2 h-[2px] bg-primary-container"></div>
+<!-- Step 1: Mới -->
+<div class="relative z-10 flex flex-col items-center gap-2 w-12">
+<div class="w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center text-[12px]">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-[10px] font-bold text-primary-container text-center">Mới</span>
+</div>
+<!-- Step 2: Đang xử lý (Active) -->
+<div class="relative z-10 flex flex-col items-center gap-2 w-12">
+<div class="w-7 h-7 rounded-full ring-4 ring-purple-100 bg-primary-container text-white flex items-center justify-center text-[12px]">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-container text-center">Đang xử lý</span>
+</div>
+<!-- Step 3: Đóng -->
+<div class="relative z-10 flex flex-col items-center gap-2 w-12">
+<div class="w-7 h-7 rounded-full bg-surface-container text-outline flex items-center justify-center text-[12px]">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<span class="text-[10px] font-bold text-outline text-center">Đóng</span>
+</div></div>
+</section>
+<!-- Customer & Case Info (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Customer Card -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col">
+<h3 class="text-label-md font-label-md text-outline uppercase mb-4">Thông tin khách hàng</h3>
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Customer profile" class="w-14 h-14 rounded-xl object-cover" data-alt="Professional headshot of a smiling Vietnamese businessman in a tailored suit, clean studio background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaDAWcO4RsDq4Z73DothhwkI4psM5g1zwTmnSwxmezzf4pPTGxpybSw20g0-m6l9APKUsIq_FFv4RPeNr5VW5Kz8J-9oKRboGBrZtxw8BH1E9CX-i-wJbDKoNaWmPViBN-1j5bnHvPl-fLKHtQMOFCgD0wfMgk7eKNZxVhun0zaLa4yWmLTJjTuQDpQXC7ojDaRLuA22qwBHtT_9PO4BoCVwFn2YXTjGHvciQMixHwgLRRwkXc3DdkIi_7E8BW-AXRzjWLvvGbYCY"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<h4 class="font-headline-sm text-on-surface leading-tight">Nguyễn Minh Tuấn</h4>
+<p class="text-label-md text-outline">KH Ưu tiên (Gold)</p>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-50 space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container/60 text-lg">call</span>
+<span class="text-body-md">090 ••• ••89</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container/60 text-lg">mail</span>
+<span class="text-body-md">tuan.nm@gmail.com</span>
+</div>
+</div>
+</section>
+<!-- Case Content Card -->
+<section class="bg-white rounded-xl p-4 shadow-sm border border-outline-variant/30">
+<h3 class="text-label-md font-label-md text-outline uppercase mb-4">Chi tiết yêu cầu</h3>
+<div class="space-y-4">
+<div>
+<p class="text-label-sm font-label-sm text-outline">Loại yêu cầu</p>
+<p class="font-semibold text-on-surface">Tra soát giao dịch thẻ</p>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline">Sản phẩm</p>
+<p class="font-semibold text-on-surface">TPBank Visa Signature</p>
+</div><div>
+<p class="text-label-sm font-label-sm text-outline">Kênh tiếp nhận</p>
+<p class="font-semibold text-on-surface">RM</p>
+</div><div>
+<p class="text-label-sm font-label-sm text-outline">Người xử lý</p>
+<p class="font-semibold text-on-surface">AnTT1 (TXN)</p>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline">Mô tả</p>
+<p class="text-body-md text-on-surface-variant italic leading-relaxed">
+                            "Khách hàng báo bị trừ tiền 2 lần cho giao dịch thanh toán tại Starbucks vào lúc 15:20 ngày 23/10."
+                        </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Interaction History (Glassmorphism look) -->
+<section class="bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-label-md font-label-md text-outline uppercase">Nhật ký xử lý</h3>
+<button class="text-primary-container text-label-md font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                    Ghi chú
+                </button>
+</div>
+<div class="space-y-6">
+<!-- History Item 1 -->
+<div class="flex gap-4 relative">
+<div class="absolute left-[11px] top-6 bottom-[-24px] w-[2px] bg-slate-100"></div>
+<div class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+<div class="flex-1 pb-2">
+<div class="flex justify-between items-start">
+<span class="font-bold text-body-md">Cập nhật trạng thái</span>
+<span class="text-[10px] text-outline">10:45 AM</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Trạng thái đổi từ <b>Tiếp nhận</b> sang <b>Đang xử lý</b>.</p>
+<div class="bg-surface-container-low rounded-lg p-3 mt-2 border border-slate-100">
+<p class="text-label-md text-on-surface italic">"Đã liên hệ Starbucks để xác minh chứng từ giao dịch."</p>
+<p class="text-[10px] text-primary-container mt-2 font-bold">— RM: Lê Văn Nam</p>
+</div>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="flex gap-4 relative">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<span class="font-bold text-body-md">Hệ thống tạo Case</span>
+<span class="text-[10px] text-outline">08:30 AM</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Yêu cầu được ghi nhận tự động từ App TPBank.</p>
+</div>
+<div class="absolute left-[11px] top-6 bottom-[-24px] w-[2px] bg-slate-100"></div></div>
+<div class="flex gap-4">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<span class="font-bold text-body-md">Yêu cầu bổ sung chứng từ</span>
+<span class="text-[10px] text-outline">08:15 AM</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">RM yêu cầu khách hàng cung cấp bản sao hóa đơn Starbucks.</p>
+</div>
+</div></div>
+</section>
+</main>
+<!-- Bottom Action Bar (Transactional Suppression Check: Active) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md px-4 py-4 flex items-center gap-3 border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)]">
+<button class="flex-1 h-12 rounded-xl bg-surface-container flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary-container">call</span>
+<span class="text-label-md font-bold text-primary-container">Gọi điện</span>
+</button>
+<button class="flex-1 h-12 rounded-xl bg-surface-container flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary-container">chat_bubble</span>
+<span class="text-label-md font-bold text-primary-container">Nhắn tin</span>
+</button>
+<button class="flex-[1.5] h-12 rounded-xl bg-secondary-container text-white flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-orange-200">
+<span class="material-symbols-outlined">sync</span>
+<span class="text-label-md font-bold">Cập nhật Case</span>
+</button>
+</nav>
+<!-- Floating Global Navigation (If applicable, but for Details screen we show bottom actions) -->
+<!-- According to "Relevance Check": Focused journey sub-pages hide the global BottomNavBar -->
+</body></html>

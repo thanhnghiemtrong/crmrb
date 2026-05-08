@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Opportunities Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed-dim":"#ffb693","secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff","primary":"#390259","on-primary":"#ffffff","primary-container":"#502070","on-primary-container":"#c18ce3","secondary":"#a04100","on-secondary":"#ffffff","on-surface":"#0b1c30","on-surface-variant":"#4c444f","outline-variant":"#cfc3d1","outline":"#7d7480","surface-container":"#e5eeff","surface-container-lowest":"#ffffff","surface-container-high":"#dce9ff","error":"#ba1a1a","error-container":"#ffdad6","secondary-fixed":"#ffdbcb","on-secondary-fixed-variant":"#7a3000","background":"#f8f9ff","on-background":"#0b1c30","surface-variant":"#d3e4fe","primary-fixed":"#f4daff","tertiary-fixed":"#f2daff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"stack-sm":"0.5rem","stack-md":"1rem","stack-lg":"1.5rem","margin-mobile":"1rem","gutter":"1rem"},fontFamily:{"headline-md":["Manrope"],"label-sm":["Manrope"],"label-md":["Manrope"],"headline-lg":["Manrope"],"headline-sm":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]},fontSize:{"headline-md":["22px",{lineHeight:"28px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"500"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
+@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+.view{display:none;}.view.active{display:block;}
+.toast{animation:slideDown .3s ease-out;}
+@keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
+.modal-overlay{animation:fadeIn .2s ease-out;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<div class="device-frame bg-background text-on-background no-scrollbar" id="app">
+
+<!-- Toast Container -->
+<div id="toastContainer" class="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-32px)] z-[100] pointer-events-none"></div>
+<!-- Modal -->
+<div id="modalOverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] flex items-center justify-center p-6 hidden modal-overlay"><div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl space-y-4" id="modalContent"></div></div>
+
+<!-- ========== VIEW: OPPORTUNITY LIST ========== -->
+<div class="view active" id="view-list">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed bg-primary-container flex items-center justify-center">
+      <span class="material-symbols-outlined text-on-primary-container text-[18px]">person</span>
+    </div>
+    <h1 class="font-extrabold text-lg text-primary">Cơ hội kinh doanh</h1>
+  </div>
+  <div class="flex items-center gap-1">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50"><span class="material-symbols-outlined text-slate-600">search</span></button>
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 relative"><span class="material-symbols-outlined text-slate-600">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span></button>
+  </div>
+</header>
+
+<main class="px-4 py-4 space-y-5 pb-28">
+<!-- Filter Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4">
+  <button class="px-4 py-2 rounded-full bg-primary-container text-white text-label-md whitespace-nowrap shadow-sm font-bold">Trạng thái</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Sản phẩm</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Ưu tiên</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Sắp hết hạn</button>
+</div>
+
+<!-- KPI Summary -->
+<div class="grid grid-cols-2 gap-3">
+  <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+    <p class="text-label-sm text-slate-500 mb-1">Tổng giá trị dự kiến</p>
+    <h2 class="text-headline-sm font-bold text-primary">1.250.000.000</h2>
+    <p class="text-[10px] text-green-600 font-bold mt-1">+12% vs tháng trước</p>
+  </div>
+  <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+    <p class="text-label-sm text-slate-500 mb-1">Cơ hội mới</p>
+    <h2 class="text-headline-sm font-bold text-primary">24</h2>
+    <p class="text-[10px] text-secondary-container font-bold mt-1">4 cần xử lý gấp</p>
+  </div>
+</div>
+
+<!-- Opportunity Cards -->
+<div class="space-y-4">
+  <!-- Card 1: High Potential with Warning -->
+  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+    <div class="flex justify-between items-start mb-3">
+      <div>
+        <h3 class="text-headline-sm text-on-surface">Đặng Khánh Vy</h3>
+        <div class="flex items-center gap-1 text-slate-500 mt-0.5">
+          <span class="material-symbols-outlined text-[16px]">credit_card</span>
+          <span class="text-body-md">Thẻ tín dụng Platinum</span>
+        </div>
+      </div>
+      <span class="material-symbols-outlined text-yellow-500" style='font-variation-settings:"FILL" 1;'>star</span>
+    </div>
+    <div class="flex justify-between items-end mb-4">
+      <div>
+        <p class="text-label-sm text-slate-400">Giá trị dự kiến</p>
+        <p class="text-body-lg font-bold text-primary">50.000.000 VND</p>
+        <div class="mt-2">
+          <p class="text-label-sm text-slate-400">Ngày đóng dự kiến</p>
+          <p class="text-body-md font-medium text-on-surface">30/11/2024</p>
+        </div>
+        <div class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-md w-fit mt-2">Chưa xử lý</div>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-full">
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>psychology</span>
+          <span class="text-label-md">Tỷ lệ Win 85%</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-2 pt-3 border-t border-slate-50">
+      <div class="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-50 text-yellow-700 rounded-full">
+        <span class="material-symbols-outlined text-[18px]">priority_high</span>
+        <span class="text-label-md">Cần follow-up</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2: Regular -->
+  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+    <div class="flex justify-between items-start mb-3">
+      <div>
+        <h3 class="text-headline-sm text-on-surface">Trần Minh Tâm</h3>
+        <div class="flex items-center gap-1 text-slate-500 mt-0.5">
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings:"FILL" 1;'>home</span>
+          <span class="text-body-md">Vay mua nhà ưu đãi</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between items-end mb-4">
+      <div>
+        <p class="text-label-sm text-slate-400">Giá trị dự kiến</p>
+        <p class="text-body-lg font-bold text-primary">2.500.000.000 VND</p>
+        <div class="mt-2">
+          <p class="text-label-sm text-slate-400">Ngày đóng dự kiến</p>
+          <p class="text-body-md font-medium text-on-surface">15/12/2024</p>
+        </div>
+        <div class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-label-md w-fit mt-2">Thu thập hồ sơ</div>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full">
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>psychology</span>
+          <span class="text-label-md">Tỷ lệ Win 60%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3: Priority with high win rate -->
+  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+    <div class="flex justify-between items-start mb-3">
+      <div>
+        <h3 class="text-headline-sm text-on-surface">Lê Thị Mai Anh</h3>
+        <div class="flex items-center gap-1 text-slate-500 mt-0.5">
+          <span class="material-symbols-outlined text-[16px]">savings</span>
+          <span class="text-body-md">Tiết kiệm tích lũy</span>
+        </div>
+      </div>
+      <span class="material-symbols-outlined text-yellow-500" style='font-variation-settings:"FILL" 1;'>star</span>
+    </div>
+    <div class="flex justify-between items-end mb-4">
+      <div>
+        <p class="text-label-sm text-slate-400">Giá trị dự kiến</p>
+        <p class="text-body-lg font-bold text-primary">200.000.000 VND</p>
+        <div class="mt-2">
+          <p class="text-label-sm text-slate-400">Ngày đóng dự kiến</p>
+          <p class="text-body-md font-medium text-on-surface">20/12/2024</p>
+        </div>
+        <div class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-md w-fit mt-2">Phê duyệt</div>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-full">
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>psychology</span>
+          <span class="text-label-md">Tỷ lệ Win 92%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI Analytics Card -->
+<div class="bg-primary-container p-6 rounded-2xl text-white relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-4 opacity-20">
+    <span class="material-symbols-outlined text-[80px]">auto_awesome</span>
+  </div>
+  <div class="relative z-10">
+    <h3 class="text-headline-sm font-bold mb-2">Phân tích từ AI</h3>
+    <p class="text-body-md opacity-90 mb-4">Dựa trên dữ liệu 7 ngày qua, bạn có khả năng chốt 12 cơ hội trị giá 450tr trong tuần tới.</p>
+    <button class="px-6 py-2 bg-secondary-container text-white rounded-full font-bold text-label-md active:scale-95 transition-transform shadow-md">
+      Xem gợi ý chi tiết
+    </button>
+  </div>
+</div>
+</main>
+
+<!-- FAB -->
+<button class="fixed bottom-24 right-[calc(50%-215px+24px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg shadow-orange-300 flex items-center justify-center active:scale-90 transition-transform z-40" onclick="showView('view-create')">
+  <span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</div>
+
+<!-- ========== VIEW: OPPORTUNITY DETAIL ========== -->
+<div class="view" id="view-detail">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-list')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-bold text-lg text-primary">Chi tiết Cơ hội</h1>
+  </div>
+  <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50" onclick="toggleDetailMenu()"><span class="material-symbols-outlined text-primary">more_vert</span></button>
+</header>
+
+<!-- Detail More Menu Dropdown -->
+<div id="detailMenuDropdown" class="fixed top-16 right-[calc(50%-215px+8px)] bg-white rounded-xl shadow-lg border border-slate-100 z-[60] hidden w-48">
+  <button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 text-on-surface text-body-md" onclick="editOpportunity()"><span class="material-symbols-outlined text-[20px] text-slate-500">edit</span>Chỉnh sửa</button>
+  <button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 text-on-surface text-body-md"><span class="material-symbols-outlined text-[20px] text-slate-500">share</span>Chia sẻ</button>
+  <button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 text-on-surface text-body-md"><span class="material-symbols-outlined text-[20px] text-slate-500">picture_as_pdf</span>Xuất PDF</button>
+  <button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 text-error text-body-md" onclick="deleteOpportunity()"><span class="material-symbols-outlined text-[20px] text-error">delete</span>Xóa</button>
+</div>
+
+<main class="px-4 py-4 space-y-5 pb-32">
+<!-- Customer Identity -->
+<section class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4">
+  <div class="relative">
+    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center ring-2 ring-primary-fixed text-primary font-bold text-xl">KV</div>
+    <div class="absolute bottom-0 right-0 bg-green-500 w-4 h-4 rounded-full border-2 border-white"></div>
+  </div>
+  <div>
+    <h2 class="text-headline-sm text-on-surface font-bold">Đặng Khánh Vy</h2>
+    <div class="flex items-center gap-1.5 mt-1">
+      <span class="material-symbols-outlined text-primary text-[16px]" style='font-variation-settings:"FILL" 1;'>credit_card</span>
+      <p class="text-label-md text-on-surface-variant">Cơ hội: Thẻ tín dụng Platinum</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pipeline Progress -->
+<section class="space-y-3">
+  <h3 class="text-label-md text-slate-500 uppercase tracking-wider ml-1">Tiến trình</h3>
+  <div class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm">
+    <div class="flex items-center justify-between px-2">
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center z-10"><span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>check_circle</span></div>
+        <span class="text-[10px] font-bold text-slate-400 text-center">Chưa xử lý</span>
+      </div>
+      <div class="flex-1 h-[2px] bg-purple-200 -mt-4"></div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center z-10"><span class="material-symbols-outlined text-[18px]" style='font-variation-settings:"FILL" 1;'>check_circle</span></div>
+        <span class="text-[10px] font-bold text-slate-400 text-center">Thu thập hồ sơ</span>
+      </div>
+      <div class="flex-1 h-[2px] bg-purple-200 -mt-4"></div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center z-10 shadow-md ring-4 ring-primary-fixed"><span class="material-symbols-outlined text-[20px]" style='font-variation-settings:"FILL" 1;'>description</span></div>
+        <span class="text-[10px] font-bold text-primary text-center">Phê duyệt</span>
+      </div>
+      <div class="flex-1 h-[2px] bg-slate-200 -mt-4"></div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center z-10"><span class="material-symbols-outlined text-[18px]">pending</span></div>
+        <span class="text-[10px] font-bold text-slate-400 text-center">Đã đóng</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Insights Premium Card -->
+<section>
+  <div class="bg-gradient-to-br from-purple-900 to-purple-800 rounded-2xl p-5 text-white shadow-lg overflow-hidden relative">
+    <div class="absolute -right-10 -top-10 bg-white/5 w-40 h-40 rounded-full blur-3xl"></div>
+    <div class="relative z-10">
+      <div class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-md w-fit">
+        <span class="material-symbols-outlined text-[14px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
+        <span class="text-[11px] font-bold tracking-tight">PHÂN TÍCH AI</span>
+      </div>
+      <div class="mt-5 flex gap-8 items-end">
+        <div>
+          <p class="text-white/70 text-xs font-medium">Xác suất chốt</p>
+          <p class="text-4xl font-black mt-1">85%</p>
+        </div>
+        <div>
+          <p class="text-white/70 text-xs font-medium">Doanh số dự kiến</p>
+          <p class="text-2xl font-bold mt-1">50.000.000 <span class="text-sm font-normal">VND</span></p>
+        </div>
+      </div>
+      <div class="mt-5 bg-white/10 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+        <p class="text-sm leading-relaxed text-purple-50">"Khách hàng có lịch sử tín dụng tốt, khả năng chốt cao trong 7 ngày tới. Nên đề xuất thêm gói bảo hiểm đi kèm."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-4 gap-3">
+  <button class="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm active:scale-95 transition-transform">
+    <div class="w-10 h-10 flex items-center justify-center bg-blue-50 text-blue-600 rounded-full"><span class="material-symbols-outlined">call</span></div>
+    <span class="text-[11px] font-bold text-on-surface-variant">Gọi điện</span>
+  </button>
+  <button class="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm active:scale-95 transition-transform">
+    <div class="w-10 h-10 flex items-center justify-center bg-green-50 text-green-600 rounded-full"><span class="material-symbols-outlined">chat</span></div>
+    <span class="text-[11px] font-bold text-on-surface-variant">Nhắn tin</span>
+  </button>
+  <button class="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm active:scale-95 transition-transform">
+    <div class="w-10 h-10 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full"><span class="material-symbols-outlined">calendar_month</span></div>
+    <span class="text-[11px] font-bold text-on-surface-variant">Hẹn gặp</span>
+  </button>
+  <button class="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm active:scale-95 transition-transform">
+    <div class="w-10 h-10 flex items-center justify-center bg-purple-50 text-purple-600 rounded-full"><span class="material-symbols-outlined">sticky_note_2</span></div>
+    <span class="text-[11px] font-bold text-on-surface-variant">Ghi chú</span>
+  </button>
+</section>
+
+<!-- Detailed Information -->
+<section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-slate-50 bg-slate-50/50">
+    <h3 class="text-headline-sm text-on-surface">Thông tin chi tiết</h3>
+  </div>
+  <div class="divide-y divide-slate-50">
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Sản phẩm</span><span class="text-sm font-semibold text-right text-on-surface">Thẻ Platinum Visa</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Giới tính</span><span class="text-sm font-semibold text-right text-on-surface">Nữ</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Quốc tịch</span><span class="text-sm font-semibold text-right text-on-surface">Việt Nam</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày sinh</span><span class="text-sm font-semibold text-right text-on-surface">12/05/1988</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Số điện thoại</span><span class="text-sm font-semibold text-right text-on-surface">0912 xxx 456</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ thường trú</span><span class="text-sm font-semibold text-right text-on-surface">Ba Đình, Hà Nội</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ tạm trú</span><span class="text-sm font-semibold text-right text-on-surface">Quận 1, TP. HCM</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ hiện tại</span><span class="text-sm font-semibold text-right text-on-surface">Quận 1, TP. HCM</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Thời gian cư trú</span><span class="text-sm font-semibold text-right text-on-surface">3 năm 5 tháng</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Nghề nghiệp</span><span class="text-sm font-semibold text-right text-on-surface">Kinh doanh tự do</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Chức danh</span><span class="text-sm font-semibold text-right text-on-surface">Chủ hộ kinh doanh</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Thu nhập bình quân</span><span class="text-sm font-semibold text-right text-on-surface">35.000.000 VND</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Giá trị/Hạn mức</span><span class="text-sm font-semibold text-right text-on-surface">50.000.000 VND</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Loại tiền</span><span class="text-sm font-semibold text-right text-on-surface">VND</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày tiếp nhận</span><span class="text-sm font-semibold text-right text-on-surface">20/11/2024</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày dự kiến đóng</span><span class="text-sm font-semibold text-right text-on-surface">30/11/2024</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Nguồn</span><span class="text-sm font-semibold text-right text-on-surface">Facebook Leads</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Lý do từ chối</span><span class="text-sm font-semibold text-right text-slate-400">N/A</span></div>
+  </div>
+</section>
+
+<!-- Interaction History -->
+<section class="space-y-4">
+  <div class="flex items-center justify-between px-1">
+    <h3 class="text-headline-sm">Lịch sử tương tác</h3>
+    <button class="text-purple-700 text-xs font-bold uppercase tracking-wide">Xem tất cả</button>
+  </div>
+  <div class="space-y-4">
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">call</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Cuộc gọi tư vấn thành công</h4><span class="text-[10px] text-slate-400">2 giờ trước</span></div>
+        <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Đã trao đổi về các tính năng của thẻ Platinum và phí thường niên.</p>
+      </div>
+    </div>
+    <div class="relative pl-8">
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">description</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Gửi tài liệu đề xuất</h4><span class="text-[10px] text-slate-400">Hôm qua</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Đã gửi email kèm brochure sản phẩm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Bottom Actions -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+  <div class="flex gap-3">
+    <button class="flex-[2] h-14 bg-secondary-container text-white font-bold rounded-2xl shadow-lg shadow-orange-200 flex items-center justify-center gap-2 active:scale-[0.98] transition-all" onclick="convertToAccount()">
+      <span class="material-symbols-outlined">person_add</span>Chuyển thành Account
+    </button>
+    <button class="w-14 h-14 border-2 border-primary text-primary font-bold rounded-2xl flex items-center justify-center active:scale-[0.98] transition-all" onclick="editOpportunity()">
+      <span class="material-symbols-outlined">edit</span>
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- ========== VIEW: CREATE OPPORTUNITY ========== -->
+<div class="view" id="view-create">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="closeCreateView()"><span class="material-symbols-outlined text-primary">close</span></button>
+    <h1 class="font-bold text-lg text-primary" id="createTitle">Tạo Opportunity Mới</h1>
+  </div>
+  <button class="text-primary font-semibold text-body-md px-3 py-1.5 hover:bg-slate-50 rounded-lg transition-colors" onclick="resetForm()">Reset</button>
+</header>
+
+<main class="px-4 py-5 space-y-6 pb-32">
+<!-- Hero Banner -->
+<div class="relative w-full h-32 rounded-xl overflow-hidden shadow-sm bg-gradient-to-r from-primary to-primary-container">
+  <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex items-center p-6">
+    <p class="text-white font-bold text-headline-sm max-w-[220px]">Thêm cơ hội kinh doanh mới cho khách hàng</p>
+  </div>
+</div>
+
+<!-- Section: Thông tin chung -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Thông tin chung</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 space-y-4">
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Sản phẩm *</label>
+      <div class="relative">
+        <select class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary appearance-none text-body-lg outline-none">
+          <option>Chọn sản phẩm</option><option>Vay tiêu dùng</option><option>Thẻ tín dụng</option><option>Tiền gửi tiết kiệm</option><option>Vay mua nhà</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Nguồn *</label>
+      <div class="relative">
+        <select class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary appearance-none text-body-lg outline-none">
+          <option>Chọn nguồn</option><option>Trực tiếp tại quầy</option><option>Kênh Digital</option><option>Giới thiệu (Referral)</option><option>Facebook Leads</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Thông tin khách hàng -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Thông tin khách hàng</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 space-y-4">
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Họ và tên *</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập họ và tên" type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Ngày sinh</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" type="date"/>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Giới tính</label>
+        <div class="relative">
+          <select class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant appearance-none text-body-lg outline-none">
+            <option>Nam</option><option>Nữ</option><option>Khác</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[20px]">expand_more</span>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Quốc tịch</label>
+        <div class="relative">
+          <select class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant appearance-none text-body-lg outline-none">
+            <option>Việt Nam</option><option>Khác</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[20px]">expand_more</span>
+        </div>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Số điện thoại *</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="0xxx xxx xxx" type="tel"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Số định danh (CCCD/CMND)</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Nhập số định danh" type="text"/>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Thông tin địa chỉ -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Thông tin địa chỉ</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 space-y-4">
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Địa chỉ thường trú</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Số nhà, đường, phường/xã..." type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Địa chỉ tạm trú</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Nhập địa chỉ tạm trú" type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Địa chỉ hiện tại</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Nhập địa chỉ hiện tại" type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Thời gian cư trú tại địa chỉ hiện tại</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="VD: 5 năm" type="text"/>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Thông tin nghề nghiệp -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Thông tin nghề nghiệp</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 space-y-4">
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Nghề nghiệp</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Nhập nghề nghiệp" type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Chức danh</label>
+      <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="Nhập chức danh" type="text"/>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Thu nhập bình quân</label>
+      <div class="relative">
+        <input class="w-full h-12 pl-4 pr-16 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="0" type="text"/>
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-label-md text-on-surface-variant font-semibold">VND</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Chi tiết cơ hội -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Chi tiết cơ hội</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 space-y-4">
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Giá trị/Hạn mức đề xuất *</label>
+      <div class="relative">
+        <input class="w-full h-12 pl-4 pr-16 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none placeholder:text-outline" placeholder="0" type="text"/>
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-label-md text-on-surface-variant font-semibold">VND</span>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <label class="text-label-md text-on-surface-variant">Loại tiền</label>
+      <div class="relative">
+        <select class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary appearance-none text-body-lg outline-none">
+          <option>VND</option><option>USD</option><option>EUR</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Ngày tiếp nhận</label>
+        <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" type="date"/>
+      </div>
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Ngày dự kiến đóng</label>
+        <input class="w-full h-12 px-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" type="date"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Ghi chú -->
+<section class="space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+    <h2 class="text-headline-sm text-primary">Ghi chú</h2>
+  </div>
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30">
+    <textarea class="w-full p-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none resize-none placeholder:text-outline" rows="4" placeholder="Nhập ghi chú thêm về khách hàng hoặc cơ hội..."></textarea>
+  </div>
+</section>
+</main>
+
+<!-- Submit Button -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+  <button class="w-full h-14 bg-secondary-container text-white rounded-2xl font-bold text-headline-sm shadow-lg shadow-orange-500/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2" onclick="submitOpportunity()">
+    <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;'>add_circle</span><span id="submitBtnText">Tạo Cơ hội</span>
+  </button>
+</footer>
+</div>
+
+<!-- ===== Bottom Navigation ===== -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
+  <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>menu</span><span class="text-[10px] font-bold mt-0.5">More</span></a>
+</nav>
+
+<!-- More Menu -->
+<div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
+<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
+  <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
+  <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
+  <div class="grid grid-cols-3 gap-4">
+    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl bg-purple-50 ring-2 ring-primary/20 active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]" style='font-variation-settings:"FILL" 1;'>trending_up</span></div><span class="text-label-md text-primary text-center leading-tight font-bold">Opportunities</span></a>
+    <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div><span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span></a>
+    <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
+  </div>
+</div>
+
+</div><!-- end device-frame -->
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+let isEditMode = false;
+
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(viewId).classList.add('active');
+  document.getElementById('app').scrollTop = 0;
+  const bottomNav = document.getElementById('bottomNav');
+  bottomNav.style.display = viewId === 'view-list' ? 'flex' : 'none';
+  // Close detail menu if open
+  document.getElementById('detailMenuDropdown').classList.add('hidden');
+}
+
+function showToast(message, type='success') {
+  const container = document.getElementById('toastContainer');
+  const colors = { success:'bg-green-50 border-green-200 text-green-800', error:'bg-red-50 border-red-200 text-error', warning:'bg-amber-50 border-amber-200 text-amber-800' };
+  const icons = { success:'check_circle', error:'error', warning:'warning' };
+  const toast = document.createElement('div');
+  toast.className = `toast ${colors[type]} border px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 pointer-events-auto mb-2`;
+  toast.innerHTML = `<span class="material-symbols-outlined text-[20px] shrink-0" style='font-variation-settings:"FILL" 1;'>${icons[type]}</span><p class="text-body-md flex-1">${message}</p><button class="shrink-0 opacity-60" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[18px]">close</span></button>`;
+  container.appendChild(toast);
+  setTimeout(() => { if(toast.parentElement) toast.remove(); }, 4000);
+}
+
+function showModal(title, body, actions) {
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modalContent').innerHTML = `<h3 class="text-headline-sm text-on-surface font-bold text-center">${title}</h3><p class="text-body-md text-on-surface-variant text-center">${body}</p><div class="flex flex-col gap-2 pt-2">${actions}</div>`;
+  overlay.classList.remove('hidden');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.add('hidden'); }
+
+function toggleMoreMenu(){
+  const o=document.getElementById('moreMenuOverlay'),m=document.getElementById('moreMenu');
+  const hidden=o.classList.contains('hidden');
+  if(hidden){o.classList.remove('hidden');m.classList.remove('hidden');}
+  else{o.classList.add('hidden');m.classList.add('hidden');}
+}
+
+function toggleDetailMenu(){
+  const menu = document.getElementById('detailMenuDropdown');
+  menu.classList.toggle('hidden');
+}
+
+function convertToAccount(){
+  showModal('Chuyển thành Account?', 'Xác nhận chuyển cơ hội của Đặng Khánh Vy thành Account chính thức? Hành động này không thể hoàn tác.',
+    `<button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-95 transition-all" onclick="closeModal();showView('view-list');showToast('✓ Đã chuyển thành Account thành công! Chuyển sang trang Customer 360.','success')">Xác nhận</button><button class="w-full py-3 text-primary font-semibold rounded-xl active:bg-slate-50 transition-colors" onclick="closeModal()">Hủy</button>`
+  );
+}
+
+function deleteOpportunity(){
+  document.getElementById('detailMenuDropdown').classList.add('hidden');
+  showModal('Xóa cơ hội?', 'Bạn có chắc muốn xóa cơ hội này? Dữ liệu sẽ không thể khôi phục.',
+    `<button class="w-full py-3 bg-error text-white font-bold rounded-xl active:scale-95 transition-all" onclick="closeModal();showView('view-list');showToast('Đã xóa cơ hội thành công.','success')">Xóa</button><button class="w-full py-3 text-primary font-semibold rounded-xl active:bg-slate-50 transition-colors" onclick="closeModal()">Hủy</button>`
+  );
+}
+
+function editOpportunity(){
+  document.getElementById('detailMenuDropdown').classList.add('hidden');
+  isEditMode = true;
+  document.getElementById('createTitle').textContent = 'Chỉnh sửa Cơ hội';
+  document.getElementById('submitBtnText').textContent = 'Lưu thay đổi';
+  showView('view-create');
+}
+
+function closeCreateView(){
+  if(isEditMode){
+    isEditMode = false;
+    document.getElementById('createTitle').textContent = 'Tạo Opportunity Mới';
+    document.getElementById('submitBtnText').textContent = 'Tạo Cơ hội';
+  }
+  showView('view-list');
+}
+
+function resetForm(){
+  const inputs = document.querySelectorAll('#view-create input, #view-create textarea, #view-create select');
+  inputs.forEach(input => {
+    if(input.tagName === 'SELECT') input.selectedIndex = 0;
+    else input.value = '';
+  });
+  showToast('Đã reset form', 'warning');
+}
+
+function submitOpportunity(){
+  if(isEditMode){
+    isEditMode = false;
+    document.getElementById('createTitle').textContent = 'Tạo Opportunity Mới';
+    document.getElementById('submitBtnText').textContent = 'Tạo Cơ hội';
+    showView('view-detail');
+    showToast('✓ Cập nhật cơ hội thành công!', 'success');
+  } else {
+    showView('view-list');
+    showToast('✓ Tạo cơ hội thành công! Opportunity mới đã được thêm.', 'success');
+  }
+}
+
+// Close detail menu when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('detailMenuDropdown');
+  const btn = e.target.closest('[onclick="toggleDetailMenu()"]');
+  if (!btn && !menu.contains(e.target)) {
+    menu.classList.add('hidden');
+  }
+});
+</script>
+</body>
+</html>

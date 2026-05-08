@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TPBank Customer 360 - Nguyễn Lan Anh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#7a499a",
+                        "inverse-surface": "#213145",
+                        "outline-variant": "#cfc3d1",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#502070",
+                        "primary": "#390259",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#5d2300",
+                        "on-background": "#0b1c30",
+                        "tertiary-container": "#4a2865",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "on-primary-fixed-variant": "#603180",
+                        "on-primary-fixed": "#2f004c",
+                        "background": "#f8f9ff",
+                        "secondary": "#a04100",
+                        "surface": "#f8f9ff",
+                        "outline": "#7d7480",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#e3b5ff",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-surface-variant": "#4c444f",
+                        "tertiary-fixed": "#f2daff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-container": "#fc7728",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#c18ce3",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#33104e",
+                        "surface-container": "#e5eeff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed": "#341000",
+                        "secondary-fixed": "#ffdbcb",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-container": "#b992d6",
+                        "primary-fixed": "#f4daff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "on-tertiary-fixed": "#2b0747",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#7a3000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "1rem",
+                        "margin-mobile": "1rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface pb-32">
+<!-- Top AppBar -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-200">
+<div class="flex items-center gap-3">
+<button class="text-slate-600">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-sm text-primary leading-tight">Customer 360</h1>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">search</span><span class="material-symbols-outlined text-slate-500">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container">
+<img alt="User" class="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgi-AofvqjIP7qdjrmaocXTgCLAtZzTlOtkmfk9TYbTFoExm6xL4bfY39qnfQ26Vi6AMbc5_QF9dXqFG8P8NIUJceZBAy3GGslEDTI9uT9htkHdk2ajGWqM27LTKXDAfXczEG8q2JixiJRJxodokIhbxxaM1xoBYMUusmelcXcZnMa5z5BetXB_r7TBYvX_JQlB8bk1IMfNdLD7AGsx5jAe7Tx547NIZ6Eqqg7hVgLbX5iiv-cyxvtsW5MpRXvsciEABN_gKZxkq-f"/>
+</div>
+</div>
+</header>
+<!-- Header Section: Customer Profile -->
+<section class="px-margin-mobile pt-stack-md">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-start gap-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Nguyễn Lan Anh" class="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0D3VJtV9sPRmbWhjVgYghb8fCS16HfeSWm_3OVMDnOTYSC2YyvhyQAABm2UpfCkGwE57qqO0dqfogPUnYwWvKCpDZpj8Pc98lAaoqpLrcrqveH7J_9KpNfvwmaQE8zpAHyuYvOy_Vzawd7htSe7U03d2wp4Sbfqf33XA7sdjSNldxGk4HEWsn6wMXLrTgeuWFI_5nblqVrN_uRQ33b1gIZFdj6vFJXwCWHN8ymGES3ls_f5LFot7YbMR-GavP1xEE3U4C7lpGHJr1"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Nguyễn Lan Anh</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">Active</span>
+<span class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/10 text-secondary-container text-[10px] font-bold rounded-full">
+<span class="material-symbols-outlined text-[12px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                                Rất tốt
+                            </span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</button>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-4 text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">id_card</span>
+<span class="">0123456789</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="">Hà Nội</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizontal Tabs -->
+<nav class="mt-stack-md border-b border-outline-variant/30 sticky top-16 bg-surface z-40">
+<div class="flex overflow-x-auto no-scrollbar px-margin-mobile gap-6"><button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Sản phẩm</button><button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">KH tiềm năng</button><button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Cơ hội bán</button><button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Cases</button><button class="py-3 text-label-md whitespace-nowrap border-b-2 border-primary text-primary font-bold">Relationships</button></div>
+</nav>
+<main class="mt-stack-md space-y-stack-lg px-margin-mobile"><!-- Category: Relationships -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-2">
+<div>
+<h3 class="font-bold text-on-surface text-body-md">Customer Relationship</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-label-sm text-on-surface-variant">Show fields on cards</span>
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="peer appearance-none w-10 h-5 bg-slate-200 rounded-full checked:bg-primary transition-colors cursor-pointer" id="toggle-fields" type="checkbox"/>
+<label class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 cursor-pointer" for="toggle-fields"></label>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center bg-white border border-outline-variant rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-white border border-outline-variant rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-white border border-outline-variant rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Relationship Visualization -->
+<div class="relative flex flex-col items-center pt-4">
+<!-- Root Node: Nguyễn Lan Anh -->
+<div class="bg-white px-4 py-2 rounded-lg border border-primary shadow-sm flex items-center gap-2 z-10">
+<span class="material-symbols-outlined text-primary text-[20px]">account_circle</span>
+<span class="font-bold text-primary text-body-md">Nguyễn Lan Anh</span>
+</div>
+<!-- Connecting Line -->
+<div class="h-8 w-px bg-slate-300"></div>
+<!-- Group Header: Members -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-primary-container text-white rounded-lg">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+<span class="text-label-md font-bold">Members</span>
+<span class="bg-white/20 px-1.5 rounded text-[10px]">2</span>
+</div>
+</div>
+<!-- Member Cards -->
+<div class="w-full space-y-3 mt-4">
+<!-- Card 1: Nguyễn Văn Toàn -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<h4 class="font-bold text-primary text-body-lg">Nguyễn Văn Toàn</h4>
+<span class="material-symbols-outlined text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+<div class="space-y-2 border-t border-slate-50 pt-3">
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Tên Tài Khoản</span>
+<span class="text-label-md font-semibold text-on-surface">Nguyễn Văn Toàn</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Quan hệ</span>
+<span class="text-label-md font-semibold text-on-surface">Con</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Tuổi</span>
+<span class="text-label-md font-semibold text-on-surface">13</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Nghi Le Van -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<h4 class="font-bold text-primary text-body-lg">Nghi Le Van</h4>
+<span class="material-symbols-outlined text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+<div class="space-y-2 border-t border-slate-50 pt-3">
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Tên Tài Khoản</span>
+<span class="text-label-md font-semibold text-on-surface">Nghi Le Van</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Quan hệ</span>
+<span class="text-label-md font-semibold text-on-surface">Chồng</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm text-on-surface-variant">Tuổi</span>
+<span class="text-label-md font-semibold text-on-surface">40</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center px-3 py-1 active:scale-95 transition-transform duration-150" href="#" style="color: #F37021;">
+<span class="material-symbols-outlined text-[24px]" style='font-variation-settings: "FILL" 1;'>person_search</span>
+<span class="font-manrope text-[10px] font-bold mt-1">Cus360</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">trending_up</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Leads</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">event_note</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+<span class="font-manrope text-[10px] font-medium mt-1">More</span>
+</a>
+</nav>
+<!-- FAB Action -->
+<button class="fixed bottom-24 right-4 w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</body></html>

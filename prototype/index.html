@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Customer 360 - Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fas fa-building-columns"></i>
+            <span>CRM TPBank</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-th-large"></i><span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="customer360">
+                <i class="fas fa-user-circle"></i><span>Customer 360</span>
+            </a>
+            <a href="#" class="nav-item" data-page="leads">
+                <i class="fas fa-funnel-dollar"></i><span>Lead Management</span>
+            </a>
+            <a href="#" class="nav-item" data-page="tasks">
+                <i class="fas fa-tasks"></i><span>Tasks</span>
+            </a>
+            <a href="#" class="nav-item" data-page="reports">
+                <i class="fas fa-chart-bar"></i><span>Reports</span>
+            </a>
+        </nav>
+        <div class="sidebar-user">
+            <div class="user-avatar">NT</div>
+            <div class="user-info">
+                <span class="user-name">Nguyễn Thành</span>
+                <span class="user-role">RBO - CN Láng Hạ</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Tìm khách hàng (tên, SĐT, CCCD, CIF, email)..." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn-icon"><i class="fas fa-bell"></i><span class="badge">3</span></button>
+                <button class="btn-icon"><i class="fas fa-cog"></i></button>
+            </div>
+        </header>
+
+        <!-- Customer 360 Page -->
+        <div class="page-content" id="customer360Page">
+            <!-- Customer Header -->
+            <div class="customer-header">
+                <div class="customer-avatar-large">TH</div>
+                <div class="customer-header-info">
+                    <div class="customer-name-row">
+                        <h1>Trần Văn Hoàng</h1>
+                        <span class="segment-badge priority">Priority</span>
+                        <span class="lifecycle-badge active">Active</span>
+                    </div>
+                    <div class="customer-meta">
+                        <span><i class="fas fa-id-card"></i> CIF: 1234567890</span>
+                        <span><i class="fas fa-phone"></i> 0912 *** 678</span>
+                        <span><i class="fas fa-envelope"></i> tran.hoang@***</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Hà Nội</span>
+                    </div>
+                    <div class="customer-owner">
+                        <span><i class="fas fa-user-tie"></i> RM: Nguyễn Thành - CN Láng Hạ</span>
+                        <span><i class="fas fa-shield-alt"></i> Risk: <span class="risk-low">Thấp</span></span>
+                    </div>
+                </div>
+                <div class="customer-actions">
+                    <button class="btn btn-primary"><i class="fas fa-phone"></i> Gọi</button>
+                    <button class="btn btn-secondary"><i class="fas fa-envelope"></i> Email</button>
+                    <button class="btn btn-secondary"><i class="fas fa-plus"></i> Tạo Task</button>
+                </div>
+            </div>
+
+            <!-- Widget Grid -->
+            <div class="widget-grid">
+                <!-- Product Holdings Widget -->
+                <div class="widget widget-large" id="widgetProducts">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-briefcase"></i> Sở hữu Sản phẩm</h3>
+                        <span class="widget-count">8 sản phẩm</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="product-grid">
+                            <div class="product-card">
+                                <div class="product-icon casa"><i class="fas fa-wallet"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">CASA</span>
+                                    <span class="product-count">2 tài khoản</span>
+                                    <span class="product-balance">125,450,000 đ</span>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-icon savings"><i class="fas fa-piggy-bank"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">Tiết kiệm</span>
+                                    <span class="product-count">1 sổ</span>
+                                    <span class="product-balance">500,000,000 đ</span>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-icon loan"><i class="fas fa-hand-holding-usd"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">Vay</span>
+                                    <span class="product-count">1 khoản vay</span>
+                                    <span class="product-balance">Dư nợ: 1,200,000,000 đ</span>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-icon card"><i class="fas fa-credit-card"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">Thẻ tín dụng</span>
+                                    <span class="product-count">1 thẻ</span>
+                                    <span class="product-balance">HM: 200,000,000 đ</span>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-icon insurance"><i class="fas fa-shield-alt"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">Bảo hiểm</span>
+                                    <span class="product-count">2 hợp đồng</span>
+                                    <span class="product-balance">Phí: 15,000,000 đ/năm</span>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-icon ebank"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="product-info">
+                                    <span class="product-type">eBanking</span>
+                                    <span class="product-count">Active</span>
+                                    <span class="product-balance">Login: 45 lần/tháng</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Widget -->
+                <div class="widget widget-large" id="widgetTimeline">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-stream"></i> Lịch sử Tương tác</h3>
+                        <div class="widget-filters">
+                            <button class="filter-btn active">Tất cả</button>
+                            <button class="filter-btn">CRM</button>
+                            <button class="filter-btn">App</button>
+                            <button class="filter-btn">Branch</button>
+                            <button class="filter-btn">Campaign</button>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-icon crm"><i class="fas fa-phone"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Hôm nay - 09:42</div>
+                                    <div class="timeline-desc">CRM: RM gọi tư vấn thẻ tín dụng – <span class="result-positive">Kết quả: Quan tâm</span></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon app"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Hôm nay - 08:10</div>
+                                    <div class="timeline-desc">App Banking: Giao dịch chuyển khoản 50,000,000đ</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon contact-center"><i class="fas fa-headset"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Hôm qua - 15:30</div>
+                                    <div class="timeline-desc">Contact Center: Mở ticket #45918 – Lỗi OTP</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon campaign"><i class="fas fa-bullhorn"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Hôm qua - 11:22</div>
+                                    <div class="timeline-desc">Campaign: Email "Ưu đãi Bảo hiểm 15%" – <span class="result-neutral">Opened</span></div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon branch"><i class="fas fa-building"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">2 ngày trước</div>
+                                    <div class="timeline-desc">Branch: Giao dịch thay đổi hạn mức chuyển khoản</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon crm"><i class="fas fa-user-plus"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">4 ngày trước</div>
+                                    <div class="timeline-desc">CRM: Lead Mortgage được tạo – <span class="result-positive">Trạng thái: Qualified</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+            <!-- Second Row Widgets -->
+            <div class="widget-grid">
+                <!-- KYC Widget -->
+                <div class="widget" id="widgetKYC">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-id-card"></i> Thông tin KYC</h3>
+                        <span class="source-badge">Core Banking</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Họ và tên</label>
+                                <span>Trần Văn Hoàng</span>
+                            </div>
+                            <div class="info-item">
+                                <label>CCCD</label>
+                                <span>001099******</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Ngày sinh</label>
+                                <span>15/03/1985</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Giới tính</label>
+                                <span>Nam</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Nghề nghiệp</label>
+                                <span>Giám đốc kinh doanh</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Địa chỉ</label>
+                                <span>12 Láng Hạ, Đống Đa, Hà Nội</span>
+                            </div>
+                            <div class="info-item">
+                                <label>eKYC</label>
+                                <span class="status-verified"><i class="fas fa-check-circle"></i> Đã xác thực</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Cập nhật</label>
+                                <span class="text-muted">12/04/2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loan Widget -->
+                <div class="widget" id="widgetLoan">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-hand-holding-usd"></i> Khoản vay</h3>
+                        <span class="widget-count">1 khoản</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="loan-card">
+                            <div class="loan-header">
+                                <span class="loan-type">Vay mua nhà</span>
+                                <span class="loan-status active">Đang vay</span>
+                            </div>
+                            <div class="loan-details">
+                                <div class="loan-item">
+                                    <label>Số HĐ</label>
+                                    <span>LD-2023-001234</span>
+                                </div>
+                                <div class="loan-item">
+                                    <label>Dư nợ gốc</label>
+                                    <span class="amount">1,200,000,000 đ</span>
+                                </div>
+                                <div class="loan-item">
+                                    <label>Lãi suất</label>
+                                    <span>8.5%/năm</span>
+                                </div>
+                                <div class="loan-item">
+                                    <label>Kỳ hạn</label>
+                                    <span>20 năm (còn 17 năm)</span>
+                                </div>
+                                <div class="loan-item">
+                                    <label>LTV</label>
+                                    <span>65%</span>
+                                </div>
+                                <div class="loan-item">
+                                    <label>TSBĐ</label>
+                                    <span>Căn hộ 12 Láng Hạ</span>
+                                </div>
+                            </div>
+                            <div class="loan-schedule">
+                                <span class="text-muted"><i class="fas fa-calendar"></i> Kỳ trả tiếp: 15/06/2025 - 18,500,000đ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relationships Widget -->
+                <div class="widget" id="widgetRelationships">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-users"></i> Quan hệ Khách hàng</h3>
+                    </div>
+                    <div class="widget-body">
+                        <div class="relationship-list">
+                            <div class="relationship-item">
+                                <div class="rel-avatar">NH</div>
+                                <div class="rel-info">
+                                    <span class="rel-name">Nguyễn Thị Hoa</span>
+                                    <span class="rel-role">Vợ</span>
+                                </div>
+                                <span class="rel-status customer">KH hiện hữu</span>
+                            </div>
+                            <div class="relationship-item">
+                                <div class="rel-avatar">TM</div>
+                                <div class="rel-info">
+                                    <span class="rel-name">Trần Minh</span>
+                                    <span class="rel-role">Con</span>
+                                </div>
+                                <span class="rel-status prospect">Tiềm năng</span>
+                            </div>
+                            <div class="relationship-item">
+                                <div class="rel-avatar">ABC</div>
+                                <div class="rel-info">
+                                    <span class="rel-name">Công ty ABC Corp</span>
+                                    <span class="rel-role">Giám đốc KD</span>
+                                </div>
+                                <span class="rel-status customer">KH DN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk & Compliance Widget -->
+                <div class="widget" id="widgetRisk">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-shield-alt"></i> Rủi ro & Compliance</h3>
+                    </div>
+                    <div class="widget-body">
+                        <div class="risk-grid">
+                            <div class="risk-item">
+                                <label>Blacklist</label>
+                                <span class="risk-clear"><i class="fas fa-check-circle"></i> Không</span>
+                            </div>
+                            <div class="risk-item">
+                                <label>AML Risk</label>
+                                <span class="risk-low-badge">Thấp</span>
+                            </div>
+                            <div class="risk-item">
+                                <label>Xếp hạng tín dụng</label>
+                                <span class="credit-score">AA</span>
+                            </div>
+                            <div class="risk-item">
+                                <label>CIC Score</label>
+                                <span>750 / 900</span>
+                            </div>
+                            <div class="risk-item">
+                                <label>Nợ quá hạn</label>
+                                <span class="risk-clear"><i class="fas fa-check-circle"></i> Không</span>
+                            </div>
+                            <div class="risk-item">
+                                <label>KYC Status</label>
+                                <span class="status-verified"><i class="fas fa-check-circle"></i> Hợp lệ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes Widget -->
+                <div class="widget" id="widgetNotes">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-sticky-note"></i> Ghi chú</h3>
+                        <button class="btn-sm"><i class="fas fa-plus"></i> Thêm</button>
+                    </div>
+                    <div class="widget-body">
+                        <div class="notes-list">
+                            <div class="note-item">
+                                <div class="note-header">
+                                    <span class="note-author">Nguyễn Thành</span>
+                                    <span class="note-time">Hôm nay 09:45</span>
+                                </div>
+                                <div class="note-content">
+                                    KH quan tâm thẻ tín dụng Visa Platinum. Hẹn gặp tuần sau để tư vấn chi tiết. <span class="note-tag">#thẻ</span> <span class="note-tag">#hẹn-gặp</span>
+                                </div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-header">
+                                    <span class="note-author">Lê Minh</span>
+                                    <span class="note-time">3 ngày trước</span>
+                                </div>
+                                <div class="note-content">
+                                    KH đã hoàn tất hồ sơ vay mua nhà. Chờ phê duyệt từ phòng tín dụng. <span class="note-tag">#vay</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hạn mức Widget -->
+                <div class="widget" id="widgetLimit">
+                    <div class="widget-header">
+                        <h3><i class="fas fa-tachometer-alt"></i> Hạn mức</h3>
+                    </div>
+                    <div class="widget-body">
+                        <div class="limit-list">
+                            <div class="limit-item">
+                                <div class="limit-info">
+                                    <span class="limit-type">Hạn mức tín dụng tổng</span>
+                                    <div class="limit-bar">
+                                        <div class="limit-used" style="width: 60%"></div>
+                                    </div>
+                                    <div class="limit-numbers">
+                                        <span>Đã dùng: 1,200M</span>
+                                        <span>Tổng: 2,000M</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="limit-item">
+                                <div class="limit-info">
+                                    <span class="limit-type">Hạn mức thẻ tín dụng</span>
+                                    <div class="limit-bar">
+                                        <div class="limit-used" style="width: 35%"></div>
+                                    </div>
+                                    <div class="limit-numbers">
+                                        <span>Đã dùng: 70M</span>
+                                        <span>Tổng: 200M</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

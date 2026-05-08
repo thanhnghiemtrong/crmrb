@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdbcb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#4a2865",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#502070",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#4c444f",
+                        "surface-variant": "#d3e4fe",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#33104e",
+                        "secondary-container": "#fc7728",
+                        "surface": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-tint": "#7a499a",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#f2daff",
+                        "secondary": "#a04100",
+                        "inverse-surface": "#213145",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#cfc3d1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#603180",
+                        "on-tertiary-fixed": "#2b0747",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-tertiary-container": "#b992d6",
+                        "background": "#f8f9ff",
+                        "inverse-primary": "#e3b5ff",
+                        "outline": "#7d7480",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#c18ce3",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-fixed": "#341000",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#5d2300",
+                        "primary-fixed": "#f4daff",
+                        "on-primary-fixed": "#2f004c",
+                        "on-primary": "#ffffff",
+                        "primary": "#390259",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "on-background": "#0b1c30"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 bg-white border-b border-surface-container-high shadow-sm">
+<button class="flex items-center gap-1 text-on-surface-variant transition-all active:opacity-70 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">close</span>
+<span class="font-label-md">Hủy</span>
+</button>
+<h1 class="text-lg font-bold text-primary tracking-tight font-headline-sm">Tạo Lead Mới</h1>
+<div class="w-10 h-10 flex items-center justify-center">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 flex flex-col gap-6 max-w-2xl mx-auto">
+<!-- AI Prediction Banner -->
+<section class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-on-tertiary shadow-md">
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]" style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
+<span class="font-label-md uppercase tracking-widest text-[10px] text-primary-fixed">Preview AI</span>
+</div>
+<p class="font-body-md text-white/90">Dự báo điểm lead ban đầu:</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-headline-lg text-secondary-fixed">--</span>
+<span class="font-label-sm text-white/60">Chờ dữ liệu</span>
+</div>
+</div>
+<!-- Decorative Grain -->
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+</section>
+<!-- Form Section -->
+<form class="flex flex-col gap-6">
+<!-- Basic Info Card -->
+<div class="p-6 bg-white border border-outline-variant rounded-2xl shadow-sm flex flex-col gap-6">
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">person</span>
+                        Họ và tên khách hàng
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập họ và tên" type="text"/>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">call</span>
+                        Số điện thoại
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" inputmode="tel" placeholder="0xxx xxx xxx" type="tel"/>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">mail</span>
+                        Email
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="example@email.com" type="email"/>
+</div><div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_today</span>
+                        Ngày sinh
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" type="date"/>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">wc</span>
+                        Giới tính
+                    </label>
+<div class="relative">
+<select class="w-full h-12 pl-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none appearance-none transition-all pr-12 bg-none">
+<option disabled="" selected="" value="">Chọn giới tính</option>
+<option value="male">Nam</option>
+<option value="female">Nữ</option>
+<option value="other">Khác</option>
+</select>
+<span class="material-symbols-outlined absolute text-on-surface-variant pointer-events-none right-4 top-1/2 -translate-y-1/2">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">fingerprint</span>
+                        Số định danh
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập số CMND/CCCD" type="text"/>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">work</span>
+                        Nghề nghiệp
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập nghề nghiệp" type="text"/>
+</div><div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">badge</span>Chức danh</label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập chức danh/vị trí" type="text"/>
+</div>
+</div>
+<!-- Product & Source Card -->
+<div class="p-6 bg-white border border-outline-variant rounded-2xl shadow-sm flex flex-col gap-6">
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
+                        Sản phẩm quan tâm
+                    </label>
+<div class="relative">
+<select class="w-full h-12 pl-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none appearance-none transition-all pr-12 bg-none">
+<option disabled="" selected="" value="">Chọn sản phẩm</option>
+<option value="cc">Thẻ tín dụng</option>
+<option value="mortgage">Vay mua nhà</option>
+<option value="saving">Tiết kiệm</option>
+<option value="insurance">Bảo hiểm</option>
+</select>
+<span class="material-symbols-outlined absolute text-on-surface-variant pointer-events-none right-4 top-1/2 -translate-y-1/2">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">hub</span>
+                        Nguồn lead
+                    </label>
+<div class="relative">
+<select class="w-full h-12 pl-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none appearance-none transition-all pr-12 bg-none">
+<option disabled="" selected="" value="">Chọn nguồn lead</option>
+<option value="web">Website</option>
+<option value="hotline">Hotline</option>
+<option value="referral">Giới thiệu</option>
+</select>
+<span class="material-symbols-outlined absolute text-on-surface-variant pointer-events-none right-4 top-1/2 -translate-y-1/2">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Address & Notes Card -->
+<div class="p-6 bg-white border border-outline-variant rounded-2xl shadow-sm flex flex-col gap-6">
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">location_on</span>
+                        Địa chỉ
+                    </label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập địa chỉ liên hệ" type="text"/>
+</div>
+<div class="flex flex-col gap-2.5">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">edit_note</span>
+                        Ghi chú
+                    </label>
+<textarea class="w-full p-4 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-md outline-none transition-all resize-none min-h-[120px] placeholder:text-outline" placeholder="Nhập thêm thông tin ghi chú về nhu cầu của khách hàng..." rows="4"></textarea>
+</div>
+</div>
+</form>
+<!-- User Tip -->
+<div class="flex gap-4 p-4 bg-surface-container rounded-2xl border border-surface-variant mb-4">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0">info</span>
+<p class="text-[13px] leading-relaxed text-on-surface-variant font-body-md">
+                Thông tin càng đầy đủ giúp AI dự báo điểm lead chính xác hơn, giúp RM tối ưu hóa quy trình tư vấn.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full p-4 bg-white/95 backdrop-blur-md border-t border-surface-container-high flex items-center justify-center z-50">
+<button class="w-full max-w-2xl h-14 bg-primary text-on-primary rounded-2xl font-headline-sm flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]" style='font-variation-settings: "FILL" 1;'>add_circle</span>
+            Tạo Lead
+        </button>
+</footer>
+</body></html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TPBank Customer 360 - Nguyễn Lan Anh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb693",
+                        "secondary-container": "#fc7728",
+                        "surface": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "tertiary": "#33104e",
+                        "on-tertiary-fixed": "#2b0747",
+                        "primary": "#390259",
+                        "on-tertiary-container": "#b992d6",
+                        "on-primary-fixed-variant": "#603180",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#e3b5ff",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "tertiary-fixed": "#f2daff",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-fixed": "#341000",
+                        "on-surface-variant": "#4c444f",
+                        "on-secondary-container": "#5d2300",
+                        "tertiary-container": "#4a2865",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed": "#f4daff",
+                        "on-primary-container": "#c18ce3",
+                        "outline-variant": "#cfc3d1",
+                        "primary-container": "#502070",
+                        "secondary": "#a04100",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffdbcb",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-primary-fixed": "#2f004c",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f8f9ff",
+                        "background": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#7a499a",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#7d7480",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface pb-24">
+<!-- Top AppBar (Shared Component Logic) -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-200">
+<div class="flex items-center gap-3">
+<button class="text-slate-600">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-sm text-primary leading-tight">Customer 360</h1>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">search</span><span class="material-symbols-outlined text-slate-500">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container">
+<img alt="User" class="" data-alt="A professional portrait of a TPBank staff member, a young Vietnamese woman with a friendly smile, dressed in a sharp corporate uniform. The lighting is bright and modern, set against a blurred office background with subtle purple and orange accents from the bank's corporate identity. High-quality digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgi-AofvqjIP7qdjrmaocXTgCLAtZzTlOtkmfk9TYbTFoExm6xL4bfY39qnfQ26Vi6AMbc5_QF9dXqFG8P8NIUJceZBAy3GGslEDTI9uT9htkHdk2ajGWqM27LTKXDAfXczEG8q2JixiJRJxodokIhbxxaM1xoBYMUusmelcXcZnMa5z5BetXB_r7TBYvX_JQlB8bk1IMfNdLD7AGsx5jAe7Tx547NIZ6Eqqg7hVgLbX5iiv-cyxvtsW5MpRXvsciEABN_gKZxkq-f"/>
+</div>
+</div>
+</header>
+<!-- Header Section: Customer Profile -->
+<section class="px-margin-mobile pt-stack-md">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-start gap-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Nguyễn Lan Anh" class="" data-alt="A high-resolution profile image of a premium banking customer, a stylish Vietnamese woman in her early 30s. She exudes confidence and success, set against a soft, clean light-mode background. The aesthetic is clean, sophisticated, and aligns with high-end financial services branding, utilizing a palette of soft grays and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0D3VJtV9sPRmbWhjVgYghb8fCS16HfeSWm_3OVMDnOTYSC2YyvhyQAABm2UpfCkGwE57qqO0dqfogPUnYwWvKCpDZpj8Pc98lAaoqpLrcrqveH7J_9KpNfvwmaQE8zpAHyuYvOy_Vzawd7htSe7U03d2wp4Sbfqf33XA7sdjSNldxGk4HEWsn6wMXLrTgeuWFI_5nblqVrN_uRQ33b1gIZFdj6vFJXwCWHN8ymGES3ls_f5LFot7YbMR-GavP1xEE3U4C7lpGHJr1"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Nguyễn Lan Anh</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">Active</span>
+<span class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/10 text-secondary-container text-[10px] font-bold rounded-full">
+<span class="material-symbols-outlined text-[12px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                                Rất tốt
+                            </span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</button>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-4 text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">id_card</span>
+<span class="">0123456789</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="">Hà Nội</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizontal Tabs -->
+<nav class="mt-stack-md border-b border-outline-variant/30 sticky top-16 bg-surface z-40">
+<div class="flex overflow-x-auto no-scrollbar px-margin-mobile gap-6">
+<button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Tổng quan</button>
+<button class="py-3 text-label-md whitespace-nowrap border-b-2 border-primary text-primary font-bold">Thông tin KH</button>
+<button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Sản phẩm</button>
+<button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">KH tiềm năng</button>
+<button class="py-3 text-label-md whitespace-nowrap text-on-surface-variant hover:text-primary">Tài sản</button>
+</div>
+</nav>
+<main class="mt-stack-md space-y-stack-lg px-margin-mobile"><!-- Section 1: Thông tin cơ bản -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+<h3 class="font-headline-sm text-body-lg font-bold text-primary">Thông tin cơ bản</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Loại giấy tờ tùy thân</span>
+<span class="text-body-md font-semibold text-on-surface">CCCD</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Số định danh</span>
+<div class="flex items-center gap-2">
+<span class="text-body-md font-bold text-on-surface">001234567895</span>
+<button class="text-primary"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+</div>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Ngày cấp</span>
+<span class="text-body-md font-semibold text-on-surface">20/06/2019</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Nơi cấp</span>
+<span class="text-body-md font-semibold text-on-surface">TP.HCM</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Ngày hết hạn</span>
+<span class="text-body-md font-bold" style="color: rgb(243, 112, 33);">20/06/2029</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Ngày sinh</span>
+<span class="text-body-md font-semibold text-on-surface">15/08/1992</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Trình độ học vấn</span>
+<span class="text-body-md font-semibold text-on-surface">Thạc sĩ</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Tình trạng hôn nhân</span>
+<span class="text-body-md font-semibold text-on-surface">Đã kết hôn</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-dashed border-outline-variant/50">
+<span class="text-body-md text-on-surface-variant">Quốc tịch</span>
+<span class="text-body-md font-semibold text-on-surface">Việt Nam</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="text-body-md text-on-surface-variant">Giới tính</span>
+<span class="text-body-md font-semibold text-on-surface">Nữ</span>
+</div></div>
+</section>
+<!-- Section 2: Large Banner -->
+<section class="relative h-32 rounded-xl overflow-hidden shadow-md">
+<div class="absolute inset-0 bg-gradient-to-r from-[#502070] to-[#7a499a] opacity-90"></div>
+<img alt="Lounge background" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHm0NlytM7z69wV5_rXv-vXyS5Z9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p9p9Z9-p"/>
+<div class="relative h-full flex flex-col justify-center px-6">
+<h4 class="text-white font-headline-sm text-lg">Priority Member</h4>
+<p class="text-purple-100 text-body-md">Exclusive Banking Benefits</p>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-4xl text-white/50">workspace_premium</span>
+</div>
+</section>
+<!-- Section 3: Thông tin liên hệ -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+<h3 class="font-headline-sm text-body-lg font-bold text-primary">Thông tin liên hệ</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div class="flex-1">
+<p class="text-label-sm text-on-surface-variant">Số điện thoại di động</p>
+<p class="text-body-md font-bold">0906789012</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">phone</span>
+</div>
+<div class="flex-1">
+<p class="text-label-sm text-on-surface-variant">Số điện thoại nhà</p>
+<p class="text-body-md font-bold">0283234567</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-label-sm text-on-surface-variant">Email</p>
+<p class="text-body-md font-bold">nguyenlananh@gmail.com</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex-1">
+<p class="text-label-sm text-on-surface-variant">Địa chỉ thường trú</p>
+<p class="text-body-md font-bold">89 Pasteur, Phường Bến Nghé, Quận 1, TP.HCM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Thông tin nghề nghiệp -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+<h3 class="font-headline-sm text-body-lg font-bold text-primary">Thông tin nghề nghiệp</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-md text-on-surface-variant">Đơn vị công tác</span>
+<span class="text-body-md font-bold text-on-surface">Allen &amp; Overy</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md text-on-surface-variant">Nghề nghiệp</span>
+<span class="text-body-md font-bold text-on-surface">Luật sư</span>
+</div>
+</div>
+</section></main>
+<!-- Bottom Navigation (Shared Component Integration) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50"><!-- Home -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Home</span>
+</a>
+<!-- Cus360 (Active) -->
+<a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]" style='font-variation-settings: "FILL" 1;'>person_search</span>
+<span class="font-manrope text-[10px] font-bold mt-1">Cus360</span>
+</a>
+<!-- Leads -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">leaderboard</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Leads</span>
+</a>
+<!-- Tasks -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">assignment</span>
+<span class="font-manrope text-[10px] font-medium mt-1">Tasks</span>
+</a>
+<!-- More -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">more_horiz</span>
+<span class="font-manrope text-[10px] font-medium mt-1">More</span>
+</a></nav>
+<!-- FAB Action (Contextual: Add Note/Activity) -->
+<button class="fixed bottom-24 right-4 w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</body></html>

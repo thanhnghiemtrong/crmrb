@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#ffdbcb",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#4a2865",
+                    "primary-fixed-dim": "#e3b5ff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "primary-container": "#502070",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#4c444f",
+                    "surface-variant": "#d3e4fe",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary": "#33104e",
+                    "secondary-container": "#fc7728",
+                    "surface": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#7a499a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#f2daff",
+                    "secondary": "#a04100",
+                    "inverse-surface": "#213145",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline-variant": "#cfc3d1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#603180",
+                    "on-tertiary-fixed": "#2b0747",
+                    "on-tertiary-fixed-variant": "#5a3875",
+                    "on-tertiary-container": "#b992d6",
+                    "background": "#f8f9ff",
+                    "inverse-primary": "#e3b5ff",
+                    "outline": "#7d7480",
+                    "secondary-fixed-dim": "#ffb693",
+                    "on-primary-container": "#c18ce3",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#7a3000",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed": "#341000",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5d2300",
+                    "primary-fixed": "#f4daff",
+                    "on-primary-fixed": "#2f004c",
+                    "on-primary": "#ffffff",
+                    "primary": "#390259",
+                    "tertiary-fixed-dim": "#e0b7fe",
+                    "on-background": "#0b1c30"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "1.5rem",
+                    "gutter": "1rem",
+                    "stack-md": "1rem",
+                    "stack-sm": "0.5rem",
+                    "margin-mobile": "1rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pb-safe-offset-2 {
+            padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 bg-white dark:bg-gray-900 shadow-sm dark:shadow-none border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-purple-100">
+<img alt="RM Avatar" class="w-full h-full object-cover" data-alt="Close-up professional portrait of a Vietnamese banking relationship manager in a white shirt with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqyEyGKgjmP5-GgPjOgEun6QHqGck9rkWasY4iUm3h3wF0KUVkOlfpeBVKMsKPllmMbZovQlpTsQEPgkC-Z3gR2PzvjX75kTs5btnA52n-dCBeNytVqM24M-toKWFGOs_s8YlgU802h0rYY-J3ODw5DayQLFhR20lrlEshhHlB38l6SBDiTHkH4OdsDOTOFlHWmE0NmVzABp1GzuFIjFysSqDzj9d6Pj22mYey6vNQIVviSzbX_7Qt7VozgXwHf05Uj3RdK8zX8GSw"/>
+</div>
+<h1 class="text-lg font-black text-purple-900 dark:text-purple-100 tracking-tight">TPBank CRM</h1>
+</div>
+<button class="p-2 text-purple-800 dark:text-purple-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="p-4 space-y-6 pb-32">
+<!-- Search & Filter Section -->
+<section class="space-y-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-body-md shadow-sm" placeholder="Tìm kiếm tên Lead, SĐT..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex items-center gap-1.5 px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-label-md whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Trạng thái
+                </button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-white border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap">
+                    Sắp hết hạn</button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-white border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap">
+                    Ưu tiên
+                </button>
+</div>
+</section>
+<!-- Metrics Overview -->
+<section class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-white rounded-xl border border-outline-variant shadow-sm">
+<p class="text-label-sm text-outline mb-1">Lead mới hôm nay</p>
+<p class="text-headline-md text-primary">12</p>
+</div>
+<div class="p-4 bg-white rounded-xl border border-outline-variant shadow-sm">
+<p class="text-label-sm text-outline mb-1">Tỷ lệ chuyển đổi</p>
+<p class="text-headline-md text-secondary">68%</p>
+</div>
+</section>
+<!-- Lead List -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-sm text-on-surface">Danh sách Lead</h2>
+<span class="text-label-md text-outline">24 Leads</span>
+</div>
+<!-- Lead Card 1 -->
+<div class="bg-white rounded-xl p-4 border border-outline-variant shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start gap-3 mb-4">
+<div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-primary font-bold text-lg">
+                        KV
+                    </div>
+<div>
+<h3 class="font-headline-sm text-on-surface">Đặng Khánh Vy</h3>
+<p class="text-label-md text-outline">Thẻ tín dụng</p><p class="text-label-sm text-outline">098 765 4321</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 bg-surface-container-low p-3 rounded-lg items-start"><div class="space-y-1">
+<p class="text-label-sm text-outline">Điểm lead</p>
+<p class="font-bold text-primary flex items-center gap-1">
+        95 <span class="material-symbols-outlined text-sm" style='font-variation-settings: "FILL" 1;'>bolt</span>
+</p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-3">
+<p class="text-label-sm text-outline">Phân loại</p>
+<p class="font-bold text-secondary"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-error-container text-error uppercase tracking-wider">Hot</span></p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-3">
+<p class="text-label-sm text-outline">Ngày hết hạn</p>
+<p class="font-bold text-on-surface-variant text-[13px]">25/12/2024</p>
+</div></div>
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        Đang chăm sóc
+                    </span>
+<div class="flex gap-2"><button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors p-2"><img alt="Zalo" class="w-6 h-6 object-contain w-full h-full" src="https://lh3.googleusercontent.com/aida/ADBb0uh3vulpbk7rlAUoBg9uVj0EoQySBCm1P4xVlVcSXsUz_8dHTD3rpXDywRd2AFWLqSZgkzbZxg1_9eD8IQvhh9NXl7RP1zlrTlcUITTIaJImcy7r89RlSDXdoaYWJb-kNHjlEIVB7CPhh9cVkWiJD0VjGMRWl930dkESOmYrL7a6JlrN2_h88a2EDrfNaIcJYWI00RCs74Bx8Q6_8iUglKSBrIm5DBpMK1_xei3Yq_YILLatbF5jJ36xJwXvp4DqCDlePA3QtvTqQQ"/></button></div>
+</div>
+<span class="material-symbols-outlined absolute top-4 right-4 text-yellow-500" style='font-variation-settings: "FILL" 1; font-size: 24px;'>star</span></div>
+<!-- Lead Card 2 -->
+<div class="bg-white rounded-xl p-4 border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3 mb-4">
+<div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">
+                        MQ
+                    </div>
+<div>
+<h3 class="font-headline-sm text-on-surface">Nguyễn Minh Quân</h3>
+<p class="text-label-md text-outline">Vay mua nhà</p><p class="text-label-sm text-outline">098 765 4321</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 bg-surface-container-low p-3 rounded-lg items-start"><div class="space-y-1">
+<p class="text-label-sm text-outline">Điểm lead</p>
+<p class="font-bold text-on-surface-variant flex items-center gap-1">
+        70 <span class="material-symbols-outlined text-sm">bolt</span>
+</p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-3">
+<p class="text-label-sm text-outline">Phân loại</p>
+<p class="font-bold text-on-surface-variant"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-fixed text-secondary-container uppercase tracking-wider">Warm</span></p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-3">
+<p class="text-label-sm text-outline">Ngày hết hạn</p>
+<p class="font-bold text-on-surface-variant text-[13px]">15/12/2024</p>
+</div></div>
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Mới
+                    </span>
+<div class="flex gap-2"><button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-container transition-colors p-2"><img alt="Zalo" class="w-6 h-6 object-contain w-full h-full" src="https://lh3.googleusercontent.com/aida/ADBb0uh3vulpbk7rlAUoBg9uVj0EoQySBCm1P4xVlVcSXsUz_8dHTD3rpXDywRd2AFWLqSZgkzbZxg1_9eD8IQvhh9NXl7RP1zlrTlcUITTIaJImcy7r89RlSDXdoaYWJb-kNHjlEIVB7CPhh9cVkWiJD0VjGMRWl930dkESOmYrL7a6JlrN2_h88a2EDrfNaIcJYWI00RCs74Bx8Q6_8iUglKSBrIm5DBpMK1_xei3Yq_YILLatbF5jJ36xJwXvp4DqCDlePA3QtvTqQQ"/></button></div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe-offset-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 shadow-[0_-2px_10px_rgba(0,0,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-outline dark:text-gray-500 px-3 py-1 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm font-bold tracking-tight">Home</span>
+</a><a class="flex flex-col items-center justify-center text-outline dark:text-gray-500 px-3 py-1 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_box</span>
+<span class="font-label-sm font-bold tracking-tight">Cus360</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#F37021] px-3 py-1 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>group</span>
+<span class="font-label-sm font-bold tracking-tight">Leads</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-gray-500 px-3 py-1 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">task_alt</span>
+<span class="font-label-sm font-bold tracking-tight">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-gray-500 px-3 py-1 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-sm font-bold tracking-tight">More</span>
+</a>
+</nav>
+</body></html>

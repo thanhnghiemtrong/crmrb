@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#2b0747",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-surface-variant": "#4c444f",
+                        "on-secondary-container": "#5d2300",
+                        "surface-variant": "#d3e4fe",
+                        "on-tertiary-container": "#b992d6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdbcb",
+                        "primary": "#390259",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#502070",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#f4daff",
+                        "secondary-container": "#fc7728",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#7a499a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#33104e",
+                        "on-primary-fixed": "#2f004c",
+                        "secondary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#c18ce3",
+                        "on-secondary-fixed": "#341000",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#a04100",
+                        "outline": "#7d7480",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#603180",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#f2daff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "outline-variant": "#cfc3d1",
+                        "inverse-primary": "#e3b5ff",
+                        "tertiary-container": "#4a2865",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "on-surface": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-glow {
+            box-shadow: 0 0 15px rgba(80, 32, 112, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-bright text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-white dark:bg-slate-900 shadow-sm dark:shadow-none border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<button class="transition-colors duration-200 active:opacity-70 text-[#502070] dark:text-[#a855f7]">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg text-[#502070] dark:text-[#a855f7]">Customer Insights</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white text-[10px] font-bold overflow-hidden">
+<img alt="RM Profile Picture" class="w-full h-full object-cover" data-alt="professional male bank relationship manager portrait with a friendly smile in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcnlzIhrmpU4laMJkoSxOExLxWa1sI_N8cI4qAZDPQDF0HUyGfHnnOyNmH9Hq7tFvJ9HOh6jnJQ86ZQONMJjQ3la_EJzHO0XAGuHllEerMETzDzzI05zffv_dHXjKNEyKx22tT-PSmrYdoX95rPyq7uy0ojYo2bFN4KLOuB8hEJfk5LJET0LhGowFMxz976N_ON0B9GHJhU1C0Wjpj8G6aU2p-qqLZW6DPvrOMO12nuabk4fSsWgi--_oIIQmyPW99qhnbFdgK54M"/>
+</div>
+</header>
+<main class="pt-20 px-4 max-w-md mx-auto space-y-6">
+<!-- Situation Selection Header -->
+<section class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="font-headline-sm text-on-surface">AI Smart Scripts</h2>
+</div>
+<!-- Horizontal Chips -->
+<div class="flex overflow-x-auto pb-2 gap-2 no-scrollbar -mx-4 px-4">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary-container text-white font-label-md shadow-md active:scale-95 transition-transform">
+                    Khách do dự về lãi suất
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-md hover:bg-slate-50 transition-colors">
+                    So sánh lãi suất
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-md hover:bg-slate-50 transition-colors">
+                    Phí thường niên
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant font-label-md hover:bg-slate-50 transition-colors">
+                    Cần quyết nhanh
+                </button>
+</div>
+</section>
+<!-- Conversation Canvas -->
+<section class="space-y-6 pb-4">
+<!-- Context Banner -->
+<div class="bg-surface-container-low p-3 rounded-xl flex items-center gap-3 border border-surface-variant/50">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-sm text-outline">Đang tư vấn cho</p>
+<p class="font-headline-sm text-on-background">Chị Vy - Khách hàng Priority</p>
+</div>
+</div>
+<!-- Chat Interface -->
+<div class="space-y-4">
+<!-- RM Message -->
+<div class="flex flex-col items-end gap-1 max-w-[85%] ml-auto">
+<span class="text-[10px] font-label-md text-outline mr-2">RM (Bạn)</span>
+<div class="bg-primary text-white p-4 rounded-t-2xl rounded-bl-2xl shadow-sm">
+<p class="font-body-md">Em hiểu Vy đang băn khoăn về lãi suất 7.5%. Tuy nhiên, nếu tính trên giá trị quà tặng và hoàn tiền...</p>
+</div>
+</div>
+<!-- Customer Message -->
+<div class="flex flex-col items-start gap-1 max-w-[85%]">
+<span class="text-[10px] font-label-md text-outline ml-2">Chị Vy</span>
+<div class="bg-white border border-slate-200 text-on-surface p-4 rounded-t-2xl rounded-br-2xl shadow-sm">
+<p class="font-body-md">But bên ngân hàng X đang chào mình 7.2%...</p>
+</div>
+</div>
+<!-- AI Script Suggestion - BENTO STYLE -->
+<div class="relative mt-8 group">
+<div class="absolute -top-4 left-4 bg-primary-container text-white px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1 z-10 ai-glow">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                        AI RECOMMENDATION
+                    </div>
+<div class="bg-gradient-to-br from-[#fdf4ff] to-[#f5f3ff] border-2 border-[#c18ce3] p-5 rounded-2xl space-y-4 relative overflow-hidden shadow-xl">
+<!-- Decorative element -->
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px] text-primary">auto_awesome</span>
+</div>
+<div class="relative">
+<p class="font-body-lg text-primary font-semibold leading-relaxed">
+                                "Vy ơi, 0.3% chênh lệch chỉ khoảng 200k/tháng, nhưng với thẻ TPBank Vy được hưởng đặc quyền phòng chờ thương gia miễn phí mà các bên khác không có..."
+                            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-white/60 text-primary-container text-[10px] font-bold rounded border border-primary-container/20 uppercase tracking-wider">Highlight: Benefits</span>
+<span class="px-2 py-1 bg-white/60 text-primary-container text-[10px] font-bold rounded border border-primary-container/20 uppercase tracking-wider">Tone: Professional</span>
+</div>
+<button class="w-full bg-secondary-container text-white py-4 rounded-xl font-headline-sm flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all hover:bg-orange-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                            Áp dụng script này
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Bento Section -->
+<section class="grid grid-cols-2 gap-4 pb-8">
+<div class="glass-card p-4 rounded-2xl flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-primary-container text-3xl">trending_up</span>
+<div>
+<h3 class="font-label-md text-outline">Tỷ lệ chốt</h3>
+<p class="font-headline-lg text-[#502070]">85%</p>
+</div>
+</div>
+<div class="glass-card p-4 rounded-2xl flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-secondary-container text-3xl">loyalty</span>
+<div>
+<h3 class="font-label-md text-outline">Phân hạng</h3>
+<p class="font-headline-lg text-secondary">PRIO</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<!-- Decorative background element -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none overflow-hidden">
+<div class="absolute -top-20 -right-20 w-80 h-80 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="absolute top-1/2 -left-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl"></div>
+</div>
+</body></html>

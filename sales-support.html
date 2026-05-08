@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Sales Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed-dim":"#ffb693","secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff","primary":"#390259","on-primary":"#ffffff","primary-container":"#502070","on-primary-container":"#c18ce3","secondary":"#a04100","on-secondary":"#ffffff","on-surface":"#0b1c30","on-surface-variant":"#4c444f","outline-variant":"#cfc3d1","outline":"#7d7480","surface-container":"#e5eeff","surface-container-lowest":"#ffffff","surface-container-high":"#dce9ff","error":"#ba1a1a","error-container":"#ffdad6","secondary-fixed":"#ffdbcb","on-secondary-fixed-variant":"#7a3000","background":"#f8f9ff","on-background":"#0b1c30","surface-variant":"#d3e4fe","primary-fixed":"#f4daff","tertiary-fixed":"#f2daff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"stack-sm":"0.5rem","stack-md":"1rem","stack-lg":"1.5rem","margin-mobile":"1rem","gutter":"1rem"},fontFamily:{"headline-md":["Manrope"],"label-sm":["Manrope"],"label-md":["Manrope"],"headline-lg":["Manrope"],"headline-sm":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]},fontSize:{"headline-md":["22px",{lineHeight:"28px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"500"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
+@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+.view{display:none;}.view.active{display:block;}
+.toast{animation:slideDown .3s ease-out;}
+@keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
+.modal-overlay{animation:fadeIn .2s ease-out;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+.pulse-dot{animation:pulse-dot 1.5s ease-in-out infinite;}
+.ai-glow{background:linear-gradient(135deg,#502070,#fc7728);}
+</style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<div class="device-frame bg-background text-on-background no-scrollbar" id="app">
+
+<!-- Toast Container -->
+<div id="toastContainer" class="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-32px)] z-[100] pointer-events-none"></div>
+<!-- Modal -->
+<div id="modalOverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] flex items-center justify-center p-6 hidden modal-overlay"><div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl space-y-4" id="modalContent"></div></div>
+
+<!-- ========== VIEW: CUSTOMER INSIGHTS HUB ========== -->
+<div class="view active" id="view-hub">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="window.location.href='dashboard.html'"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-extrabold text-lg text-primary">Customer Insights</h1>
+  </div>
+  <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-primary-fixed bg-primary-container flex items-center justify-center">
+    <span class="material-symbols-outlined text-on-primary-container text-[16px]">person</span>
+  </div>
+</header>
+
+<main class="px-4 py-4 space-y-5 pb-28">
+<!-- Customer Profile Card -->
+<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex items-center gap-4">
+  <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center ring-2 ring-secondary-container text-primary font-bold text-xl shrink-0">VY</div>
+  <div class="flex-1">
+    <div class="flex items-center gap-2 flex-wrap">
+      <a href="cus360.html" class="text-headline-sm text-on-surface font-bold hover:text-primary transition-colors">Chị Đặng Khánh Vy</a>
+      <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">GOLD</span>
+    </div>
+    <div class="flex items-center gap-2 mt-2 flex-wrap">
+      <span class="px-2.5 py-0.5 bg-error-container text-error rounded-full text-label-sm font-semibold">Ưu tiên</span>
+      <span class="px-2.5 py-0.5 bg-blue-100 text-blue-700 rounded-full text-label-sm font-semibold">Vay mua nhà</span>
+    </div>
+  </div>
+</section>
+
+<!-- Status Banner -->
+<section class="bg-primary-container rounded-xl p-4 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-2.5 h-2.5 bg-green-400 rounded-full pulse-dot"></div>
+    <span class="text-white font-semibold text-body-lg">Đang tư vấn trực tiếp</span>
+  </div>
+  <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full">
+    <span class="material-symbols-outlined text-white text-[18px]">timer</span>
+    <span class="text-white font-bold text-headline-sm" id="consultTimer">15:00</span>
+  </div>
+</section>
+
+<!-- Main Action Cards -->
+<section class="space-y-3">
+  <!-- Card 1: AI Sales Script -->
+  <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-script')">
+    <div class="w-11 h-11 rounded-xl ai-glow flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-white text-[22px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
+    </div>
+    <div class="flex-1">
+      <h3 class="text-body-lg font-bold text-on-surface">AI Gợi ý kịch bản bán</h3>
+      <p class="text-label-sm text-on-surface-variant mt-0.5">Kịch bản tư vấn cá nhân hóa</p>
+    </div>
+    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+  </div>
+
+  <!-- Card 2: AI Situation -->
+  <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-situation')">
+    <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-secondary-container text-[22px]">psychology_alt</span>
+    </div>
+    <div class="flex-1">
+      <h3 class="text-body-lg font-bold text-on-surface">AI Đề xuất theo tình huống</h3>
+      <p class="text-label-sm text-on-surface-variant mt-0.5">Xử lý phản đối & tình huống</p>
+    </div>
+    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+  </div>
+
+  <!-- Card 3: Product Handbook -->
+  <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-products')">
+    <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
+    </div>
+    <div class="flex-1">
+      <h3 class="text-body-lg font-bold text-on-surface">Cẩm nang sản phẩm</h3>
+      <p class="text-label-sm text-on-surface-variant mt-0.5">Tra cứu thông tin & USP</p>
+    </div>
+    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+  </div>
+</section>
+
+<!-- Products of Interest -->
+<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+  <h4 class="text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Sản phẩm KH quan tâm</h4>
+  <div class="space-y-2.5">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="showView('view-products')">
+      <span class="material-symbols-outlined text-green-600 text-[20px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
+      <span class="text-body-md font-medium text-on-surface">Thẻ Platinum Visa</span>
+    </div>
+    <div class="flex items-center gap-3 cursor-pointer" onclick="showView('view-products')">
+      <span class="material-symbols-outlined text-green-600 text-[20px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
+      <span class="text-body-md font-medium text-on-surface">Gói vay HomeLoan</span>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+
+<!-- ========== VIEW: AI SALES SCRIPT ========== -->
+<div class="view" id="view-script">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-hub')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-bold text-lg text-primary">Customer Insights</h1>
+  </div>
+  <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+    <span class="material-symbols-outlined text-on-primary-container text-[14px]">person</span>
+  </div>
+</header>
+
+<main class="px-4 py-4 space-y-5 pb-28">
+<!-- AI Recommendation Header -->
+<section>
+  <div class="flex items-center gap-2 mb-2">
+    <span class="material-symbols-outlined text-secondary-container text-[20px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
+    <span class="text-label-md text-on-surface-variant uppercase tracking-wider font-bold">AI Recommendation</span>
+  </div>
+  <h2 class="text-headline-sm font-bold text-primary">Kịch bản tư vấn Thẻ Platinum Visa</h2>
+</section>
+
+<!-- Customer Profile Summary -->
+<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
+  <div class="flex items-center gap-3 mb-3">
+    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-primary font-bold text-sm">VY</div>
+    <div class="flex-1">
+      <div class="flex items-center gap-2">
+        <span class="text-body-lg font-bold text-on-surface">Đặng Khánh Vy</span>
+        <span class="text-body-md text-slate-500">• 36 tuổi</span>
+      </div>
+      <span class="inline-block mt-1 px-2.5 py-0.5 bg-green-100 text-green-700 rounded-full text-label-sm font-semibold">Tiềm năng cao</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-4 text-body-md text-on-surface-variant">
+    <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">payments</span><span>50tr/tháng</span></div>
+    <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">flight</span><span>Thích du lịch</span></div>
+  </div>
+</section>
+
+<!-- Main Script Card -->
+<section class="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-5 border-2 border-primary/10">
+  <div class="space-y-4">
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Chào chị Vy, em thấy chị thường xuyên đi du lịch và chi tiêu ở nước ngoài. Thẻ Platinum Visa sẽ giúp chị <span class="font-bold text-primary">hoàn tiền 10%</span> cho mọi giao dịch quốc tế.</p>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Ngoài ra, chị còn được <span class="font-bold text-primary">bảo hiểm du lịch</span> toàn cầu lên đến 500 triệu và quyền truy cập phòng chờ VIP tại hơn 1000 sân bay.</p>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Thẻ Platinum thể hiện <span class="font-bold text-primary">phong cách sống</span> đẳng cấp, rất phù hợp với profile của chị.</p>
+    </div>
+  </div>
+
+  <!-- Key Benefits Chips -->
+  <div class="flex items-center gap-2 mt-4 overflow-x-auto no-scrollbar">
+    <span class="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Hoàn tiền cao</span>
+    <span class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Phòng chờ VIP</span>
+    <span class="px-3 py-1.5 bg-orange-100 text-orange-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Bảo hiểm du lịch</span>
+  </div>
+</section>
+
+<!-- Action Buttons -->
+<section class="space-y-3">
+  <button class="w-full h-12 bg-secondary-container text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all" onclick="copyScript()">
+    <span class="material-symbols-outlined text-[20px]">content_copy</span>Sao chép
+  </button>
+  <button class="w-full h-12 border-2 border-primary text-primary rounded-xl font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+    <span class="material-symbols-outlined text-[20px]">edit_note</span>Điều chỉnh kịch bản
+  </button>
+  <button class="w-full py-3 text-primary font-semibold flex items-center justify-center gap-2 rounded-xl active:bg-slate-50 transition-colors" onclick="regenerateScript()">
+    <span class="material-symbols-outlined text-[18px]">refresh</span>Đổi tình huống
+  </button>
+</section>
+</main>
+</div>
+
+<!-- ========== VIEW: AI SMART SCRIPTS (SITUATION) ========== -->
+<div class="view" id="view-situation">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-hub')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-bold text-lg text-primary">Customer Insights</h1>
+  </div>
+  <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-primary-fixed bg-primary-container flex items-center justify-center">
+    <span class="material-symbols-outlined text-on-primary-container text-[16px]">person</span>
+  </div>
+</header>
+
+<main class="px-4 py-4 space-y-4 pb-28">
+<!-- Section Header -->
+<section class="flex items-center gap-2">
+  <span class="material-symbols-outlined text-secondary-container text-[22px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
+  <h2 class="text-headline-sm font-bold text-primary">AI Smart Scripts</h2>
+</section>
+
+<!-- Situation Chips -->
+<section class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4">
+  <button class="px-4 py-2 rounded-full bg-primary-container text-white text-label-md whitespace-nowrap shadow-sm font-bold">Khách do dự về lãi suất</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">So sánh lãi suất</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Phí thường niên</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Cần quyết nhanh</button>
+</section>
+
+<!-- Context Banner -->
+<section class="bg-surface-container-low rounded-xl p-3 flex items-center gap-3">
+  <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-primary font-bold text-xs shrink-0">VY</div>
+  <span class="text-body-md font-medium text-on-surface">Đang tư vấn cho <span class="font-bold">Chị Vy</span> - Khách hàng Priority</span>
+</section>
+
+<!-- Chat Interface -->
+<section class="space-y-3">
+  <!-- RM Message -->
+  <div class="flex justify-end">
+    <div class="max-w-[80%]">
+      <div class="bg-primary text-white rounded-t-2xl rounded-bl-2xl px-4 py-3">
+        <p class="text-body-md leading-relaxed">Chị Vy ơi, em thấy chị đang cân nhắc về lãi suất thẻ tín dụng. Em muốn chia sẻ thêm một số thông tin để chị tham khảo ạ.</p>
+      </div>
+      <p class="text-[10px] text-slate-400 mt-1 text-right">14:32</p>
+    </div>
+  </div>
+
+  <!-- Customer Message -->
+  <div class="flex justify-start">
+    <div class="max-w-[80%]">
+      <div class="bg-white border border-outline-variant text-on-surface rounded-t-2xl rounded-br-2xl px-4 py-3">
+        <p class="text-body-md leading-relaxed">Ừ, em thấy bên ngân hàng khác lãi suất thấp hơn mà cũng có hoàn tiền. Chị đang phân vân không biết nên chọn bên nào.</p>
+      </div>
+      <p class="text-[10px] text-slate-400 mt-1">14:33</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI Script Suggestion (Premium Card) -->
+<section class="border-2 border-[#c18ce3] rounded-2xl p-4 bg-white shadow-md relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
+  <div class="relative z-10">
+    <!-- Badge -->
+    <div class="flex items-center gap-1.5 bg-primary-container text-on-primary-container rounded-full px-3 py-1 w-fit mb-3">
+      <span class="material-symbols-outlined text-[14px]" style='font-variation-settings:"FILL" 1;'>bolt</span>
+      <span class="text-label-sm font-bold uppercase tracking-wide">AI Recommendation</span>
+    </div>
+
+    <!-- Script Content -->
+    <p class="font-semibold text-primary text-body-lg leading-relaxed mb-3">"Chị Vy ơi, em hiểu chị đang so sánh. Nhưng điểm khác biệt lớn nhất của TPBank là hoàn tiền 10% không giới hạn + bảo hiểm du lịch 500 triệu. Nếu tính tổng lợi ích, chị sẽ tiết kiệm được hơn 15 triệu/năm so với thẻ thông thường."</p>
+
+    <!-- Tags -->
+    <div class="flex items-center gap-2 mb-4">
+      <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-label-sm font-semibold">Highlight: Benefits</span>
+      <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-label-sm font-semibold">Tone: Professional</span>
+    </div>
+
+    <!-- CTA -->
+    <button class="w-full h-12 bg-secondary-container text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all" onclick="applyScript()">
+      Áp dụng script này<span class="material-symbols-outlined text-[20px]">send</span>
+    </button>
+  </div>
+</section>
+
+<!-- Insights Bento -->
+<section class="grid grid-cols-2 gap-3">
+  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+    <p class="text-headline-md font-bold text-primary">85%</p>
+    <p class="text-label-sm text-slate-500 mt-1">Tỷ lệ chốt</p>
+  </div>
+  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+    <p class="text-headline-md font-bold text-secondary-container">PRIO</p>
+    <p class="text-label-sm text-slate-500 mt-1">Phân hạng</p>
+  </div>
+</section>
+</main>
+</div>
+
+<!-- ========== VIEW: PRODUCT HANDBOOK ========== -->
+<div class="view" id="view-products">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-hub')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-bold text-lg text-primary">Customer Insights</h1>
+  </div>
+  <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-primary-fixed bg-primary-container flex items-center justify-center">
+    <span class="material-symbols-outlined text-on-primary-container text-[16px]">person</span>
+  </div>
+</header>
+
+<main class="px-4 py-4 space-y-4 pb-28">
+<!-- Search Bar -->
+<section class="relative">
+  <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+  <input class="w-full h-12 pl-12 pr-4 rounded-xl bg-white border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Tìm kiếm sản phẩm, dịch vụ..." type="text"/>
+</section>
+
+<!-- Filter Chips -->
+<section class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4">
+  <button class="px-4 py-2 rounded-full bg-secondary-container text-white text-label-md whitespace-nowrap shadow-sm font-bold">Tất cả</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Thẻ</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Vay</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Tiết kiệm</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Bảo hiểm</button>
+</section>
+
+<!-- Product Cards -->
+<section class="space-y-4">
+  <!-- Product 1: Thẻ EVO -->
+  <div class="bg-white rounded-[24px] overflow-hidden border border-slate-100 shadow-sm">
+    <!-- Hero Image -->
+    <div class="h-48 relative bg-gradient-to-br from-purple-700 to-blue-600 flex items-end">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute top-3 left-3">
+        <span class="bg-white/90 text-primary px-3 py-1 rounded-full text-label-sm font-bold">Thẻ tín dụng</span>
+      </div>
+      <div class="relative z-10 p-4">
+        <h3 class="text-white text-headline-sm font-bold">Thẻ EVO</h3>
+        <p class="text-white/80 text-body-md">Hoàn tiền không giới hạn</p>
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="p-4 space-y-3">
+      <!-- USP Highlight -->
+      <div class="bg-surface-container-low rounded-xl p-3 flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-[24px]">percent</span>
+        <div>
+          <p class="text-label-sm text-slate-500">Hoàn tiền</p>
+          <p class="text-body-lg font-bold text-primary">10%</p>
+        </div>
+      </div>
+      <!-- USP Items -->
+      <div class="space-y-2">
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5" style='font-variation-settings:"FILL" 1;'>bolt</span>
+          <span class="text-body-md text-on-surface">Hoàn tiền không giới hạn cho mọi giao dịch</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5">event_repeat</span>
+          <span class="text-body-md text-on-surface">Miễn phí thường niên năm đầu</span>
+        </div>
+      </div>
+      <!-- Sales Quote -->
+      <div class="border-l-4 border-secondary-container pl-4 py-2">
+        <p class="text-body-md text-on-surface-variant italic">"Với thẻ EVO, anh/chị sẽ được hoàn tiền 10% cho mọi chi tiêu hàng ngày..."</p>
+      </div>
+      <!-- CTA -->
+      <button class="flex items-center gap-1 text-secondary-container font-bold text-body-md active:opacity-70 transition-opacity" onclick="showView('view-script')">
+        Xem kịch bản tư vấn<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Product 2: Vay HomeLoan -->
+  <div class="bg-white rounded-[24px] overflow-hidden border border-slate-100 shadow-sm">
+    <!-- Hero Image -->
+    <div class="h-48 relative bg-gradient-to-br from-green-700 to-teal-600 flex items-end">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute top-3 left-3">
+        <span class="bg-white/90 text-green-700 px-3 py-1 rounded-full text-label-sm font-bold">Vay mua nhà</span>
+      </div>
+      <div class="relative z-10 p-4">
+        <h3 class="text-white text-headline-sm font-bold">Vay HomeLoan</h3>
+        <p class="text-white/80 text-body-md">Lãi suất ưu đãi đặc biệt</p>
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="p-4 space-y-3">
+      <!-- USP Highlight -->
+      <div class="bg-surface-container-low rounded-xl p-3 flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-[24px]">trending_down</span>
+        <div>
+          <p class="text-label-sm text-slate-500">Lãi suất</p>
+          <p class="text-body-lg font-bold text-primary">6.9%/năm</p>
+        </div>
+      </div>
+      <!-- USP Items -->
+      <div class="space-y-2">
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5" style='font-variation-settings:"FILL" 1;'>bolt</span>
+          <span class="text-body-md text-on-surface">Lãi suất ưu đãi cố định 12 tháng đầu</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5">event_repeat</span>
+          <span class="text-body-md text-on-surface">Thời hạn vay lên đến 30 năm</span>
+        </div>
+      </div>
+      <!-- Sales Quote -->
+      <div class="border-l-4 border-secondary-container pl-4 py-2">
+        <p class="text-body-md text-on-surface-variant italic">"Gói HomeLoan với lãi suất chỉ 6.9%/năm, giúp anh/chị an tâm sở hữu ngôi nhà mơ ước..."</p>
+      </div>
+      <!-- CTA -->
+      <button class="flex items-center gap-1 text-secondary-container font-bold text-body-md active:opacity-70 transition-opacity" onclick="showView('view-script')">
+        Xem kịch bản tư vấn<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Product 3: Tiết kiệm Đắc Lộc -->
+  <div class="bg-white rounded-[24px] overflow-hidden border border-slate-100 shadow-sm">
+    <!-- Hero Image -->
+    <div class="h-48 relative bg-gradient-to-br from-orange-600 to-amber-500 flex items-end">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute top-3 left-3">
+        <span class="bg-white/90 text-orange-700 px-3 py-1 rounded-full text-label-sm font-bold">Tiết kiệm</span>
+      </div>
+      <div class="relative z-10 p-4">
+        <h3 class="text-white text-headline-sm font-bold">Tiết kiệm Đắc Lộc</h3>
+        <p class="text-white/80 text-body-md">Sinh lời tối đa, linh hoạt</p>
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="p-4 space-y-3">
+      <!-- USP Highlight -->
+      <div class="bg-surface-container-low rounded-xl p-3 flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-[24px]">savings</span>
+        <div>
+          <p class="text-label-sm text-slate-500">Lãi suất</p>
+          <p class="text-body-lg font-bold text-primary">7.2%/năm</p>
+        </div>
+      </div>
+      <!-- USP Items -->
+      <div class="space-y-2">
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5" style='font-variation-settings:"FILL" 1;'>bolt</span>
+          <span class="text-body-md text-on-surface">Lãi suất hấp dẫn, linh hoạt kỳ hạn</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="material-symbols-outlined text-secondary-container text-[18px] mt-0.5">event_repeat</span>
+          <span class="text-body-md text-on-surface">Rút trước hạn vẫn được hưởng lãi</span>
+        </div>
+      </div>
+      <!-- Sales Quote -->
+      <div class="border-l-4 border-secondary-container pl-4 py-2">
+        <p class="text-body-md text-on-surface-variant italic">"Tiết kiệm Đắc Lộc giúp tiền của anh/chị sinh lời tối đa với lãi suất lên đến 7.2%..."</p>
+      </div>
+      <!-- CTA -->
+      <button class="flex items-center gap-1 text-secondary-container font-bold text-body-md active:opacity-70 transition-opacity" onclick="showView('view-script')">
+        Xem kịch bản tư vấn<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+
+<!-- ===== Bottom Navigation ===== -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
+  <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>menu</span><span class="text-[10px] font-bold mt-0.5">More</span></a>
+</nav>
+
+<!-- More Menu -->
+<div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
+<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
+  <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
+  <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
+  <div class="grid grid-cols-3 gap-4">
+    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div><span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span></a>
+    <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl bg-purple-50 ring-2 ring-primary/20 active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]" style='font-variation-settings:"FILL" 1;'>support_agent</span></div><span class="text-label-md text-primary text-center leading-tight font-bold">Sales Support</span></a>
+    <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
+  </div>
+</div>
+
+</div><!-- end device-frame -->
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Timer
+let timerSeconds = 15 * 60;
+let timerInterval = null;
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      showToast('⏰ Thời gian tư vấn đã hết!', 'warning');
+      document.getElementById('consultTimer').textContent = '00:00';
+      return;
+    }
+    const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+    const s = (timerSeconds % 60).toString().padStart(2, '0');
+    document.getElementById('consultTimer').textContent = m + ':' + s;
+  }, 1000);
+}
+startTimer();
+
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(viewId).classList.add('active');
+  document.getElementById('app').scrollTop = 0;
+  const bottomNav = document.getElementById('bottomNav');
+  bottomNav.style.display = viewId === 'view-hub' ? 'flex' : 'none';
+}
+
+function showToast(message, type='success') {
+  const container = document.getElementById('toastContainer');
+  const colors = { success:'bg-green-50 border-green-200 text-green-800', error:'bg-red-50 border-red-200 text-error', warning:'bg-amber-50 border-amber-200 text-amber-800' };
+  const icons = { success:'check_circle', error:'error', warning:'warning' };
+  const toast = document.createElement('div');
+  toast.className = `toast ${colors[type]} border px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 pointer-events-auto mb-2`;
+  toast.innerHTML = `<span class="material-symbols-outlined text-[20px] shrink-0" style='font-variation-settings:"FILL" 1;'>${icons[type]}</span><p class="text-body-md flex-1">${message}</p><button class="shrink-0 opacity-60" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[18px]">close</span></button>`;
+  container.appendChild(toast);
+  setTimeout(() => { if(toast.parentElement) toast.remove(); }, 4000);
+}
+
+function showModal(title, body, actions) {
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modalContent').innerHTML = `<h3 class="text-headline-sm text-on-surface font-bold text-center">${title}</h3><p class="text-body-md text-on-surface-variant text-center">${body}</p><div class="flex flex-col gap-2 pt-2">${actions}</div>`;
+  overlay.classList.remove('hidden');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.add('hidden'); }
+
+function toggleMoreMenu(){
+  const o=document.getElementById('moreMenuOverlay'),m=document.getElementById('moreMenu');
+  const hidden=o.classList.contains('hidden');
+  if(hidden){o.classList.remove('hidden');m.classList.remove('hidden');}
+  else{o.classList.add('hidden');m.classList.add('hidden');}
+}
+
+function copyScript() {
+  const scriptText = "Chào chị Vy, em thấy chị thường xuyên đi du lịch và chi tiêu ở nước ngoài. Thẻ Platinum Visa sẽ giúp chị hoàn tiền 10% cho mọi giao dịch quốc tế. Ngoài ra, chị còn được bảo hiểm du lịch toàn cầu lên đến 500 triệu và quyền truy cập phòng chờ VIP tại hơn 1000 sân bay.";
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(scriptText).then(() => {
+      showToast('✓ Đã sao chép kịch bản!', 'success');
+    }).catch(() => {
+      showToast('✓ Đã sao chép kịch bản!', 'success');
+    });
+  } else {
+    showToast('✓ Đã sao chép kịch bản!', 'success');
+  }
+}
+
+function regenerateScript() {
+  showToast('⏳ AI đang tạo kịch bản mới...', 'warning');
+  setTimeout(() => {
+    showToast('✓ Đã tạo kịch bản mới!', 'success');
+  }, 1500);
+}
+
+function applyScript() {
+  showToast('✓ Đã áp dụng script!', 'success');
+}
+</script>
+</body>
+</html>

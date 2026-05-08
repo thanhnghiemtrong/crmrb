@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank Customer 360 - Mobile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary-fixed-dim": "#ffb693",
+        "secondary-container": "#fc7728",
+        "surface": "#f8f9ff",
+        "surface-container-low": "#eff4ff",
+        "on-secondary-fixed-variant": "#7a3000",
+        "tertiary": "#33104e",
+        "on-tertiary-fixed": "#2b0747",
+        "primary": "#390259",
+        "on-tertiary-container": "#b992d6",
+        "on-primary-fixed-variant": "#603180",
+        "surface-variant": "#d3e4fe",
+        "on-primary": "#ffffff",
+        "inverse-primary": "#e3b5ff",
+        "primary-fixed-dim": "#e3b5ff",
+        "tertiary-fixed-dim": "#e0b7fe",
+        "tertiary-fixed": "#f2daff",
+        "surface-dim": "#cbdbf5",
+        "on-secondary-fixed": "#341000",
+        "on-surface-variant": "#4c444f",
+        "on-secondary-container": "#5d2300",
+        "tertiary-container": "#4a2865",
+        "on-surface": "#0b1c30",
+        "surface-container-highest": "#d3e4fe",
+        "primary-fixed": "#f4daff",
+        "on-primary-container": "#c18ce3",
+        "outline-variant": "#cfc3d1",
+        "primary-container": "#502070",
+        "secondary": "#a04100",
+        "on-secondary": "#ffffff",
+        "secondary-fixed": "#ffdbcb",
+        "on-tertiary": "#ffffff",
+        "on-error": "#ffffff",
+        "on-background": "#0b1c30",
+        "on-tertiary-fixed-variant": "#5a3875",
+        "on-primary-fixed": "#2f004c",
+        "error": "#ba1a1a",
+        "surface-bright": "#f8f9ff",
+        "background": "#f8f9ff",
+        "error-container": "#ffdad6",
+        "surface-tint": "#7a499a",
+        "surface-container-lowest": "#ffffff",
+        "outline": "#7d7480",
+        "surface-container": "#e5eeff",
+        "surface-container-high": "#dce9ff",
+        "inverse-on-surface": "#eaf1ff",
+        "on-error-container": "#93000a",
+        "inverse-surface": "#213145"
+      },
+      borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+      spacing: { "stack-sm": "0.5rem", "stack-md": "1rem", "stack-lg": "1.5rem", "margin-mobile": "1rem", "gutter": "1rem" },
+      fontFamily: { "headline-md": ["Manrope"], "label-sm": ["Manrope"], "label-md": ["Manrope"], "headline-lg": ["Manrope"], "headline-sm": ["Manrope"], "body-md": ["Manrope"], "body-lg": ["Manrope"] },
+      fontSize: {
+        "headline-md": ["22px", {lineHeight: "28px", fontWeight: "600"}],
+        "label-sm": ["11px", {lineHeight: "14px", fontWeight: "500"}],
+        "label-md": ["12px", {lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600"}],
+        "headline-lg": ["28px", {lineHeight: "36px", fontWeight: "700"}],
+        "headline-sm": ["18px", {lineHeight: "24px", fontWeight: "600"}],
+        "body-md": ["14px", {lineHeight: "20px", fontWeight: "400"}],
+        "body-lg": ["16px", {lineHeight: "24px", fontWeight: "400"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.device-frame { width: 430px; height: 932px; margin: 0 auto; overflow-y: auto; overflow-x: hidden; position: relative; border-radius: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
+@media (max-width: 430px) { .device-frame { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; } }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+</style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<div class="device-frame bg-surface text-on-surface no-scrollbar" id="app">
+
+<!-- ===== FR-1.1: Top AppBar ===== -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-200">
+  <div class="flex items-center gap-3">
+    <button class="text-slate-600 active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></button>
+    <h1 class="font-headline-md text-headline-sm text-primary leading-tight">Customer 360</h1>
+  </div>
+  <div class="flex items-center gap-3">
+    <button class="text-slate-500 hover:text-primary transition-colors"><span class="material-symbols-outlined">search</span></button>
+    <button class="relative text-slate-500 hover:text-primary transition-colors">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-white text-[9px] font-bold rounded-full flex items-center justify-center">3</span>
+    </button>
+    <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-container bg-purple-100 flex items-center justify-center">
+      <span class="material-symbols-outlined text-primary text-[18px]">person</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== FR-1.2: Customer Profile Card ===== -->
+<section class="px-4 pt-4 pb-2">
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-start gap-4">
+    <div class="relative">
+      <div class="w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary text-4xl">account_circle</span>
+      </div>
+      <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex justify-between items-start">
+        <div class="min-w-0">
+          <h2 class="font-headline-sm text-headline-sm text-primary truncate">Nguyễn Lan Anh</h2>
+          <div class="flex items-center gap-2 mt-1 flex-wrap">
+            <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">Active</span>
+            <span class="flex items-center gap-1 px-2 py-0.5 bg-secondary-container/10 text-secondary-container text-[10px] font-bold rounded-full">
+              <span class="material-symbols-outlined text-[12px]" style='font-variation-settings: "FILL" 1;'>star</span>Rất tốt
+            </span>
+          </div>
+        </div>
+        <div class="flex gap-2 shrink-0">
+          <button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+            <span class="material-symbols-outlined text-[20px]">call</span>
+          </button>
+          <button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+            <span class="material-symbols-outlined text-[20px]">mail</span>
+          </button>
+        </div>
+      </div>
+      <div class="mt-3 flex items-center gap-4 text-label-md text-on-surface-variant">
+        <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">id_card</span><span>0123456789</span></div>
+        <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span><span>Hà Nội</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FR-1.3: Horizontal Tab Navigation ===== -->
+<nav class="border-b border-outline-variant/30 sticky top-16 bg-surface z-40">
+  <div class="flex overflow-x-auto no-scrollbar px-4 gap-1" id="tabNav">
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap border-b-2 border-primary text-primary font-bold" data-tab="tab-overview">Tổng quan</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-info">Thông tin KH</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-products">Sản phẩm</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-leads">KH tiềm năng</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-opportunities">Cơ hội bán</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-cases">Cases</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-relationships">Relationships</button>
+  </div>
+</nav>
+
+<!-- ===== TAB: TỔNG QUAN (FR-2) ===== -->
+<div class="tab-content active" id="tab-overview">
+<main class="mt-4 space-y-5 px-4 pb-28">
+
+<!-- FR-2.1: AI Insights -->
+<section class="bg-primary-container p-4 rounded-xl border border-primary/20 shadow-sm">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="material-symbols-outlined text-primary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+    <h3 class="text-body-lg font-bold text-white">AI Insights & Summary</h3>
+  </div>
+  <div class="space-y-3">
+    <p class="text-body-md text-primary-fixed/90 leading-relaxed">
+      Khách hàng có khả năng cao quan tâm đến dòng thẻ <strong>Signature</strong> dựa trên hành vi giao dịch gần đây. Tần suất tương tác qua app tăng <strong>25%</strong> trong tháng qua.
+    </p>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-primary/30 p-3 rounded-lg border border-primary-fixed/20">
+        <p class="text-[10px] text-primary-fixed/70 uppercase font-bold">Engagement Score</p>
+        <p class="text-headline-sm text-white mt-1">9.2<span class="text-label-sm font-normal">/10</span></p>
+      </div>
+      <div class="bg-primary/30 p-3 rounded-lg border border-primary-fixed/20">
+        <p class="text-[10px] text-primary-fixed/70 uppercase font-bold">Confidence</p>
+        <p class="text-headline-sm text-white mt-1">98%</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-2 pt-3 border-t border-primary-fixed/20">
+      <span class="material-symbols-outlined text-secondary-container text-lg mt-0.5">lightbulb</span>
+      <div class="flex-1">
+        <p class="text-label-md font-bold text-white">Next Best Action</p>
+        <p class="text-label-sm text-primary-fixed/80 mt-0.5">Đề xuất gói vay tín chấp với lãi suất ưu đãi 8.5%/năm.</p>
+      </div>
+      <button class="shrink-0 px-3 py-1.5 bg-secondary-container text-white text-[10px] font-bold rounded-full">Thực hiện</button>
+    </div>
+  </div>
+</section>
+
+<!-- FR-2.2: Today's Tasks -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <div class="flex justify-between items-center mb-4">
+    <div class="flex items-center gap-2">
+      <h3 class="text-body-lg font-bold text-primary">Nhiệm vụ hôm nay</h3>
+      <span class="bg-secondary-container text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+    </div>
+    <button class="text-label-md text-secondary-container font-semibold">Lịch trình</button>
+  </div>
+  <div class="space-y-2">
+    <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-bold text-on-surface">Call: Remind mortgage payment</p>
+        <p class="text-[10px] text-on-surface-variant">10:30 • <span class="text-error font-semibold">Ưu tiên cao</span></p>
+      </div>
+    </label>
+    <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-bold text-on-surface">Email: Introduce Signature card</p>
+        <p class="text-[10px] text-on-surface-variant">14:00 • Tiếp thị</p>
+      </div>
+    </label>
+    <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-bold text-on-surface">Follow-up: Loan application</p>
+        <p class="text-[10px] text-on-surface-variant">16:00 • Tín dụng</p>
+      </div>
+    </label>
+  </div>
+</section>
+
+<!-- FR-2.3: Life Events Timeline -->
+<section>
+  <div class="flex justify-between items-end mb-3 px-1">
+    <h3 class="text-headline-sm font-semibold text-primary">Life Events</h3>
+    <button class="text-label-md text-secondary-container font-semibold">Xem tất cả</button>
+  </div>
+  <div class="flex overflow-x-auto no-scrollbar gap-4 py-1">
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-50 flex items-center justify-center text-secondary-container shadow-sm border border-orange-100">
+        <span class="material-symbols-outlined text-2xl" style='font-variation-settings: "FILL" 1;'>cake</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Sinh nhật</span>
+      <span class="block text-[9px] text-on-surface-variant">15/08</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center text-primary shadow-sm border border-purple-100">
+        <span class="material-symbols-outlined text-2xl">home</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Mua nhà</span>
+      <span class="block text-[9px] text-on-surface-variant">06/2021</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-sm border border-blue-100">
+        <span class="material-symbols-outlined text-2xl">school</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Học tập</span>
+      <span class="block text-[9px] text-on-surface-variant">09/2023</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-sm border border-green-100">
+        <span class="material-symbols-outlined text-2xl">flight</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Du lịch</span>
+      <span class="block text-[9px] text-on-surface-variant">12/2024</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-red-50 flex items-center justify-center text-red-500 shadow-sm border border-red-100">
+        <span class="material-symbols-outlined text-2xl">favorite</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Kết hôn</span>
+      <span class="block text-[9px] text-on-surface-variant">03/2018</span>
+    </div>
+  </div>
+</section>
+
+<!-- FR-2.4: Biến động AUM (Interactive Chart.js) -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm" id="aum-section">
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-body-lg font-bold text-primary">Biến động AUM</h3>
+    <select id="aumFilter" class="bg-surface-container border border-outline-variant text-label-md rounded-lg py-1.5 pl-3 pr-8 focus:ring-primary text-on-surface-variant font-semibold cursor-pointer">
+      <option value="6m">6 tháng</option>
+      <option value="1y">1 năm</option>
+    </select>
+  </div>
+  <div class="h-44 w-full relative">
+    <canvas id="aumChart"></canvas>
+  </div>
+  <div class="mt-3 grid grid-cols-3 gap-2 border-t border-surface-container pt-3">
+    <div class="text-center">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold">CASA</p>
+      <p class="text-label-md font-semibold text-primary" id="aum-casa">850M</p>
+    </div>
+    <div class="text-center border-x border-surface-container">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold">Tiền gửi</p>
+      <p class="text-label-md font-semibold text-secondary" id="aum-td">2.4B</p>
+    </div>
+    <div class="text-center">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold">Bond & MF</p>
+      <p class="text-label-md font-semibold text-on-tertiary-fixed-variant" id="aum-bond">1.03B</p>
+    </div>
+  </div>
+  <div class="mt-3 flex justify-between items-center border-t border-surface-container pt-3">
+    <div>
+      <p class="text-label-md text-on-surface-variant">Tổng tài sản</p>
+      <p class="text-headline-sm font-bold text-primary" id="aum-total">4.280.000.000 <span class="text-label-sm font-normal">VND</span></p>
+    </div>
+    <div class="text-right">
+      <p class="text-label-md text-on-surface-variant">Tăng trưởng</p>
+      <p class="text-label-md font-bold flex items-center justify-end gap-1" id="aum-growth">
+        <span class="material-symbols-outlined text-[14px] text-green-600">trending_up</span><span class="text-green-600">+12.5%</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FR-2.5: Gợi ý bán (NBA) -->
+<section>
+  <div class="flex justify-between items-center mb-3 px-1">
+    <h3 class="text-headline-sm font-semibold text-primary">Gợi ý bán (NBA)</h3>
+    <button class="text-label-md text-secondary-container font-semibold">Tất cả</button>
+  </div>
+  <div class="grid grid-cols-4 gap-3">
+    <div class="text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
+        <span class="material-symbols-outlined text-2xl">account_balance</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface">TD</span>
+    </div>
+    <div class="text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
+        <span class="material-symbols-outlined text-2xl">credit_card</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface">Card</span>
+    </div>
+    <div class="text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
+        <span class="material-symbols-outlined text-2xl">person</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface">UPL</span>
+    </div>
+    <div class="text-center space-y-2">
+      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
+        <span class="material-symbols-outlined text-2xl">shield</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface">Banca</span>
+    </div>
+  </div>
+</section>
+
+<!-- FR-2.6: Báo cáo Nợ -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+  <button class="w-full p-4 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+    <h3 class="text-body-lg font-bold text-primary">Báo cáo Nợ của Khách hàng</h3>
+    <span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+  </button>
+  <div class="px-4 pb-4 space-y-4">
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container">
+        <p class="text-label-md text-on-surface-variant">Tổng dư nợ</p>
+        <p class="font-bold text-headline-sm text-primary">1.5B <span class="text-[10px] font-normal">VND</span></p>
+      </div>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container">
+        <p class="text-label-md text-on-surface-variant">Hạn mức còn lại</p>
+        <p class="font-bold text-headline-sm text-secondary-container">500M <span class="text-[10px] font-normal">VND</span></p>
+      </div>
+    </div>
+    <div class="space-y-3">
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-primary"></div><span class="text-label-md">Vay mua nhà</span></div>
+          <span class="font-semibold text-label-md">1.200.000.000</span>
+        </div>
+        <div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-full rounded-full" style="width:80%"></div></div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary-container"></div><span class="text-label-md">Thẻ tín dụng</span></div>
+          <span class="font-semibold text-label-md">300.000.000</span>
+        </div>
+        <div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden"><div class="bg-secondary-container h-full rounded-full" style="width:20%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FR-2.7: Rủi ro & Tuân thủ -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <h3 class="text-body-lg font-bold text-primary mb-4">Rủi ro & Tuân thủ</h3>
+  <div class="grid grid-cols-2 gap-3 mb-4">
+    <div class="flex items-center gap-3 bg-surface-container p-3 rounded-lg">
+      <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+        <span class="material-symbols-outlined text-[20px]">verified_user</span>
+      </div>
+      <div>
+        <p class="text-[10px] text-on-surface-variant font-bold uppercase">AML Rank</p>
+        <p class="text-label-md font-bold text-green-600">LOW</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 bg-surface-container p-3 rounded-lg">
+      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+        <span class="material-symbols-outlined text-[20px]">speed</span>
+      </div>
+      <div>
+        <p class="text-[10px] text-on-surface-variant font-bold uppercase">Credit Score</p>
+        <p class="text-label-md font-bold text-blue-600">780</p>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 border-t border-surface-container pt-3">
+    <p class="text-[10px] text-on-surface-variant font-bold uppercase mb-2">Profile Status</p>
+    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500 text-[18px]">check_circle</span><span class="text-label-md text-on-surface">Đầy đủ hồ sơ pháp lý</span></div>
+    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500 text-[18px]">check_circle</span><span class="text-label-md text-on-surface">Hợp đồng hiệu lực</span></div>
+    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500 text-[18px]">check_circle</span><span class="text-label-md text-on-surface">KYC cập nhật</span></div>
+  </div>
+</section>
+
+<!-- FR-2.8: Hoạt động gần đây -->
+<section class="pb-4">
+  <h3 class="text-headline-sm font-semibold text-primary mb-4 px-1">Hoạt động gần đây</h3>
+  <div class="space-y-6 relative">
+    <div class="absolute left-[15px] top-2 bottom-0 w-px bg-outline-variant"></div>
+    <div>
+      <h4 class="text-label-md font-bold text-on-surface-variant uppercase mb-4 pl-10">Hôm nay</h4>
+      <div class="space-y-4">
+        <div class="flex gap-3 relative">
+          <div class="z-10 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-primary shrink-0">
+            <span class="material-symbols-outlined text-[16px]">currency_exchange</span>
+          </div>
+          <div class="flex-1 bg-white p-3 rounded-xl border border-outline-variant/60 shadow-sm">
+            <div class="flex justify-between items-start">
+              <p class="text-label-md font-bold text-on-surface">Chuyển tiền định kỳ</p>
+              <span class="text-[10px] text-on-surface-variant">14:20</span>
+            </div>
+            <p class="text-body-md text-on-surface-variant mt-1">Trả góp nhà định kỳ tháng 5</p>
+            <p class="text-label-md font-bold text-primary mt-1">-15,000,000 VND</p>
+          </div>
+        </div>
+        <div class="flex gap-3 relative">
+          <div class="z-10 w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-secondary-container shrink-0">
+            <span class="material-symbols-outlined text-[16px]">support_agent</span>
+          </div>
+          <div class="flex-1 bg-white p-3 rounded-xl border border-outline-variant/60 shadow-sm">
+            <div class="flex justify-between items-start">
+              <p class="text-label-md font-bold text-on-surface">Liên hệ hỗ trợ</p>
+              <span class="text-[10px] text-on-surface-variant">09:15</span>
+            </div>
+            <p class="text-body-md text-on-surface-variant mt-1">Tư vấn nâng hạn mức thẻ Platinum</p>
+            <span class="inline-block mt-2 px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] rounded border border-blue-100 font-semibold">Đã xong</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-label-md font-bold text-on-surface-variant uppercase mb-4 pl-10">Tuần trước</h4>
+      <div class="space-y-4">
+        <div class="flex gap-3 relative">
+          <div class="z-10 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+            <span class="material-symbols-outlined text-[16px]">savings</span>
+          </div>
+          <div class="flex-1 bg-white p-3 rounded-xl border border-outline-variant/60 shadow-sm">
+            <div class="flex justify-between items-start">
+              <p class="text-label-md font-bold text-on-surface">Gửi tiết kiệm trực tuyến</p>
+              <span class="text-[10px] text-on-surface-variant">02 May</span>
+            </div>
+            <p class="text-body-md text-on-surface-variant mt-1">Kỳ hạn 12 tháng - Lãi suất 6.5%</p>
+            <p class="text-label-md font-bold text-green-600 mt-1">+200,000,000 VND</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ===== TAB: THÔNG TIN KH (FR-3) ===== -->
+<div class="tab-content" id="tab-info">
+<main class="mt-4 space-y-5 px-4 pb-28">
+
+<!-- FR-3.1: Thông tin cơ bản -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+    <h3 class="text-body-lg font-bold text-primary">Thông tin cơ bản</h3>
+  </div>
+  <div class="p-4 space-y-3">
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Loại giấy tờ</span>
+      <span class="text-body-md font-semibold text-on-surface">CCCD</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Số định danh</span>
+      <div class="flex items-center gap-2">
+        <span class="text-body-md font-bold text-on-surface">001234567895</span>
+        <button class="text-primary"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+      </div>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Ngày cấp</span>
+      <span class="text-body-md font-semibold text-on-surface">20/06/2019</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Nơi cấp</span>
+      <span class="text-body-md font-semibold text-on-surface">TP.HCM</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Ngày hết hạn</span>
+      <span class="text-body-md font-bold text-secondary-container">20/06/2029</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Ngày sinh</span>
+      <span class="text-body-md font-semibold text-on-surface">15/08/1992</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Học vấn</span>
+      <span class="text-body-md font-semibold text-on-surface">Thạc sĩ</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Hôn nhân</span>
+      <span class="text-body-md font-semibold text-on-surface">Đã kết hôn</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5 border-b border-dashed border-outline-variant/50">
+      <span class="text-body-md text-on-surface-variant">Quốc tịch</span>
+      <span class="text-body-md font-semibold text-on-surface">Việt Nam</span>
+    </div>
+    <div class="flex justify-between items-center py-1.5">
+      <span class="text-body-md text-on-surface-variant">Giới tính</span>
+      <span class="text-body-md font-semibold text-on-surface">Nữ</span>
+    </div>
+  </div>
+</section>
+
+<!-- FR-3.2: Priority Banner -->
+<section class="relative h-28 rounded-xl overflow-hidden shadow-md">
+  <div class="absolute inset-0 bg-gradient-to-r from-[#502070] to-[#7a499a]"></div>
+  <div class="relative h-full flex flex-col justify-center px-6">
+    <h4 class="text-white text-headline-sm">Priority Member</h4>
+    <p class="text-purple-200 text-body-md">Exclusive Banking Benefits</p>
+  </div>
+  <div class="absolute right-4 top-1/2 -translate-y-1/2">
+    <span class="material-symbols-outlined text-4xl text-white/30" style='font-variation-settings: "FILL" 1;'>workspace_premium</span>
+  </div>
+</section>
+
+<!-- FR-3.3: Thông tin liên hệ -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+    <h3 class="text-body-lg font-bold text-primary">Thông tin liên hệ</h3>
+  </div>
+  <div class="p-4 space-y-4">
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">smartphone</span></div>
+      <div><p class="text-label-sm text-on-surface-variant">SĐT di động</p><p class="text-body-md font-bold">0906 789 012</p></div>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">phone</span></div>
+      <div><p class="text-label-sm text-on-surface-variant">SĐT nhà</p><p class="text-body-md font-bold">028 3234 567</p></div>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">mail</span></div>
+      <div><p class="text-label-sm text-on-surface-variant">Email</p><p class="text-body-md font-bold">nguyenlananh@gmail.com</p></div>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">location_on</span></div>
+      <div><p class="text-label-sm text-on-surface-variant">Địa chỉ thường trú</p><p class="text-body-md font-bold">89 Pasteur, P. Bến Nghé, Q.1, TP.HCM</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FR-3.4: Thông tin nghề nghiệp -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
+    <h3 class="text-body-lg font-bold text-primary">Thông tin nghề nghiệp</h3>
+  </div>
+  <div class="p-4 space-y-3">
+    <div class="flex justify-between items-center"><span class="text-body-md text-on-surface-variant">Đơn vị công tác</span><span class="text-body-md font-bold text-on-surface">Allen & Overy</span></div>
+    <div class="flex justify-between items-center"><span class="text-body-md text-on-surface-variant">Nghề nghiệp</span><span class="text-body-md font-bold text-on-surface">Luật sư</span></div>
+    <div class="flex justify-between items-center"><span class="text-body-md text-on-surface-variant">Chức vụ</span><span class="text-body-md font-bold text-on-surface">Senior Associate</span></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ===== TAB: SẢN PHẨM (FR-4) ===== -->
+<div class="tab-content" id="tab-products">
+<main class="mt-4 space-y-5 px-4 pb-28">
+
+<!-- FR-4.1: Thẻ -->
+<section class="space-y-3">
+  <div class="flex justify-between items-center">
+    <h3 class="text-headline-sm font-semibold text-primary">Thẻ (03)</h3>
+    <button class="text-label-md text-secondary-container font-semibold flex items-center gap-0.5">Xem tất cả<span class="material-symbols-outlined text-[14px]">chevron_right</span></button>
+  </div>
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex gap-3 items-start">
+      <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">credit_card</span></div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <div><p class="font-bold text-on-surface">Visa Signature</p><p class="text-label-sm text-on-surface-variant">4562 12** **** 8899</p></div>
+          <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase shrink-0">Hoạt động</span>
+        </div>
+        <div class="mt-3 pt-3 border-t border-slate-100 flex justify-between">
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Hạn mức</p><p class="text-body-md font-bold text-primary">200,000,000đ</p></div>
+          <div class="text-right"><p class="text-[10px] text-on-surface-variant uppercase font-bold">Dư nợ</p><p class="text-body-md font-bold text-secondary">12,500,000đ</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex gap-3 items-start">
+      <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">payments</span></div>
+      <div class="flex-1">
+        <div class="flex justify-between items-start">
+          <div><p class="font-bold text-on-surface">Thẻ ghi nợ Napas</p><p class="text-label-sm text-on-surface-variant">9704 23** **** 1122</p></div>
+          <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase shrink-0">Hoạt động</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FR-4.2: Tài khoản thanh toán -->
+<section class="space-y-3">
+  <h3 class="text-headline-sm font-semibold text-primary">Tài khoản thanh toán (01)</h3>
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex gap-3 items-start">
+      <div class="w-12 h-12 bg-secondary-container/10 rounded-lg flex items-center justify-center text-secondary-container shrink-0"><span class="material-symbols-outlined text-2xl">account_balance_wallet</span></div>
+      <div class="flex-1">
+        <div class="flex justify-between items-start">
+          <div><p class="font-bold text-on-surface">TK Thanh toán Thường</p><p class="text-label-sm text-on-surface-variant">01234567895</p></div>
+          <button class="text-primary shrink-0"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-100">
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày mở</p><p class="text-body-md font-bold text-on-surface">15/08/2017</p></div>
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><p class="text-body-md font-bold text-green-600">Hoạt động</p></div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-slate-100">
+          <p class="text-[10px] text-on-surface-variant uppercase font-bold">Số dư khả dụng</p>
+          <p class="text-headline-sm font-bold text-primary">1,250,800,000đ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FR-4.3: Khoản vay -->
+<section class="space-y-3">
+  <h3 class="text-headline-sm font-semibold text-primary">Khoản vay (01)</h3>
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex gap-3 items-start">
+      <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">real_estate_agent</span></div>
+      <div class="flex-1">
+        <div class="flex justify-between items-start">
+          <div><p class="font-bold text-on-surface">Vay mua nhà</p><p class="text-label-sm text-on-surface-variant">LD2106000455</p></div>
+          <span class="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full uppercase shrink-0">Đang trả nợ</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-100">
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Số tiền vay</p><p class="text-body-md font-bold text-on-surface">5,000,000,000đ</p></div>
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Dư nợ gốc</p><p class="text-body-md font-bold text-on-surface">3,240,000,000đ</p></div>
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Kỳ tiếp theo</p><p class="text-body-md font-bold text-primary">20/06/2026</p></div>
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Số tiền kỳ này</p><p class="text-body-md font-bold text-secondary">45,200,000đ</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FR-4.4: Tiền gửi -->
+<section class="space-y-3">
+  <h3 class="text-headline-sm font-semibold text-primary">Tiền gửi tiết kiệm (02)</h3>
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex gap-3 items-start">
+      <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-600 shrink-0"><span class="material-symbols-outlined text-2xl">savings</span></div>
+      <div class="flex-1">
+        <div class="flex justify-between items-start">
+          <div><p class="font-bold text-on-surface">TK Tiết kiệm 12T</p><p class="text-label-sm text-on-surface-variant">Lãi suất 6.5%/năm</p></div>
+          <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase shrink-0">Đang gửi</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-slate-100">
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Số tiền gửi</p><p class="text-body-md font-bold text-on-surface">200,000,000đ</p></div>
+          <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Đáo hạn</p><p class="text-body-md font-bold text-primary">02/05/2027</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ===== TAB: KH TIỀM NĂNG / LEADS (FR-5) ===== -->
+<div class="tab-content" id="tab-leads">
+<main class="mt-4 space-y-4 px-4 pb-28">
+  <div class="flex justify-between items-center">
+    <h3 class="text-headline-sm font-semibold text-primary">Danh sách Leads (02)</h3>
+  </div>
+
+  <!-- Lead 1 -->
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">savings</span></div>
+        <div><p class="font-bold text-on-surface text-body-lg">Tài khoản tiết kiệm</p><p class="text-label-sm text-on-surface-variant uppercase">Sản phẩm quan tâm</p></div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="relative w-10 h-10">
+          <svg class="w-10 h-10 transform -rotate-90"><circle class="text-slate-100" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-width="3"/><circle class="text-secondary-container" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-dasharray="100.5" stroke-dashoffset="20.1" stroke-width="3"/></svg>
+          <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-surface">80</span>
+        </div>
+        <p class="text-[9px] uppercase font-bold text-on-surface-variant mt-0.5">Score</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày hết hạn</p><p class="text-label-md font-semibold text-on-surface">30/12/2026</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Đánh giá</p><span class="inline-flex px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full uppercase">Warm</span></div>
+    </div>
+    <div class="pt-3 border-t border-slate-100">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Nguồn khách hàng</p>
+      <p class="text-label-md font-semibold text-on-surface">Chiến dịch Marketing Quý 4</p>
+    </div>
+  </div>
+
+  <!-- Lead 2 -->
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">directions_car</span></div>
+        <div><p class="font-bold text-on-surface text-body-lg">Vay mua ô tô</p><p class="text-label-sm text-on-surface-variant uppercase">Sản phẩm quan tâm</p></div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="relative w-10 h-10">
+          <svg class="w-10 h-10 transform -rotate-90"><circle class="text-slate-100" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-width="3"/><circle class="text-primary" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-dasharray="100.5" stroke-dashoffset="60.3" stroke-width="3"/></svg>
+          <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-surface">40</span>
+        </div>
+        <p class="text-[9px] uppercase font-bold text-on-surface-variant mt-0.5">Score</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày hết hạn</p><p class="text-label-md font-semibold text-on-surface">15/01/2027</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Đánh giá</p><span class="inline-flex px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">Cold</span></div>
+    </div>
+    <div class="pt-3 border-t border-slate-100">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Nguồn khách hàng</p>
+      <p class="text-label-md font-semibold text-on-surface">Khách hàng tự đăng ký Web</p>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- ===== TAB: CƠ HỘI BÁN (FR-6) ===== -->
+<div class="tab-content" id="tab-opportunities">
+<main class="mt-4 space-y-4 px-4 pb-28">
+  <div class="flex justify-between items-center">
+    <h3 class="text-headline-sm font-semibold text-primary">Cơ hội bán (02)</h3>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">credit_card</span></div>
+        <div><p class="font-bold text-on-surface text-body-lg">Mở mới thẻ tín dụng</p><p class="text-label-sm text-primary font-semibold">0906789012</p></div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="relative w-10 h-10">
+          <svg class="w-10 h-10 transform -rotate-90"><circle class="text-slate-100" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-width="3"/><circle class="text-green-500" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-dasharray="100.5" stroke-dashoffset="20.1" stroke-width="3"/></svg>
+          <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-surface">80</span>
+        </div>
+        <p class="text-[9px] uppercase font-bold text-on-surface-variant mt-0.5">Win</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Sản phẩm</p><p class="text-label-md font-semibold text-on-surface">Visa Signature</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><span class="inline-flex px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full uppercase">Thu thập hồ sơ</span></div>
+    </div>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">directions_car</span></div>
+        <div><p class="font-bold text-on-surface text-body-lg">Mở mới khoản vay</p><p class="text-label-sm text-primary font-semibold">0987654321</p></div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="relative w-10 h-10">
+          <svg class="w-10 h-10 transform -rotate-90"><circle class="text-slate-100" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-width="3"/><circle class="text-primary" cx="20" cy="20" fill="transparent" r="16" stroke="currentColor" stroke-dasharray="100.5" stroke-dashoffset="60.3" stroke-width="3"/></svg>
+          <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-surface">40</span>
+        </div>
+        <p class="text-[9px] uppercase font-bold text-on-surface-variant mt-0.5">Win</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Sản phẩm</p><p class="text-label-md font-semibold text-on-surface">Vay mua ô tô</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><span class="inline-flex px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">Hoàn thành</span></div>
+    </div>
+    <div class="pt-3 border-t border-slate-100">
+      <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Ngày đóng</p>
+      <p class="text-label-md font-semibold text-on-surface">15/01/2026</p>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- ===== TAB: CASES (FR-7) ===== -->
+<div class="tab-content" id="tab-cases">
+<main class="mt-4 space-y-4 px-4 pb-28">
+  <div class="flex justify-between items-center">
+    <h3 class="text-headline-sm font-semibold text-primary">Danh sách Cases (02)</h3>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex gap-3">
+      <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">work</span></div>
+      <div><p class="font-bold text-on-surface text-body-lg">Tư vấn mở mới khoản vay</p><p class="text-[11px] font-semibold text-primary">C-2024-001</p></div>
+    </div>
+    <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Người liên hệ</p><p class="text-label-md font-semibold text-on-surface">Nguyễn Lan Anh</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Chủ đề</p><p class="text-label-md font-semibold text-on-surface">Vay mua ô tô ưu đãi</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Mức ưu tiên</p><span class="inline-flex px-2 py-0.5 bg-error-container text-error text-[10px] font-bold rounded-full uppercase">CAO</span></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><span class="inline-flex px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full uppercase">ĐANG XỬ LÝ</span></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày mở</p><p class="text-label-md font-semibold text-on-surface">10/01/2025</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày đóng</p><p class="text-label-md font-semibold text-on-surface-variant">—</p></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Kênh tiếp nhận</p><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-on-surface-variant">smartphone</span><p class="text-label-md font-semibold text-on-surface">App Mobile</p></div></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Người xử lý</p><p class="text-label-md font-semibold text-on-surface">PhongVB (TXN)</p></div>
+    </div>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+    <div class="flex gap-3">
+      <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">credit_card</span></div>
+      <div><p class="font-bold text-on-surface text-body-lg">Yêu cầu khóa thẻ khẩn cấp</p><p class="text-[11px] font-semibold text-primary">C-2024-002</p></div>
+    </div>
+    <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Người liên hệ</p><p class="text-label-md font-semibold text-on-surface">Nguyễn Lan Anh</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Chủ đề</p><p class="text-label-md font-semibold text-on-surface">Khóa thẻ</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Mức ưu tiên</p><span class="inline-flex px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full uppercase">TRUNG BÌNH</span></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><span class="inline-flex px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">HOÀN THÀNH</span></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày mở</p><p class="text-label-md font-semibold text-on-surface">12/01/2025</p></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Ngày đóng</p><p class="text-label-md font-semibold text-on-surface">15/01/2025</p></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Kênh tiếp nhận</p><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-on-surface-variant">person</span><p class="text-label-md font-semibold text-on-surface">Tại quầy</p></div></div>
+      <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Người xử lý</p><p class="text-label-md font-semibold text-on-surface">antt100 (CSKH)</p></div>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- ===== TAB: RELATIONSHIPS (FR-8) ===== -->
+<div class="tab-content" id="tab-relationships">
+<main class="mt-4 space-y-4 px-4 pb-28">
+
+  <div class="flex justify-between items-center">
+    <div>
+      <h3 class="font-bold text-on-surface text-body-lg">Customer Relationship</h3>
+      <div class="flex items-center gap-2 mt-2">
+        <span class="text-label-sm text-on-surface-variant">Show fields</span>
+        <div class="relative inline-block w-9 h-5">
+          <input checked class="peer appearance-none w-9 h-5 bg-slate-200 rounded-full checked:bg-primary transition-colors cursor-pointer" id="toggle-rel" type="checkbox"/>
+          <label class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4 cursor-pointer shadow-sm" for="toggle-rel"></label>
+        </div>
+      </div>
+    </div>
+    <div class="flex gap-2">
+      <button class="w-8 h-8 flex items-center justify-center bg-white border border-outline-variant rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">zoom_in</span></button>
+      <button class="w-8 h-8 flex items-center justify-center bg-white border border-outline-variant rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">zoom_out</span></button>
+    </div>
+  </div>
+
+  <!-- Graph -->
+  <div class="flex flex-col items-center pt-2">
+    <div class="bg-white px-4 py-2 rounded-lg border-2 border-primary shadow-sm flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-[20px]">account_circle</span>
+      <span class="font-bold text-primary text-body-md">Nguyễn Lan Anh</span>
+    </div>
+    <div class="h-6 w-px bg-slate-300"></div>
+    <div class="flex items-center gap-1.5 px-3 py-1 bg-primary-container text-white rounded-lg">
+      <span class="material-symbols-outlined text-[14px]">groups</span>
+      <span class="text-label-md font-bold">Members</span>
+      <span class="bg-white/20 px-1.5 rounded text-[10px]">2</span>
+    </div>
+  </div>
+
+  <!-- Member Cards -->
+  <div class="space-y-3 mt-2">
+    <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+      <div class="flex justify-between items-center mb-3">
+        <h4 class="font-bold text-primary text-body-lg">Nguyễn Văn Toàn</h4>
+        <span class="material-symbols-outlined text-on-surface-variant text-[20px]">expand_more</span>
+      </div>
+      <div class="space-y-2 border-t border-slate-50 pt-3">
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">Quan hệ</span><span class="text-label-md font-semibold text-on-surface">Con</span></div>
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">Tuổi</span><span class="text-label-md font-semibold text-on-surface">13</span></div>
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">KH TPBank</span><span class="text-label-md font-semibold text-on-surface-variant">Không</span></div>
+      </div>
+    </div>
+    <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+      <div class="flex justify-between items-center mb-3">
+        <h4 class="font-bold text-primary text-body-lg">Nghi Le Van</h4>
+        <span class="material-symbols-outlined text-on-surface-variant text-[20px]">expand_more</span>
+      </div>
+      <div class="space-y-2 border-t border-slate-50 pt-3">
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">Quan hệ</span><span class="text-label-md font-semibold text-on-surface">Chồng</span></div>
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">Tuổi</span><span class="text-label-md font-semibold text-on-surface">40</span></div>
+        <div class="flex justify-between"><span class="text-label-sm text-on-surface-variant">KH TPBank</span><span class="text-label-md font-semibold text-primary">Có — Priority</span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ===== FR-1.4: Bottom Navigation ===== -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html">
+    <span class="material-symbols-outlined text-[24px]">home</span>
+    <span class="text-[10px] font-medium mt-0.5">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1 active:scale-95 transition-transform" href="cus360.html">
+    <span class="material-symbols-outlined text-[24px]" style='font-variation-settings: "FILL" 1;'>account_circle</span>
+    <span class="text-[10px] font-bold mt-0.5">Cus360</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html">
+    <span class="material-symbols-outlined text-[24px]">leaderboard</span>
+    <span class="text-[10px] font-medium mt-0.5">Leads</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html">
+    <span class="material-symbols-outlined text-[24px]">assignment</span>
+    <span class="text-[10px] font-medium mt-0.5">Tasks</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#" onclick="event.preventDefault();toggleMoreMenu()">
+    <span class="material-symbols-outlined text-[24px]">menu</span>
+    <span class="text-[10px] font-medium mt-0.5">More</span>
+  </a>
+</nav>
+
+<!-- More Menu Overlay -->
+<div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
+<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5" style="animation:slideUp .3s ease-out">
+  <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
+  <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
+  <div class="grid grid-cols-3 gap-4">
+    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all">
+      <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div>
+      <span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span>
+    </a>
+    <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all">
+      <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div>
+      <span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span>
+    </a>
+    <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all">
+      <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div>
+      <span class="text-label-md text-on-surface text-center leading-tight">Cases</span>
+    </a>
+  </div>
+</div>
+<script>
+function toggleMoreMenu(){
+  const o=document.getElementById('moreMenuOverlay'),m=document.getElementById('moreMenu');
+  const hidden=o.classList.contains('hidden');
+  if(hidden){o.classList.remove('hidden');m.classList.remove('hidden');}
+  else{o.classList.add('hidden');m.classList.add('hidden');}
+}
+</script>
+
+<!-- ===== FR-1.5: FAB ===== -->
+<button class="fixed bottom-20 right-[calc(50%-215px+16px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" id="fab">
+  <span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+
+</div><!-- end device-frame -->
+
+<!-- ===== Tab Switching Script ===== -->
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('border-primary', 'text-primary', 'font-bold');
+      b.classList.add('text-on-surface-variant', 'border-transparent');
+    });
+    btn.classList.add('border-primary', 'text-primary', 'font-bold');
+    btn.classList.remove('text-on-surface-variant', 'border-transparent');
+    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    document.getElementById('app').scrollTop = 0;
+  });
+});
+</script>
+
+<!-- ===== AUM Chart Script (Chart.js) ===== -->
+<script>
+(function() {
+  const aumData = {
+    '6m': {
+      labels: ['T12', 'T1', 'T2', 'T3', 'T4', 'T5'],
+      casa: [620, 680, 720, 760, 810, 850],
+      td: [1800, 1950, 2050, 2150, 2300, 2400],
+      bond: [780, 820, 870, 920, 980, 1030],
+      summary: { casa: '850M', td: '2.4B', bond: '1.03B', total: '4.280.000.000', growth: '+12.5%', up: true }
+    },
+    '1y': {
+      labels: ['T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12', 'T1', 'T2', 'T3', 'T4', 'T5'],
+      casa: [450, 480, 520, 550, 580, 600, 620, 680, 720, 760, 810, 850],
+      td: [1200, 1350, 1450, 1550, 1650, 1750, 1800, 1950, 2050, 2150, 2300, 2400],
+      bond: [550, 580, 620, 650, 700, 740, 780, 820, 870, 920, 980, 1030],
+      summary: { casa: '850M', td: '2.4B', bond: '1.03B', total: '4.280.000.000', growth: '+18.2%', up: true }
+    }
+  };
+
+  const ctx = document.getElementById('aumChart').getContext('2d');
+
+  function createGradient(ctx, color, opacity) {
+    const gradient = ctx.createLinearGradient(0, 0, 0, 176);
+    gradient.addColorStop(0, color.replace(')', ',' + opacity + ')').replace('rgb', 'rgba'));
+    return gradient;
+  }
+
+  let aumChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: aumData['6m'].labels,
+      datasets: [
+        {
+          label: 'CASA',
+          data: aumData['6m'].casa,
+          borderColor: '#390259',
+          backgroundColor: 'rgba(57, 2, 89, 0.08)',
+          borderWidth: 2.5,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#390259',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2,
+          order: 1
+        },
+        {
+          label: 'Tiền gửi',
+          data: aumData['6m'].td,
+          borderColor: '#a04100',
+          backgroundColor: 'rgba(160, 65, 0, 0.06)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#a04100',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2,
+          order: 2
+        },
+        {
+          label: 'Bond & MF',
+          data: aumData['6m'].bond,
+          borderColor: '#b992d6',
+          backgroundColor: 'rgba(185, 146, 214, 0.1)',
+          borderWidth: 1.5,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#b992d6',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2,
+          order: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#213145',
+          titleFont: { family: 'Manrope', size: 11, weight: '600' },
+          bodyFont: { family: 'Manrope', size: 11 },
+          padding: 10,
+          cornerRadius: 8,
+          displayColors: true,
+          boxWidth: 8,
+          boxHeight: 8,
+          boxPadding: 4,
+          callbacks: {
+            label: function(context) {
+              let val = context.parsed.y;
+              if (val >= 1000) return ' ' + context.dataset.label + ': ' + (val / 1000).toFixed(1) + 'B';
+              return ' ' + context.dataset.label + ': ' + val + 'M';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { family: 'Manrope', size: 10, weight: '500' }, color: '#4c444f' },
+          border: { display: false }
+        },
+        y: {
+          grid: { color: '#e5eeff', lineWidth: 1 },
+          ticks: {
+            font: { family: 'Manrope', size: 9 },
+            color: '#7d7480',
+            callback: function(val) { return val >= 1000 ? (val/1000).toFixed(1) + 'B' : val + 'M'; },
+            maxTicksLimit: 4
+          },
+          border: { display: false },
+          beginAtZero: true
+        }
+      },
+      animation: { duration: 600, easing: 'easeInOutQuart' }
+    }
+  });
+
+  // Filter change handler
+  document.getElementById('aumFilter').addEventListener('change', function() {
+    const period = this.value;
+    const data = aumData[period];
+
+    aumChart.data.labels = data.labels;
+    aumChart.data.datasets[0].data = data.casa;
+    aumChart.data.datasets[1].data = data.td;
+    aumChart.data.datasets[2].data = data.bond;
+    aumChart.update('active');
+
+    // Update summary
+    document.getElementById('aum-casa').textContent = data.summary.casa;
+    document.getElementById('aum-td').textContent = data.summary.td;
+    document.getElementById('aum-bond').textContent = data.summary.bond;
+    document.getElementById('aum-total').innerHTML = data.summary.total + ' <span class="text-label-sm font-normal">VND</span>';
+
+    const growthEl = document.getElementById('aum-growth');
+    const color = data.summary.up ? 'text-green-600' : 'text-error';
+    const icon = data.summary.up ? 'trending_up' : 'trending_down';
+    growthEl.innerHTML = '<span class="material-symbols-outlined text-[14px] ' + color + '">' + icon + '</span><span class="' + color + '">' + data.summary.growth + '</span>';
+  });
+})();
+</script>
+</body>
+</html>

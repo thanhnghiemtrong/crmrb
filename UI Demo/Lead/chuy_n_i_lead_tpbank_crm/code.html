@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#ffdbcb",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "on-primary-container": "#c18ce3",
+                        "on-primary-fixed": "#2f004c",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#603180",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#e3b5ff",
+                        "primary-container": "#502070",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed": "#f4daff",
+                        "tertiary": "#33104e",
+                        "surface-tint": "#7a499a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#b992d6",
+                        "tertiary-container": "#4a2865",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed-dim": "#e3b5ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#e0b7fe",
+                        "secondary": "#a04100",
+                        "outline": "#7d7480",
+                        "on-tertiary-fixed": "#2b0747",
+                        "primary": "#390259",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#4c444f",
+                        "on-tertiary-fixed-variant": "#5a3875",
+                        "on-secondary-fixed": "#341000",
+                        "tertiary-fixed": "#f2daff",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#cfc3d1",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#fc7728",
+                        "on-secondary-fixed-variant": "#7a3000",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#5d2300",
+                        "secondary-fixed-dim": "#ffb693",
+                        "tpbank-orange": "#F37021"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f8f9ff; }
+        .purple-glow { box-shadow: 0 0 20px rgba(80, 32, 112, 0.08); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .tab-active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; background-color: #502070; border-radius: 99px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 h-16 w-full border-b border-slate-100 shadow-sm">
+<div class="flex items-center gap-3">
+<button class="active:opacity-70 transition-opacity p-2 -ml-2">
+<span class="material-symbols-outlined text-purple-900">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg text-purple-900">Chuyển đổi Lead</h1>
+</div>
+<button class="active:opacity-70 transition-opacity p-2">
+<span class="material-symbols-outlined text-slate-500">more_vert</span>
+</button>
+</header>
+<main class="px-margin-mobile py-stack-md space-y-stack-lg">
+<!-- AI Insights Card -->
+<section class="relative bg-white rounded-xl p-stack-md border border-purple-100 purple-glow overflow-hidden">
+<div class="absolute top-0 right-0 p-3">
+<div class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-full border border-emerald-100 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    ĐỦ ĐIỀU KIỆN
+                </div>
+</div>
+<div class="flex items-center gap-2 mb-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">auto_awesome</span>
+</div>
+<h2 class="font-headline-sm text-primary text-[15px]">AI Gợi ý Chuyển đổi</h2>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                Dựa trên hành vi khách hàng, RM nên chuyển thành <span class="font-bold text-primary">Cơ hội (Opportunity)</span> cho <span class="font-bold">Thẻ tín dụng Platinum</span>.
+            </p>
+</section>
+<!-- Conversion Mode Selection -->
+<section class="space-y-stack-sm">
+<h3 class="font-label-md text-slate-500 uppercase tracking-wider px-1">Chế độ chuyển đổi</h3>
+<div class="grid grid-cols-2 gap-3">
+<!-- Option 1 -->
+<div class="bg-white border border-slate-100 p-3 rounded-xl flex flex-col gap-2 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-slate-400">account_box</span>
+<div class="w-4 h-4 rounded-full border border-slate-300"></div>
+</div>
+<span class="text-label-md text-on-surface leading-tight">Chuyển thành Khách hàng</span>
+</div>
+<!-- Option 2 (Selected) -->
+<div class="bg-primary-container border-2 border-primary p-3 rounded-xl flex flex-col gap-2 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-primary-container">stars</span>
+<div class="w-4 h-4 rounded-full bg-white border-[5px] border-primary"></div>
+</div>
+<span class="text-label-md text-white leading-tight">Chuyển thành Cơ hội</span>
+</div>
+</div>
+</section>
+<!-- Lead Details Form -->
+<section class="bg-white rounded-xl border border-slate-100 p-stack-md space-y-5 shadow-sm">
+<!-- Read-only Field -->
+<div class="space-y-1">
+<label class="font-label-md text-slate-500">Tên khách hàng</label>
+<div class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 font-body-lg text-slate-700 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-400">person</span>
+                    Đặng Khánh Vy
+                </div>
+</div>
+<!-- Dropdown Field -->
+<div class="space-y-1">
+<label class="font-label-md text-slate-500">Sản phẩm</label>
+<div class="relative">
+<select class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 font-body-lg text-primary appearance-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none">
+<option selected="">Thẻ tín dụng Platinum</option>
+<option>Vay mua ô tô</option>
+<option>Tiền gửi tiết kiệm</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+</div>
+</div>
+<!-- Currency Input -->
+<div class="space-y-1">
+<label class="font-label-md text-slate-500">Giá trị dự kiến (Opportunity Value)</label>
+<div class="relative">
+<input class="w-full bg-white border border-slate-200 rounded-lg pl-4 pr-14 py-3 font-body-lg font-bold text-primary focus:ring-2 focus:ring-primary outline-none" type="text" value="30.000.000"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-label-md text-slate-400">VND</span>
+</div>
+</div>
+<!-- Textarea -->
+<div class="space-y-1">
+<label class="font-label-md text-slate-500">Ghi chú kết thúc</label>
+<textarea class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 font-body-md text-on-surface focus:ring-2 focus:ring-primary outline-none resize-none" rows="3">Khách hàng rất quan tâm đến ưu đãi hoàn tiền 10%.</textarea>
+</div>
+</section>
+</main>
+<!-- Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-100 px-margin-mobile py-4 space-y-3 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+<button class="w-full bg-tpbank-orange hover:bg-secondary text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span>Xác nhận Chuyển đổi</span>
+<span class="material-symbols-outlined">trending_flat</span>
+</button>
+<button class="w-full bg-transparent text-primary font-semibold py-3 rounded-xl active:bg-slate-50 transition-colors">
+            Hủy
+        </button>
+</div>
+<!-- Hidden Navigation Filter Applied: Suppressed for transactional flow as per instructions -->
+</body></html>
