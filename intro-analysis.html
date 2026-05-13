@@ -3,217 +3,233 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>TPBank CRM - TLPT</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<title>TPBank CRM - Tài liệu Phân tích Thiết kế</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Manrope',sans-serif;background:#f8f9ff;color:#0b1c30;line-height:1.7}
-.header{background:white;border-bottom:1px solid #e2e8f0;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header{background:white;border-bottom:1px solid #e2e8f0;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:200;height:56px}
 .header-left{display:flex;align-items:center;gap:12px}
-.header-left img{width:36px;height:36px;border-radius:8px;object-fit:contain}
-.header-left h1{font-size:18px;font-weight:700;color:#390259}
-.header-left p{font-size:11px;color:#4c444f}
-.btn-demo{padding:8px 16px;background:#390259;color:white;font-size:13px;font-weight:700;border-radius:999px;text-decoration:none}
+.header-left img{width:32px;height:32px;border-radius:8px;object-fit:contain}
+.header-left h1{font-size:16px;font-weight:700;color:#390259}
+.header-left p{font-size:10px;color:#4c444f}
+.btn-demo{padding:6px 14px;background:#390259;color:white;font-size:12px;font-weight:700;border-radius:999px;text-decoration:none}
 .btn-demo:hover{background:#502070}
-.container{max-width:960px;margin:0 auto;padding:40px 24px 80px}
-h2{font-size:20px;font-weight:800;color:#390259;margin:32px 0 12px;border-bottom:2px solid #390259;padding-bottom:8px}
-h3{font-size:16px;font-weight:700;color:#390259;margin:24px 0 8px}
-h4{font-size:14px;font-weight:700;color:#502070;margin:16px 0 6px}
-h5{font-size:13px;font-weight:700;color:#4c444f;margin:12px 0 4px}
-p,li{font-size:13px}
-p{margin-bottom:8px}
+
+.layout{display:flex;margin-top:56px}
+
+/* LEFT SIDEBAR TOC */
+.sidebar{width:280px;position:fixed;top:56px;left:0;bottom:0;overflow-y:auto;background:white;border-right:1px solid #e2e8f0;padding:20px 0;z-index:100}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:#cfc3d1;border-radius:4px}
+.sidebar ul{list-style:none;padding:0}
+.sidebar li{margin:0}
+.sidebar a{display:block;padding:6px 20px;font-size:12px;color:#4c444f;text-decoration:none;border-left:3px solid transparent;transition:all .2s}
+.sidebar a:hover{background:#f4daff;color:#390259}
+.sidebar a.active{background:#f4daff;color:#390259;font-weight:700;border-left-color:#390259}
+.sidebar .toc-h2{font-weight:700;font-size:13px;color:#390259;padding:10px 20px 6px;margin-top:8px}
+.sidebar .toc-h3{padding-left:28px}
+.sidebar .toc-h4{padding-left:40px;font-size:11px}
+
+/* MAIN CONTENT */
+.main-content{margin-left:280px;padding:40px 48px 80px;max-width:900px;flex:1}
+h2{font-size:20px;font-weight:800;color:#390259;margin:36px 0 12px;border-bottom:2px solid #390259;padding-bottom:8px}
+h3{font-size:16px;font-weight:700;color:#390259;margin:28px 0 8px}
+h4{font-size:14px;font-weight:700;color:#502070;margin:20px 0 6px}
+h5{font-size:13px;font-weight:700;color:#4c444f;margin:14px 0 4px}
+p{font-size:13px;margin-bottom:8px}
 ul,ol{padding-left:20px;margin-bottom:12px}
-li{margin-bottom:4px}
-table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:12px}
-th,td{border:1px solid #cfc3d1;padding:8px 10px;text-align:left;vertical-align:top}
-th{background:#f4daff;color:#390259;font-weight:700}
+li{font-size:13px;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:11px}
+th,td{border:1px solid #cfc3d1;padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#f4daff;color:#390259;font-weight:700;white-space:nowrap}
 tr:nth-child(even){background:#faf8ff}
-.toc{background:white;border:1px solid #cfc3d1;border-radius:12px;padding:24px;margin-bottom:32px}
-.toc h3{margin-top:0}
-.toc ul{list-style:none;padding-left:0}
-.toc li{margin-bottom:3px}
-.toc a{color:#390259;text-decoration:none;font-size:12px;font-weight:500}
-.toc a:hover{text-decoration:underline}
-.i1{padding-left:16px}.i2{padding-left:32px}.i3{padding-left:48px}
 .card{background:white;border:1px solid #cfc3d1;border-radius:12px;padding:24px;margin-bottom:20px}
+
+@media(max-width:900px){
+  .sidebar{display:none}
+  .main-content{margin-left:0;padding:24px 16px 60px}
+}
 </style>
 </head>
 <body>
+
 <div class="header">
 <div class="header-left">
 <img src="UI Demo/logo TPB.png" alt="TPBank Logo"/>
-<div><h1>TPBank CRM</h1><p>Tai lieu Phan tich Thiet ke (TLPT)</p></div>
+<div><h1>TPBank CRM</h1><p>Tài liệu Phân tích Thiết kế (TLPT)</p></div>
 </div>
 <a href="dashboard.html" class="btn-demo">Xem Demo</a>
 </div>
-<div class="container">
 
-<!-- MUC LUC -->
-<div class="toc">
-<h3>Muc luc</h3>
+<div class="layout">
+
+<!-- SIDEBAR TOC -->
+<nav class="sidebar" id="toc-sidebar">
 <ul>
-<li><a href="#s1">1. Gioi thieu</a></li>
-<li class="i1"><a href="#s11">1.1. Muc dich</a></li>
-<li class="i1"><a href="#s12">1.2. Pham vi</a></li>
-<li class="i1"><a href="#s13">1.3. Doi tuong su dung</a></li>
-<li><a href="#s2">2. Tong quan he thong</a></li>
-<li class="i1"><a href="#s21">2.1. Mo ta tong quan</a></li>
-<li class="i1"><a href="#s22">2.2. Cac module chinh</a></li>
-<li><a href="#s3">3. Chi tiet chuc nang</a></li>
-<li class="i1"><a href="#s31">3.1. Module Dashboard (Home)</a></li>
-<li class="i2"><a href="#s311">3.1.1. Man hinh Trang chu</a></li>
-<li class="i1"><a href="#s32">3.2. Module Customer 360</a></li>
-<li class="i2"><a href="#s321">3.2.1. Tab Tong quan</a></li>
-<li class="i2"><a href="#s322">3.2.2. Tab Tom tat KH</a></li>
-<li class="i2"><a href="#s323">3.2.3. Tab Thong tin KH</a></li>
-<li class="i2"><a href="#s324">3.2.4. Tab San pham</a></li>
-<li class="i2"><a href="#s325">3.2.5. Tab Cases</a></li>
-<li class="i2"><a href="#s326">3.2.6. Tab Relationships</a></li>
-<li class="i1"><a href="#s33">3.3. Module Lead Management</a></li>
-<li class="i2"><a href="#s331">3.3.1. Danh sach Lead</a></li>
-<li class="i2"><a href="#s332">3.3.2. Tao Lead moi</a></li>
-<li class="i2"><a href="#s333">3.3.3. Chi tiet Lead</a></li>
-<li class="i1"><a href="#s34">3.4. Module Opportunities</a></li>
-<li class="i2"><a href="#s341">3.4.1. Danh sach Co hoi</a></li>
-<li class="i2"><a href="#s342">3.4.2. Chi tiet Co hoi</a></li>
-<li class="i2"><a href="#s343">3.4.3. Tao/Chinh sua Co hoi</a></li>
-<li class="i1"><a href="#s35">3.5. Module Task Management</a></li>
-<li class="i2"><a href="#s351">3.5.1. Danh sach Task</a></li>
-<li class="i2"><a href="#s352">3.5.2. Chi tiet cong viec</a></li>
-<li class="i2"><a href="#s353">3.5.3. Tao cong viec moi</a></li>
-<li class="i1"><a href="#s36">3.6. Module Cases</a></li>
-<li class="i2"><a href="#s361">3.6.1. Danh sach Case</a></li>
-<li class="i2"><a href="#s362">3.6.2. Chi tiet Case</a></li>
-<li class="i2"><a href="#s363">3.6.3. Tao moi Case</a></li>
-<li class="i1"><a href="#s37">3.7. Module Sales Support</a></li>
-<li class="i2"><a href="#s371">3.7.1. Cam nang san pham</a></li>
-<li class="i2"><a href="#s372">3.7.2. AI goi y kich ban</a></li>
-<li><a href="#s4">4. Phu luc</a></li>
-<li class="i1"><a href="#s41">4.1. Danh sach thong bao</a></li>
-<li class="i1"><a href="#s42">4.2. Yeu cau ANBM</a></li>
+<li><a href="#s1" class="toc-h2">1. Giới thiệu</a></li>
+<li><a href="#s11" class="toc-h3">1.1. Mục đích</a></li>
+<li><a href="#s12" class="toc-h3">1.2. Phạm vi</a></li>
+<li><a href="#s13" class="toc-h3">1.3. Đối tượng sử dụng</a></li>
+<li><a href="#s2" class="toc-h2">2. Tổng quan hệ thống</a></li>
+<li><a href="#s21" class="toc-h3">2.1. Mô tả tổng quan</a></li>
+<li><a href="#s22" class="toc-h3">2.2. Các module chính</a></li>
+<li><a href="#s3" class="toc-h2">3. Chi tiết chức năng</a></li>
+<li><a href="#s31" class="toc-h3">3.1. Dashboard (Home)</a></li>
+<li><a href="#s311" class="toc-h4">3.1.1. Màn hình Trang chủ</a></li>
+<li><a href="#s32" class="toc-h3">3.2. Customer 360</a></li>
+<li><a href="#s321" class="toc-h4">3.2.1. Tab Tổng quan</a></li>
+<li><a href="#s322" class="toc-h4">3.2.2. Tab Tóm tắt KH</a></li>
+<li><a href="#s323" class="toc-h4">3.2.3. Tab Thông tin KH</a></li>
+<li><a href="#s324" class="toc-h4">3.2.4. Tab Sản phẩm</a></li>
+<li><a href="#s325" class="toc-h4">3.2.5. Tab Cases</a></li>
+<li><a href="#s326" class="toc-h4">3.2.6. Tab Relationships</a></li>
+<li><a href="#s33" class="toc-h3">3.3. Lead Management</a></li>
+<li><a href="#s331" class="toc-h4">3.3.1. Danh sách Lead</a></li>
+<li><a href="#s332" class="toc-h4">3.3.2. Tạo Lead mới</a></li>
+<li><a href="#s333" class="toc-h4">3.3.3. Chi tiết Lead</a></li>
+<li><a href="#s34" class="toc-h3">3.4. Opportunities</a></li>
+<li><a href="#s341" class="toc-h4">3.4.1. Danh sách Cơ hội</a></li>
+<li><a href="#s342" class="toc-h4">3.4.2. Chi tiết Cơ hội</a></li>
+<li><a href="#s343" class="toc-h4">3.4.3. Tạo/Chỉnh sửa Cơ hội</a></li>
+<li><a href="#s35" class="toc-h3">3.5. Task Management</a></li>
+<li><a href="#s351" class="toc-h4">3.5.1. Danh sách Task</a></li>
+<li><a href="#s352" class="toc-h4">3.5.2. Chi tiết công việc</a></li>
+<li><a href="#s353" class="toc-h4">3.5.3. Tạo công việc mới</a></li>
+<li><a href="#s36" class="toc-h3">3.6. Cases</a></li>
+<li><a href="#s361" class="toc-h4">3.6.1. Danh sách Case</a></li>
+<li><a href="#s362" class="toc-h4">3.6.2. Chi tiết Case</a></li>
+<li><a href="#s363" class="toc-h4">3.6.3. Tạo mới Case</a></li>
+<li><a href="#s37" class="toc-h3">3.7. Sales Support</a></li>
+<li><a href="#s371" class="toc-h4">3.7.1. Cẩm nang sản phẩm</a></li>
+<li><a href="#s372" class="toc-h4">3.7.2. AI gợi ý kịch bản</a></li>
+<li><a href="#s4" class="toc-h2">4. Phụ lục</a></li>
+<li><a href="#s41" class="toc-h3">4.1. Danh sách thông báo</a></li>
+<li><a href="#s42" class="toc-h3">4.2. Yêu cầu ANBM</a></li>
+</ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- 1. GIỚI THIỆU -->
+<h2 id="s1">1. Giới thiệu</h2>
+
+<div class="card">
+<h3 id="s11">1.1. Mục đích</h3>
+<p>Tài liệu này mô tả chi tiết phân tích thiết kế của hệ thống <strong>TPBank CRM Mobile</strong> — ứng dụng quản lý quan hệ khách hàng dành cho nhân viên kinh doanh (Relationship Manager - RM) của Ngân hàng TMCP Tiên Phong (TPBank).</p>
+<p>Hệ thống giúp RM:</p>
+<ul>
+<li>Quản lý thông tin khách hàng 360 độ</li>
+<li>Theo dõi và chuyển đổi khách hàng tiềm năng (Lead)</li>
+<li>Quản lý cơ hội kinh doanh (Opportunity)</li>
+<li>Lập kế hoạch và theo dõi công việc hàng ngày (Task)</li>
+<li>Xử lý yêu cầu hỗ trợ khách hàng (Case)</li>
+<li>Sử dụng công cụ hỗ trợ bán hàng thông minh (Sales Support + AI)</li>
 </ul>
 </div>
 
-<!-- 1. GIOI THIEU -->
-<h2 id="s1">1. Gioi thieu</h2>
-
 <div class="card">
-<h3 id="s11">1.1. Muc dich</h3>
-<p>Tai lieu nay mo ta chi tiet phan tich thiet ke cua he thong <strong>TPBank CRM Mobile</strong> - ung dung quan ly quan he khach hang danh cho nhan vien kinh doanh (Relationship Manager - RM) cua Ngan hang TMCP Tien Phong (TPBank).</p>
-<p>He thong giup RM:</p>
-<ul>
-<li>Quan ly thong tin khach hang 360 do</li>
-<li>Theo doi va chuyen doi khach hang tiem nang (Lead)</li>
-<li>Quan ly co hoi kinh doanh (Opportunity)</li>
-<li>Lap ke hoach va theo doi cong viec hang ngay (Task)</li>
-<li>Xu ly yeu cau ho tro khach hang (Case)</li>
-<li>Su dung cong cu ho tro ban hang thong minh (Sales Support + AI)</li>
-</ul>
-</div>
-
-<div class="card">
-<h3 id="s12">1.2. Pham vi</h3>
-<p>Tai lieu bao gom phan tich thiet ke cho cac module sau:</p>
+<h3 id="s12">1.2. Phạm vi</h3>
+<p>Tài liệu bao gồm phân tích thiết kế cho các module sau:</p>
 <table>
-<tr><th>STT</th><th>Module</th><th>Menu</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Dashboard</td><td>Home</td><td>Man hinh tong hop du lieu, KPI, canh bao</td></tr>
-<tr><td>2</td><td>Customer 360</td><td>Cus360</td><td>Thong tin 360 do ve khach hang</td></tr>
-<tr><td>3</td><td>Lead Management</td><td>Leads</td><td>Quan ly khach hang tiem nang</td></tr>
-<tr><td>4</td><td>Opportunities</td><td>Opps</td><td>Quan ly co hoi kinh doanh</td></tr>
-<tr><td>5</td><td>Task Management</td><td>Tasks</td><td>Quan ly cong viec hang ngay</td></tr>
-<tr><td>6</td><td>Customer Service</td><td>More &gt; Cases</td><td>Quan ly yeu cau ho tro</td></tr>
-<tr><td>7</td><td>Sales Support</td><td>More &gt; Sales Support</td><td>Cong cu ho tro ban hang</td></tr>
+<tr><th>STT</th><th>Module</th><th>Menu</th><th>Mô tả</th></tr>
+<tr><td>1</td><td>Dashboard</td><td>Home</td><td>Màn hình tổng hợp dữ liệu, KPI, cảnh báo</td></tr>
+<tr><td>2</td><td>Customer 360</td><td>Cus360</td><td>Thông tin 360 độ về khách hàng</td></tr>
+<tr><td>3</td><td>Lead Management</td><td>Leads</td><td>Quản lý khách hàng tiềm năng</td></tr>
+<tr><td>4</td><td>Opportunities</td><td>Opps</td><td>Quản lý cơ hội kinh doanh</td></tr>
+<tr><td>5</td><td>Task Management</td><td>Tasks</td><td>Quản lý công việc hàng ngày</td></tr>
+<tr><td>6</td><td>Customer Service</td><td>More &gt; Cases</td><td>Quản lý yêu cầu hỗ trợ</td></tr>
+<tr><td>7</td><td>Sales Support</td><td>More &gt; Sales Support</td><td>Công cụ hỗ trợ bán hàng</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h3 id="s13">1.3. Doi tuong su dung</h3>
+<h3 id="s13">1.3. Đối tượng sử dụng</h3>
 <table>
-<tr><th>Vai tro</th><th>Mo ta</th></tr>
-<tr><td>Relationship Manager (RM)</td><td>Nhan vien kinh doanh truc tiep quan ly khach hang, su dung toan bo chuc nang cua ung dung</td></tr>
-<tr><td>Team Leader</td><td>Quan ly nhom RM, xem bao cao tong hop va phan bo cong viec</td></tr>
+<tr><th>Vai trò</th><th>Mô tả</th></tr>
+<tr><td>Relationship Manager (RM)</td><td>Nhân viên kinh doanh trực tiếp quản lý khách hàng, sử dụng toàn bộ chức năng của ứng dụng</td></tr>
+<tr><td>Team Leader</td><td>Quản lý nhóm RM, xem báo cáo tổng hợp và phân bổ công việc</td></tr>
 </table>
 </div>
 
-<!-- 2. TONG QUAN HE THONG -->
-<h2 id="s2">2. Tong quan he thong</h2>
+<!-- 2. TỔNG QUAN HỆ THỐNG -->
+<h2 id="s2">2. Tổng quan hệ thống</h2>
 
 <div class="card">
-<h3 id="s21">2.1. Mo ta tong quan</h3>
-<p>TPBank CRM Mobile la ung dung di dong duoc thiet ke theo phong cach Material Design 3, toi uu cho man hinh 430px (iPhone 14 Pro Max). Ung dung su dung kien truc Single Page voi bottom navigation gom 6 muc chinh:</p>
+<h3 id="s21">2.1. Mô tả tổng quan</h3>
+<p>TPBank CRM Mobile là ứng dụng di động được thiết kế theo phong cách Material Design 3, tối ưu cho màn hình 430px (iPhone 14 Pro Max). Ứng dụng sử dụng kiến trúc Single Page với bottom navigation gồm 6 mục chính:</p>
 <ul>
-<li><strong>Home</strong> - Trang chu Dashboard</li>
-<li><strong>Cus360</strong> - Customer 360</li>
-<li><strong>Leads</strong> - Quan ly KH tiem nang</li>
-<li><strong>Opps</strong> - Quan ly co hoi</li>
-<li><strong>Tasks</strong> - Quan ly cong viec</li>
-<li><strong>More</strong> - Menu mo rong (Cases, Sales Support)</li>
+<li><strong>Home</strong> — Trang chủ Dashboard</li>
+<li><strong>Cus360</strong> — Customer 360</li>
+<li><strong>Leads</strong> — Quản lý KH tiềm năng</li>
+<li><strong>Opps</strong> — Quản lý cơ hội</li>
+<li><strong>Tasks</strong> — Quản lý công việc</li>
+<li><strong>More</strong> — Menu mở rộng (Cases, Sales Support)</li>
 </ul>
-<p><strong>Cong nghe:</strong> HTML5, TailwindCSS, Chart.js, Material Symbols. Responsive mobile-first.</p>
+<p><strong>Công nghệ:</strong> HTML5, TailwindCSS, Chart.js, Material Symbols. Responsive mobile-first.</p>
 </div>
 
 <div class="card">
-<h3 id="s22">2.2. Cac module chinh va moi quan he</h3>
-<p>So do lien ket giua cac module:</p>
+<h3 id="s22">2.2. Các module chính và mối quan hệ</h3>
 <table>
-<tr><th>Module</th><th>Co the di den</th></tr>
+<tr><th>Module</th><th>Có thể đi đến</th></tr>
 <tr><td>Dashboard (Home)</td><td>Lead Management, Opportunities, Task Management</td></tr>
 <tr><td>Customer 360</td><td>Opportunities, Lead Management, Task Management, Case Management</td></tr>
-<tr><td>Lead Management</td><td>Customer 360 (chuyen doi), Opportunities (chuyen doi)</td></tr>
-<tr><td>Opportunities</td><td>Customer 360 (chuyen doi Account)</td></tr>
-<tr><td>Task Management</td><td>Customer 360 (lien ket KH)</td></tr>
-<tr><td>Cases</td><td>Customer 360 (lien ket KH)</td></tr>
-<tr><td>Sales Support</td><td>Customer 360 (ap dung cho KH cu the)</td></tr>
+<tr><td>Lead Management</td><td>Customer 360 (chuyển đổi), Opportunities (chuyển đổi)</td></tr>
+<tr><td>Opportunities</td><td>Customer 360 (chuyển đổi Account)</td></tr>
+<tr><td>Task Management</td><td>Customer 360 (liên kết KH)</td></tr>
+<tr><td>Cases</td><td>Customer 360 (liên kết KH)</td></tr>
+<tr><td>Sales Support</td><td>Customer 360 (áp dụng cho KH cụ thể)</td></tr>
 </table>
 </div>
 
-<!-- 3. CHI TIET CHUC NANG -->
-<h2 id="s3">3. Chi tiet chuc nang</h2>
+<!-- 3. CHI TIẾT CHỨC NĂNG -->
+<h2 id="s3">3. Chi tiết chức năng</h2>
 
 <!-- 3.1 DASHBOARD -->
 <h3 id="s31">3.1. Module Dashboard (Home)</h3>
 
 <div class="card">
-<h4 id="s311">3.1.1. Man hinh Trang chu</h4>
+<h4 id="s311">3.1.1. Màn hình Trang chủ</h4>
 
-<h5>3.1.1.1. Mo ta tong quan</h5>
+<h5>3.1.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Cung cap cho RM cai nhin toan canh ve hieu suat va nhung viec can uu tien trong ngay</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>Relationship Manager (RM)</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Home (dashboard.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM nam bat duoc KPI, cong viec, canh bao va co hoi can xu ly trong ngay</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Cung cấp cho RM cái nhìn toàn cảnh về hiệu suất và những việc cần ưu tiên trong ngày</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>Relationship Manager (RM)</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Home (dashboard.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM nắm bắt được KPI, công việc, cảnh báo và cơ hội cần xử lý trong ngày</td></tr>
 </table>
 
-<h5>3.1.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 1: Man hinh Trang chu (Dashboard)</em></p>
-
+<h5>3.1.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 1: Màn hình Trang chủ (Dashboard)</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th></tr>
-<tr><td>1</td><td>Top AppBar - Logo</td><td>Image</td><td>Hien thi logo TPBank, tieu de "Trang chu"</td><td></td></tr>
-<tr><td>2</td><td>Icon Mindmap</td><td>Button</td><td>Dieu huong den trang intro-markmap.html</td><td></td></tr>
-<tr><td>3</td><td>Icon Gioi thieu</td><td>Button</td><td>Dieu huong den trang intro-modules.html</td><td></td></tr>
-<tr><td>4</td><td>Icon Tai lieu</td><td>Button</td><td>Dieu huong den trang intro-analysis.html</td><td></td></tr>
-<tr><td>5</td><td>Icon Thong bao</td><td>Button</td><td>Hien thi so luong thong bao chua doc (badge do)</td><td></td></tr>
-<tr><td>6</td><td>Theo doi KPI</td><td>Chart (Donut)</td><td>3 bieu do tron hien thi tien do KPI: The, Vay, Bao hiem. Phan tram hoan thanh trong thang</td><td></td></tr>
-<tr><td>7</td><td>AI Prediction</td><td>Text card</td><td>AI du bao kha nang hoan thanh KPI thang (vd: 110%)</td><td></td></tr>
-<tr><td>8</td><td>Phan bo KH tiem nang</td><td>Chart (Donut)</td><td>Bieu do tong quan Lead moi trong thang. Click vao de xem bao cao chi tiet</td><td></td></tr>
-<tr><td>9</td><td>Phan bo Co hoi</td><td>Chart (Donut + Bar)</td><td>Bieu do co hoi ban theo trang thai. Bo loc: Hom nay / Thang nay. Click "Xem danh sach co hoi sap den han"</td><td></td></tr>
-<tr><td>10</td><td>Nhiem vu hom nay</td><td>List card</td><td>Danh sach task voi trang thai (Dang thuc hien, Hoan thanh, Cho xu ly, Qua han). Nut "Them moi" de tao task</td><td></td></tr>
-<tr><td>11</td><td>Su kien hom nay</td><td>List card</td><td>Danh sach su kien (sinh nhat, dao han tiet kiem). Nut "Goi dien" va "Gui SMS"</td><td></td></tr>
-<tr><td>12</td><td>KH theo phan khuc</td><td>Chart (Donut)</td><td>Bieu do phan bo KH: Mass vs Premier. Hien thi tong so KH quan ly</td><td></td></tr>
-<tr><td>13</td><td>Canh bao KH roi bo</td><td>List card</td><td>Danh sach KH co nguy co roi bo (Cao/TB). Nut "Goi CSKH" va "Dat lich hen". Link "Xem tat ca" den bao cao chi tiet</td><td></td></tr>
-<tr><td>14</td><td>Bottom Navigation</td><td>Nav bar</td><td>6 muc: Home (active), Cus360, Leads, Opps, Tasks, More</td><td></td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Top AppBar - Logo</td><td>Image</td><td>Hiển thị logo TPBank, tiêu đề "Trang chủ"</td><td></td><td></td></tr>
+<tr><td>2</td><td>Icon Mindmap</td><td>Button</td><td>Điều hướng đến trang intro-markmap.html</td><td></td><td></td></tr>
+<tr><td>3</td><td>Icon Giới thiệu</td><td>Button</td><td>Điều hướng đến trang intro-modules.html</td><td></td><td></td></tr>
+<tr><td>4</td><td>Icon Tài liệu</td><td>Button</td><td>Điều hướng đến trang intro-analysis.html</td><td></td><td></td></tr>
+<tr><td>5</td><td>Icon Thông báo</td><td>Button</td><td>Hiển thị số lượng thông báo chưa đọc (badge đỏ)</td><td></td><td></td></tr>
+<tr><td>6</td><td>Theo dõi KPI</td><td>Chart (Donut)</td><td>3 biểu đồ tròn hiển thị tiến độ KPI: Thẻ, Vay, Bảo hiểm. Phần trăm hoàn thành trong tháng</td><td></td><td></td></tr>
+<tr><td>7</td><td>AI Prediction</td><td>Text card</td><td>AI dự báo khả năng hoàn thành KPI tháng (ví dụ: 110%)</td><td></td><td></td></tr>
+<tr><td>8</td><td>Phân bổ KH tiềm năng</td><td>Chart (Donut)</td><td>Biểu đồ tổng quan Lead mới trong tháng. Click vào để xem báo cáo chi tiết</td><td></td><td></td></tr>
+<tr><td>9</td><td>Phân bổ Cơ hội</td><td>Chart (Donut + Bar)</td><td>Biểu đồ cơ hội bán theo trạng thái. Bộ lọc: Hôm nay / Tháng này. Link "Xem danh sách cơ hội sắp đến hạn"</td><td></td><td></td></tr>
+<tr><td>10</td><td>Nhiệm vụ hôm nay</td><td>List card</td><td>Danh sách task với trạng thái (Đang thực hiện, Hoàn thành, Chờ xử lý, Quá hạn). Nút "Thêm mới" để tạo task</td><td></td><td></td></tr>
+<tr><td>11</td><td>Sự kiện hôm nay</td><td>List card</td><td>Danh sách sự kiện (sinh nhật, đáo hạn tiết kiệm). Nút "Gọi điện" và "Gửi SMS"</td><td></td><td></td></tr>
+<tr><td>12</td><td>KH theo phân khúc</td><td>Chart (Donut)</td><td>Biểu đồ phân bổ KH: Mass vs Premier. Hiển thị tổng số KH quản lý</td><td></td><td></td></tr>
+<tr><td>13</td><td>Cảnh báo KH rời bỏ</td><td>List card</td><td>Danh sách KH có nguy cơ rời bỏ (Cao/TB). Nút "Gọi CSKH" và "Đặt lịch hẹn". Link "Xem tất cả" đến báo cáo chi tiết</td><td></td><td></td></tr>
+<tr><td>14</td><td>Bottom Navigation</td><td>Nav bar</td><td>6 mục: Home (active), Cus360, Leads, Opps, Tasks, More</td><td></td><td></td></tr>
 </table>
 
-<h5>3.1.1.3. Quy tac nghiep vu</h5>
+<h5>3.1.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 1</td><td>Khi RM mo app, he thong tu dong tai du lieu KPI thang hien tai tu he thong Core. Neu khong ket noi duoc, hien thi du lieu cache gan nhat kem thong bao "Du lieu cap nhat luc [thoi gian]"</td></tr>
-<tr><td>BR 2</td><td>Bo loc "Phan bo Co hoi" mac dinh la "Thang nay". Khi chuyen sang "Hom nay", bieu do cap nhat realtime voi animation 600ms</td></tr>
-<tr><td>BR 3</td><td>Danh sach "Nhiem vu hom nay" sap xep theo: Qua han (do) > Dang thuc hien (xanh duong) > Cho xu ly (cam) > Hoan thanh (xanh la). Toi da hien thi 4 task, con lai xem tai trang Tasks</td></tr>
-<tr><td>BR 4</td><td>Canh bao KH roi bo: He thong AI phan tich dua tren: AUM giam > 30% trong 3 thang, khong dang nhap app > 30 ngay, khong phat sinh giao dich > 45 ngay. Phan loai: Cao (>= 2 dieu kien), Trung binh (1 dieu kien)</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 1</td><td>Khi RM mở app, hệ thống tự động tải dữ liệu KPI tháng hiện tại từ hệ thống Core. Nếu không kết nối được, hiển thị dữ liệu cache gần nhất kèm thông báo "Dữ liệu cập nhật lúc [thời gian]"</td></tr>
+<tr><td>BR 2</td><td>Bộ lọc "Phân bổ Cơ hội" mặc định là "Tháng này". Khi chuyển sang "Hôm nay", biểu đồ cập nhật realtime với animation 600ms</td></tr>
+<tr><td>BR 3</td><td>Danh sách "Nhiệm vụ hôm nay" sắp xếp theo: Quá hạn (đỏ) &gt; Đang thực hiện (xanh dương) &gt; Chờ xử lý (cam) &gt; Hoàn thành (xanh lá). Tối đa hiển thị 4 task, còn lại xem tại trang Tasks</td></tr>
+<tr><td>BR 4</td><td>Cảnh báo KH rời bỏ: Hệ thống AI phân tích dựa trên: AUM giảm &gt; 30% trong 3 tháng, không đăng nhập app &gt; 30 ngày, không phát sinh giao dịch &gt; 45 ngày. Phân loại: Cao (&ge; 2 điều kiện), Trung bình (1 điều kiện)</td></tr>
 </table>
 </div>
 
@@ -221,176 +237,175 @@ tr:nth-child(even){background:#faf8ff}
 <h3 id="s32">3.2. Module Customer 360</h3>
 
 <div class="card">
-<h4 id="s321">3.2.1. Tab Tong quan</h4>
+<h4 id="s321">3.2.1. Tab Tổng quan</h4>
 
-<h5>3.2.1.1. Mo ta tong quan</h5>
+<h5>3.2.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Cung cap ban tom tat quan trong nhat de RM nam bat nhanh tong quan tinh hinh KH truoc khi tuong tac</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Tong quan (cus360.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM co cai nhin 360 do ve KH: tai san, rui ro, goi y ban hang, nhiem vu</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Cung cấp bản tóm tắt quan trọng nhất để RM nắm bắt nhanh tổng quan tình hình KH trước khi tương tác</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Tổng quan (cus360.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM có cái nhìn 360 độ về KH: tài sản, rủi ro, gợi ý bán hàng, nhiệm vụ</td></tr>
 </table>
 
-<h5>3.2.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 2: Customer 360 - Tab Tong quan</em></p>
-
+<h5>3.2.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 2: Customer 360 - Tab Tổng quan</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Customer Profile Card</td><td>Card</td><td>Hien thi: Anh dai dien, Ten KH, Trang thai (Active), Danh gia CIC (Rat tot), Phan hang (Platinum), SĐT, Dia chi, CIF. Nut nhanh: Goi dien, Email, Chat</td></tr>
-<tr><td>2</td><td>Tab Navigation</td><td>Horizontal scroll tabs</td><td>8 tab: Tong quan, Tom tat KH, Thong tin KH, San pham, KH tiem nang, Co hoi ban, Cases, Relationships</td></tr>
-<tr><td>3</td><td>AI Insights</td><td>Card (purple)</td><td>Diem Engagement (9.2/10). Goi y ban (NBA): TD, Card, UPL, Banca. Click tung icon de xem ly do goi y chi tiet</td></tr>
-<tr><td>4</td><td>Nhiem vu hom nay</td><td>Checklist</td><td>Danh sach 3 task voi checkbox. Badge so luong. Link "Lich trinh" den trang Tasks</td></tr>
-<tr><td>5</td><td>Life Events</td><td>Horizontal scroll</td><td>Cac su kien doi KH: Sinh nhat, Tot nghiep, Di lam, Ket hon, Chuyen noi o, Mua o to. Nut "+ Tao moi"</td></tr>
-<tr><td>6</td><td>Bien dong AUM</td><td>Line Chart</td><td>Bieu do bien dong tai san 6 thang/1 nam. Chi tiet: CASA, Tien gui, Bond & MF. Bo loc thoi gian</td></tr>
-<tr><td>7</td><td>Bao cao No</td><td>Summary card</td><td>Tong du no, no qua han, ky han tra no tiep theo</td></tr>
-<tr><td>8</td><td>Rui ro & Tuan thu</td><td>Status card</td><td>Xep hang AML, Credit Score, Trang thai ho so phap ly</td></tr>
-<tr><td>9</td><td>Hoat dong gan day</td><td>Timeline</td><td>Dong thoi gian cac giao dich va tuong tac moi nhat tu da kenh</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Customer Profile Card</td><td>Card</td><td>Hiển thị: Ảnh đại diện, Tên KH, Trạng thái (Active), Đánh giá CIC (Rất tốt), Phân hạng (Platinum), SĐT, Địa chỉ, CIF. Nút nhanh: Gọi điện, Email, Chat</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tab Navigation</td><td>Horizontal scroll tabs</td><td>8 tab: Tổng quan, Tóm tắt KH, Thông tin KH, Sản phẩm, KH tiềm năng, Cơ hội bán, Cases, Relationships</td><td></td><td></td></tr>
+<tr><td>3</td><td>AI Insights</td><td>Card (purple)</td><td>Điểm Engagement (9.2/10). Gợi ý bán (NBA): TD, Card, UPL, Banca. Click từng icon để xem lý do gợi ý chi tiết</td><td></td><td></td></tr>
+<tr><td>4</td><td>Nhiệm vụ hôm nay</td><td>Checklist</td><td>Danh sách 3 task với checkbox. Badge số lượng. Link "Lịch trình" đến trang Tasks</td><td></td><td></td></tr>
+<tr><td>5</td><td>Life Events</td><td>Horizontal scroll</td><td>Các sự kiện đời KH: Sinh nhật, Tốt nghiệp, Đi làm, Kết hôn, Chuyển nơi ở, Mua ô tô. Nút "+ Tạo mới"</td><td></td><td></td></tr>
+<tr><td>6</td><td>Biến động AUM</td><td>Line Chart</td><td>Biểu đồ biến động tài sản 6 tháng/1 năm. Chi tiết: CASA, Tiền gửi, Bond &amp; MF. Bộ lọc thời gian</td><td></td><td></td></tr>
+<tr><td>7</td><td>Báo cáo Nợ</td><td>Summary card</td><td>Tổng dư nợ, nợ quá hạn, kỳ hạn trả nợ tiếp theo</td><td></td><td></td></tr>
+<tr><td>8</td><td>Rủi ro &amp; Tuân thủ</td><td>Status card</td><td>Xếp hạng AML, Credit Score, Trạng thái hồ sơ pháp lý</td><td></td><td></td></tr>
+<tr><td>9</td><td>Hoạt động gần đây</td><td>Timeline</td><td>Dòng thời gian các giao dịch và tương tác mới nhất từ đa kênh</td><td></td><td></td></tr>
 </table>
 
-<h5>3.2.1.3. Quy tac nghiep vu</h5>
+<h5>3.2.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 5</td><td>AI Insights - NBA (Next Best Action): He thong AI phan tich du lieu KH (thu nhap, chi tieu, lich su giao dich, hanh vi app) de goi y san pham phu hop. Moi goi y kem ly do cu the. Cap nhat moi 24h</td></tr>
-<tr><td>BR 6</td><td>Engagement Score: Tinh dua tren tan suat dang nhap app, so giao dich/thang, phan hoi email/SMS, thoi gian su dung app. Thang diem 0-10</td></tr>
-<tr><td>BR 7</td><td>Bien dong AUM: Du lieu lay tu Core Banking, cap nhat T+1. Bieu do hien thi tong AUM = CASA + Tien gui + Bond/MF</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h4 id="s322">3.2.2. Tab Tom tat KH</h4>
-
-<h5>3.2.2.1. Mo ta tong quan</h5>
-<table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Man hinh "doc hieu" KH dua tren Big Data, giup RM co cai nhin dinh tinh</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Tom tat KH</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM hieu ro chan dung KH, biet hanh dong tiep theo va quan ly tai lieu</td></tr>
-</table>
-
-<h5>3.2.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 3: Customer 360 - Tab Tom tat KH</em></p>
-<table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Profile</td><td>Info card</td><td>So du TK trung binh, Nguon KH, KH tu ngay, Tam quan trong, Kenh uu thich</td></tr>
-<tr><td>2</td><td>Danh gia chung (AI Summary)</td><td>Text + Metrics</td><td>Doan van ban AI tom tat. 3 chi so: Rui ro (Thap/TB/Cao), Tiem nang, Engagement</td></tr>
-<tr><td>3</td><td>Hanh dong tiep theo</td><td>Action list</td><td>Danh sach cong viec AI sap xep theo uu tien: Goi tu van, Gui email, Dat lich hen. Moi muc co: Muc uu tien, Han xu ly</td></tr>
-<tr><td>4</td><td>Tai lieu dinh kem</td><td>File list</td><td>Danh sach file: PDF, DOCX, XLSX. Cho phep tai xuong va them moi. Hien thi: Ten file, Dung luong, Ngay tao</td></tr>
-</table>
-
-<h5>3.2.2.3. Quy tac nghiep vu</h5>
-<table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 8</td><td>AI Summary: He thong tu dong tong hop thong tin KH thanh doan van ban ngan gon (max 200 tu). Cap nhat khi co thay doi du lieu KH hoac moi 7 ngay</td></tr>
-<tr><td>BR 9</td><td>Next Best Actions: AI de xuat toi da 5 hanh dong, sap xep theo do uu tien (Cao > Trung binh > Thap). Moi hanh dong co han xu ly cu the</td></tr>
-<tr><td>BR 10</td><td>Tai lieu dinh kem: Ho tro dinh dang PDF, DOCX, XLSX, JPG, PNG. Dung luong toi da moi file: 10MB. Tong dung luong toi da: 50MB/KH</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 5</td><td>AI Insights - NBA (Next Best Action): Hệ thống AI phân tích dữ liệu KH (thu nhập, chi tiêu, lịch sử giao dịch, hành vi app) để gợi ý sản phẩm phù hợp. Mỗi gợi ý kèm lý do cụ thể. Cập nhật mỗi 24h</td></tr>
+<tr><td>BR 6</td><td>Engagement Score: Tính dựa trên tần suất đăng nhập app, số giao dịch/tháng, phản hồi email/SMS, thời gian sử dụng app. Thang điểm 0-10</td></tr>
+<tr><td>BR 7</td><td>Biến động AUM: Dữ liệu lấy từ Core Banking, cập nhật T+1. Biểu đồ hiển thị tổng AUM = CASA + Tiền gửi + Bond/MF</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s323">3.2.3. Tab Thong tin KH</h4>
-<h5>3.2.3.1. Mo ta tong quan</h5>
+<h4 id="s322">3.2.2. Tab Tóm tắt KH</h4>
+
+<h5>3.2.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Luu tru toan bo thong tin phap ly va lien lac cua KH</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM (chi xem, khong sua)</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Thong tin KH</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM xem duoc day du thong tin dinh danh KH</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Màn hình "đọc hiểu" KH dựa trên Big Data, giúp RM có cái nhìn định tính</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Tóm tắt KH</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM hiểu rõ chân dung KH, biết hành động tiếp theo và quản lý tài liệu</td></tr>
 </table>
 
-<h5>3.2.3.2. Mo ta chi tiet</h5>
-<p><em>Hinh 4: Customer 360 - Tab Thong tin KH</em></p>
+<h5>3.2.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 3: Customer 360 - Tab Tóm tắt KH</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th><th>Cho sua</th></tr>
-<tr><td>1</td><td>Ho va ten</td><td>Text</td><td>Ten day du cua KH</td><td>x</td><td></td></tr>
-<tr><td>2</td><td>So CCCD</td><td>Text</td><td>So can cuoc cong dan</td><td>x</td><td></td></tr>
-<tr><td>3</td><td>Ngay cap</td><td>Date</td><td>Ngay cap CCCD</td><td>x</td><td></td></tr>
-<tr><td>4</td><td>Ngay het han</td><td>Date</td><td>Ngay het han CCCD</td><td></td><td></td></tr>
-<tr><td>5</td><td>Trinh do hoc van</td><td>Text</td><td>Trinh do hoc van cao nhat</td><td></td><td></td></tr>
-<tr><td>6</td><td>Tinh trang hon nhan</td><td>Text</td><td>Doc than / Da ket hon / Ly hon</td><td></td><td></td></tr>
-<tr><td>7</td><td>SDT di dong</td><td>Text</td><td>So dien thoai chinh</td><td>x</td><td></td></tr>
-<tr><td>8</td><td>Email</td><td>Text</td><td>Email ca nhan</td><td></td><td></td></tr>
-<tr><td>9</td><td>Dia chi thuong tru</td><td>Text</td><td>Dia chi dang ky thuong tru</td><td>x</td><td></td></tr>
-<tr><td>10</td><td>Don vi cong tac</td><td>Text</td><td>Ten cong ty/to chuc</td><td></td><td></td></tr>
-<tr><td>11</td><td>Chuc vu</td><td>Text</td><td>Chuc vu hien tai</td><td></td><td></td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Profile</td><td>Info card</td><td>Số dư TK trung bình, Nguồn KH, KH từ ngày, Tầm quan trọng, Kênh ưu thích</td><td></td><td></td></tr>
+<tr><td>2</td><td>Đánh giá chung (AI Summary)</td><td>Text + Metrics</td><td>Đoạn văn bản AI tóm tắt. 3 chỉ số: Rủi ro (Thấp/TB/Cao), Tiềm năng, Engagement</td><td></td><td></td></tr>
+<tr><td>3</td><td>Hành động tiếp theo</td><td>Action list</td><td>Danh sách công việc AI sắp xếp theo ưu tiên: Gọi tư vấn, Gửi email, Đặt lịch hẹn. Mỗi mục có: Mức ưu tiên, Hạn xử lý</td><td></td><td></td></tr>
+<tr><td>4</td><td>Tài liệu đính kèm</td><td>File list</td><td>Danh sách file: PDF, DOCX, XLSX. Cho phép tải xuống và thêm mới. Hiển thị: Tên file, Dung lượng, Ngày tạo</td><td></td><td></td></tr>
+</table>
+
+<h5>3.2.2.3. Quy tắc nghiệp vụ</h5>
+<table>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 8</td><td>AI Summary: Hệ thống tự động tổng hợp thông tin KH thành đoạn văn bản ngắn gọn (tối đa 200 từ). Cập nhật khi có thay đổi dữ liệu KH hoặc mỗi 7 ngày</td></tr>
+<tr><td>BR 9</td><td>Next Best Actions: AI đề xuất tối đa 5 hành động, sắp xếp theo độ ưu tiên (Cao &gt; Trung bình &gt; Thấp). Mỗi hành động có hạn xử lý cụ thể</td></tr>
+<tr><td>BR 10</td><td>Tài liệu đính kèm: Hỗ trợ định dạng PDF, DOCX, XLSX, JPG, PNG. Dung lượng tối đa mỗi file: 10MB. Tổng dung lượng tối đa: 50MB/KH</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s324">3.2.4. Tab San pham</h4>
-<h5>3.2.4.1. Mo ta tong quan</h5>
+<h4 id="s323">3.2.3. Tab Thông tin KH</h4>
+<h5>3.2.3.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Liet ke chi tiet cac dich vu KH dang co tai ngan hang</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab San pham</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM nam duoc danh muc san pham KH dang su dung de tu van cross-sell</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Lưu trữ toàn bộ thông tin pháp lý và liên lạc của khách hàng</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM (chỉ xem, không sửa)</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Thông tin KH</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM xem được đầy đủ thông tin định danh KH</td></tr>
 </table>
 
-<h5>3.2.4.2. Mo ta chi tiet</h5>
-<p><em>Hinh 5: Customer 360 - Tab San pham</em></p>
+<h5>3.2.3.2. Mô tả chi tiết</h5>
+<p><em>Hình 4: Customer 360 - Tab Thông tin KH</em></p>
 <table>
-<tr><th>STT</th><th>Nhom</th><th>Thong tin hien thi</th></tr>
-<tr><td>1</td><td>The</td><td>Ten the, Loai the, Han muc, Ngay het han, Du no hien tai</td></tr>
-<tr><td>2</td><td>Tai khoan</td><td>So TK, Loai TK, Ngay mo, So du kha dung</td></tr>
-<tr><td>3</td><td>Khoan vay</td><td>Ma khoan vay, Loai vay, Du no goc, Ky han tra no tiep theo, So tien can dong</td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Họ và tên</td><td>Text</td><td>Tên đầy đủ của KH</td><td>x</td><td></td></tr>
+<tr><td>2</td><td>Số CCCD</td><td>Text</td><td>Số căn cước công dân</td><td>x</td><td></td></tr>
+<tr><td>3</td><td>Ngày cấp</td><td>Date</td><td>Ngày cấp CCCD</td><td>x</td><td></td></tr>
+<tr><td>4</td><td>Ngày hết hạn</td><td>Date</td><td>Ngày hết hạn CCCD</td><td></td><td></td></tr>
+<tr><td>5</td><td>Trình độ học vấn</td><td>Text</td><td>Trình độ học vấn cao nhất</td><td></td><td></td></tr>
+<tr><td>6</td><td>Tình trạng hôn nhân</td><td>Text</td><td>Độc thân / Đã kết hôn / Ly hôn</td><td></td><td></td></tr>
+<tr><td>7</td><td>SĐT di động</td><td>Text</td><td>Số điện thoại chính</td><td>x</td><td></td></tr>
+<tr><td>8</td><td>Email</td><td>Text</td><td>Email cá nhân</td><td></td><td></td></tr>
+<tr><td>9</td><td>Địa chỉ thường trú</td><td>Text</td><td>Địa chỉ đăng ký thường trú</td><td>x</td><td></td></tr>
+<tr><td>10</td><td>Đơn vị công tác</td><td>Text</td><td>Tên công ty/tổ chức</td><td></td><td></td></tr>
+<tr><td>11</td><td>Chức vụ</td><td>Text</td><td>Chức vụ hiện tại</td><td></td><td></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4 id="s324">3.2.4. Tab Sản phẩm</h4>
+<h5>3.2.4.1. Mô tả tổng quan</h5>
+<table>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Liệt kê chi tiết các dịch vụ KH đang có tại ngân hàng</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Sản phẩm</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM nắm được danh mục sản phẩm KH đang sử dụng để tư vấn cross-sell</td></tr>
+</table>
+
+<h5>3.2.4.2. Mô tả chi tiết</h5>
+<p><em>Hình 5: Customer 360 - Tab Sản phẩm</em></p>
+<table>
+<tr><th>STT</th><th>Nhóm</th><th>Định dạng</th><th>Thông tin hiển thị</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thẻ</td><td>Card list</td><td>Tên thẻ, Loại thẻ, Hạn mức, Ngày hết hạn, Dư nợ hiện tại</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tài khoản</td><td>Card list</td><td>Số TK, Loại TK, Ngày mở, Số dư khả dụng</td><td></td><td></td></tr>
+<tr><td>3</td><td>Khoản vay</td><td>Card list</td><td>Mã khoản vay, Loại vay, Dư nợ gốc, Kỳ hạn trả nợ tiếp theo, Số tiền cần đóng</td><td></td><td></td></tr>
 </table>
 </div>
 
 <div class="card">
 <h4 id="s325">3.2.5. Tab Cases</h4>
-<h5>3.2.5.1. Mo ta tong quan</h5>
+<h5>3.2.5.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Theo doi cac yeu cau hau mai hoac su co cua KH</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Cases</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM theo doi duoc trang thai cac case lien quan den KH</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Theo dõi các yêu cầu hậu mãi hoặc sự cố của KH</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Cases</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM theo dõi được trạng thái các case liên quan đến KH</td></tr>
 </table>
 
-<h5>3.2.5.2. Mo ta chi tiet</h5>
-<p><em>Hinh 6: Customer 360 - Tab Cases</em></p>
+<h5>3.2.5.2. Mô tả chi tiết</h5>
+<p><em>Hình 6: Customer 360 - Tab Cases</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Ma Case</td><td>Ma dinh danh duy nhat (vd: C-2024-001)</td></tr>
-<tr><td>2</td><td>Tieu de</td><td>Mo ta ngan gon yeu cau</td></tr>
-<tr><td>3</td><td>Nguoi lien he</td><td>Ten KH lien quan</td></tr>
-<tr><td>4</td><td>Chu de</td><td>Phan loai yeu cau</td></tr>
-<tr><td>5</td><td>Muc uu tien</td><td>Cao (do) / Trung binh (xanh) / Thap</td></tr>
-<tr><td>6</td><td>Trang thai</td><td>Dang xu ly (vang) / Hoan thanh (xanh la)</td></tr>
-<tr><td>7</td><td>Ngay mo / Ngay dong</td><td>Thoi gian tao va dong case</td></tr>
-<tr><td>8</td><td>Kenh tiep nhan</td><td>App Mobile / Tai quay / Hotline</td></tr>
-<tr><td>9</td><td>Nguoi xu ly</td><td>Nhan vien phu trach xu ly case</td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Mã Case</td><td>Text</td><td>Mã định danh duy nhất (ví dụ: C-2024-001)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tiêu đề</td><td>Text</td><td>Mô tả ngắn gọn yêu cầu</td><td></td><td></td></tr>
+<tr><td>3</td><td>Người liên hệ</td><td>Text</td><td>Tên KH liên quan</td><td></td><td></td></tr>
+<tr><td>4</td><td>Chủ đề</td><td>Text</td><td>Phân loại yêu cầu</td><td></td><td></td></tr>
+<tr><td>5</td><td>Mức ưu tiên</td><td>Badge</td><td>Cao (đỏ) / Trung bình (xanh) / Thấp</td><td></td><td></td></tr>
+<tr><td>6</td><td>Trạng thái</td><td>Badge</td><td>Đang xử lý (vàng) / Hoàn thành (xanh lá)</td><td></td><td></td></tr>
+<tr><td>7</td><td>Ngày mở / Ngày đóng</td><td>Date</td><td>Thời gian tạo và đóng case</td><td></td><td></td></tr>
+<tr><td>8</td><td>Kênh tiếp nhận</td><td>Text</td><td>App Mobile / Tại quầy / Hotline</td><td></td><td></td></tr>
+<tr><td>9</td><td>Người xử lý</td><td>Text</td><td>Nhân viên phụ trách xử lý case</td><td></td><td></td></tr>
 </table>
 </div>
 
 <div class="card">
 <h4 id="s326">3.2.6. Tab Relationships</h4>
-<h5>3.2.6.1. Mo ta tong quan</h5>
+<h5>3.2.6.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Hien thi mang luoi moi quan he gia dinh/nguoi than cua KH</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Relationships</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM khai thac mang luoi KH de tu van goi san pham gia dinh</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Hiển thị mạng lưới mối quan hệ gia đình/người thân của KH</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Cus360 &gt; Tab Relationships</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM khai thác mạng lưới KH để tư vấn gói sản phẩm gia đình</td></tr>
 </table>
 
-<h5>3.2.6.2. Mo ta chi tiet</h5>
-<p><em>Hinh 7: Customer 360 - Tab Relationships</em></p>
+<h5>3.2.6.2. Mô tả chi tiết</h5>
+<p><em>Hình 7: Customer 360 - Tab Relationships</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>So do cay quan he</td><td>Bieu dien truc quan moi quan he: KH chinh o giua, cac thanh vien xung quanh</td></tr>
-<tr><td>2</td><td>Ten thanh vien</td><td>Ho ten nguoi than</td></tr>
-<tr><td>3</td><td>Quan he</td><td>Con / Chong / Vo / Cha / Me</td></tr>
-<tr><td>4</td><td>Tuoi</td><td>Tuoi hien tai</td></tr>
-<tr><td>5</td><td>KH TPBank</td><td>Co (kem phan hang) / Khong</td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Sơ đồ cây quan hệ</td><td>Tree diagram</td><td>Biểu diễn trực quan mối quan hệ: KH chính ở giữa, các thành viên xung quanh</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tên thành viên</td><td>Text</td><td>Họ tên người thân</td><td></td><td></td></tr>
+<tr><td>3</td><td>Quan hệ</td><td>Text</td><td>Con / Chồng / Vợ / Cha / Mẹ</td><td></td><td></td></tr>
+<tr><td>4</td><td>Tuổi</td><td>Number</td><td>Tuổi hiện tại</td><td></td><td></td></tr>
+<tr><td>5</td><td>KH TPBank</td><td>Text</td><td>Có (kèm phân hạng) / Không</td><td></td><td></td></tr>
 </table>
 
-<h5>3.2.6.3. Quy tac nghiep vu</h5>
+<h5>3.2.6.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 11</td><td>Neu nguoi than la KH TPBank, hien thi link de chuyen sang trang Cus360 cua nguoi do. Neu khong phai KH, hien thi goi y tao Lead moi</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 11</td><td>Nếu người thân là KH TPBank, hiển thị link để chuyển sang trang Cus360 của người đó. Nếu không phải KH, hiển thị gợi ý tạo Lead mới</td></tr>
 </table>
 </div>
 
@@ -398,99 +413,99 @@ tr:nth-child(even){background:#faf8ff}
 <h3 id="s33">3.3. Module Lead Management</h3>
 
 <div class="card">
-<h4 id="s331">3.3.1. Danh sach Lead</h4>
-<h5>3.3.1.1. Mo ta tong quan</h5>
+<h4 id="s331">3.3.1. Danh sách Lead</h4>
+<h5>3.3.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Man hinh quan ly tong quat danh sach KH tiem nang</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Leads (leads.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM quan ly, tim kiem, loc va tuong tac nhanh voi cac Lead</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Màn hình quản lý tổng quát danh sách KH tiềm năng</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Leads (leads.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM quản lý, tìm kiếm, lọc và tương tác nhanh với các Lead</td></tr>
 </table>
 
-<h5>3.3.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 8: Danh sach Lead</em></p>
+<h5>3.3.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 8: Danh sách Lead</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Thanh tim kiem</td><td>Textbox + Search icon</td><td>Tim kiem theo ten, SDT. Placeholder: "Tim kiem Lead..."</td></tr>
-<tr><td>2</td><td>Bo loc</td><td>Filter chips</td><td>Loc theo: Trang thai, Uu tien, Sap het han</td></tr>
-<tr><td>3</td><td>Dashboard mini - Lead moi</td><td>Metric card</td><td>So luong Lead moi trong ngay (vd: 12)</td></tr>
-<tr><td>4</td><td>Dashboard mini - Ty le chuyen doi</td><td>Metric card</td><td>Ty le chuyen doi muc tieu (vd: 68%)</td></tr>
-<tr><td>5</td><td>The Lead</td><td>Card list</td><td>Moi the hien thi: Ten KH, San pham quan tam, Diem Lead (AI), Phan loai (Hot/Warm/Cold), Ngay het han</td></tr>
-<tr><td>6</td><td>Phim tat hanh dong</td><td>Icon buttons</td><td>3 nut: Goi dien, Gui email, Nhan tin - thao tac ngay tai danh sach</td></tr>
-<tr><td>7</td><td>FAB (+)</td><td>Floating button</td><td>Nut noi mau cam, click de tao Lead moi</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thanh tìm kiếm</td><td>Textbox + Search icon</td><td>Tìm kiếm theo tên, SĐT. Placeholder: "Tìm kiếm Lead..."</td><td></td><td></td></tr>
+<tr><td>2</td><td>Bộ lọc</td><td>Filter chips</td><td>Lọc theo: Trạng thái, Ưu tiên, Sắp hết hạn</td><td></td><td></td></tr>
+<tr><td>3</td><td>Dashboard mini - Lead mới</td><td>Metric card</td><td>Số lượng Lead mới trong ngày (ví dụ: 12)</td><td></td><td></td></tr>
+<tr><td>4</td><td>Dashboard mini - Tỷ lệ chuyển đổi</td><td>Metric card</td><td>Tỷ lệ chuyển đổi mục tiêu (ví dụ: 68%)</td><td></td><td></td></tr>
+<tr><td>5</td><td>Thẻ Lead</td><td>Card list</td><td>Mỗi thẻ hiển thị: Tên KH, Sản phẩm quan tâm, Điểm Lead (AI), Phân loại (Hot/Warm/Cold), Ngày hết hạn</td><td></td><td></td></tr>
+<tr><td>6</td><td>Phím tắt hành động</td><td>Icon buttons</td><td>3 nút: Gọi điện, Gửi email, Nhắn tin — thao tác ngay tại danh sách</td><td></td><td></td></tr>
+<tr><td>7</td><td>FAB (+)</td><td>Floating button</td><td>Nút nổi màu cam, click để tạo Lead mới</td><td></td><td></td></tr>
 </table>
 
-<h5>3.3.1.3. Quy tac nghiep vu</h5>
+<h5>3.3.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 12</td><td>Danh sach Lead sap xep mac dinh theo: Hot > Warm > Cold, trong cung phan loai sap xep theo ngay het han (gan nhat len truoc)</td></tr>
-<tr><td>BR 13</td><td>Lead sap het han: Hien thi badge canh bao khi con <= 3 ngay truoc han xu ly. Qua han hien thi badge do "Qua han"</td></tr>
-<tr><td>BR 14</td><td>Diem Lead (Lead Score): AI cham diem 0-100 dua tren: Thu nhap, Lich su giao dich, Hanh vi app, Phan khuc. Hot >= 70, Warm 40-69, Cold < 40</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h4 id="s332">3.3.2. Tao Lead moi</h4>
-<h5>3.3.2.1. Mo ta tong quan</h5>
-<table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Dua KH tiem nang moi vao he thong</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Leads &gt; Nut (+) hoac "Them moi"</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>Lead moi duoc tao thanh cong trong he thong</td></tr>
-</table>
-
-<h5>3.3.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 9: Tao Lead moi</em></p>
-<table>
-<tr><th>STT</th><th>Truong</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th><th>Cho sua</th></tr>
-<tr><td>1</td><td>Preview AI</td><td>Status bar</td><td>Du bao diem tiem nang dua tren thong tin dang nhap. Mac dinh: "Cho du lieu"</td><td></td><td></td></tr>
-<tr><td>2</td><td>Ho va ten</td><td>Textbox</td><td>Ten day du KH tiem nang</td><td>x</td><td>x</td></tr>
-<tr><td>3</td><td>So dien thoai</td><td>Textbox (number)</td><td>SDT chinh, format: 10 so bat dau bang 0</td><td>x</td><td>x</td></tr>
-<tr><td>4</td><td>Email</td><td>Textbox</td><td>Email lien he</td><td></td><td>x</td></tr>
-<tr><td>5</td><td>San pham quan tam</td><td>Dropdown</td><td>Chon san pham: Vay nha, The tin dung, Bao hiem, Tiet kiem, Vay tieu dung</td><td>x</td><td>x</td></tr>
-<tr><td>6</td><td>Nguon Lead</td><td>Dropdown</td><td>Gioi thieu, Walk-in, Digital, Event, Doi tac</td><td>x</td><td>x</td></tr>
-<tr><td>7</td><td>Ghi chu</td><td>Textarea</td><td>Ghi chu tu do cua RM. Max 500 ky tu</td><td></td><td>x</td></tr>
-<tr><td>8</td><td>Nut "Tao Lead"</td><td>Button</td><td>Luu thong tin va tao Lead moi. Thuc hien theo BR 15</td><td></td><td></td></tr>
-</table>
-
-<h5>3.3.2.3. Quy tac nghiep vu</h5>
-<table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 15</td><td>Khi nhan "Tao Lead": 1) Validate cac truong bat buoc. 2) Kiem tra trung SDT trong he thong. 3) Neu trung, hien thi MSG 3. 4) Neu hop le, tao Lead voi trang thai "Moi", gan cho RM hien tai. 5) AI tu dong cham diem Lead Score. 6) Hien thi thong bao thanh cong va quay ve danh sach</td></tr>
-<tr><td>BR 16</td><td>Preview AI: Cap nhat realtime khi RM nhap thong tin. Khi co du Ten + SDT + San pham, AI bat dau tinh diem du bao</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 12</td><td>Danh sách Lead sắp xếp mặc định theo: Hot &gt; Warm &gt; Cold, trong cùng phân loại sắp xếp theo ngày hết hạn (gần nhất lên trước)</td></tr>
+<tr><td>BR 13</td><td>Lead sắp hết hạn: Hiển thị badge cảnh báo khi còn &le; 3 ngày trước hạn xử lý. Quá hạn hiển thị badge đỏ "Quá hạn"</td></tr>
+<tr><td>BR 14</td><td>Điểm Lead (Lead Score): AI chấm điểm 0-100 dựa trên: Thu nhập, Lịch sử giao dịch, Hành vi app, Phân khúc. Hot &ge; 70, Warm 40-69, Cold &lt; 40</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s333">3.3.3. Chi tiet Lead</h4>
-<h5>3.3.3.1. Mo ta tong quan</h5>
+<h4 id="s332">3.3.2. Tạo Lead mới</h4>
+<h5>3.3.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Noi RM tap trung khai thac va tuong tac chuyen sau voi KH tiem nang</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Leads &gt; Click vao the Lead</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM theo doi pipeline, nhan goi y AI, va chuyen doi Lead</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Đưa KH tiềm năng mới vào hệ thống</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Leads &gt; Nút (+) hoặc "Thêm mới"</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>Lead mới được tạo thành công trong hệ thống</td></tr>
 </table>
 
-<h5>3.3.3.2. Mo ta chi tiet</h5>
-<p><em>Hinh 10: Chi tiet Lead</em></p>
+<h5>3.3.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 9: Tạo Lead mới</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Thong tin dinh danh</td><td>Header card</td><td>Anh dai dien, Ten, San pham quan tam, Nut lien lac nhanh (Goi, Email, Chat)</td></tr>
-<tr><td>2</td><td>Trang thai Pipeline</td><td>Stepper</td><td>Thanh tien trinh: Moi > Lien he > Quan tam > Dam phan > Chuyen doi. Highlight buoc hien tai</td></tr>
-<tr><td>3</td><td>Phan tich AI RM</td><td>Insight card</td><td>Goi y thoi diem cham soc KH tot nhat, ly do cu the</td></tr>
-<tr><td>4</td><td>Lich su tuong tac</td><td>Timeline</td><td>Dong thoi gian ghi lai cac hoat dong: Goi dien, Email, Gap mat, Ghi chu</td></tr>
-<tr><td>5</td><td>Nut "CHUYEN DOI"</td><td>Button (cam)</td><td>Chuyen Lead thanh Opportunity hoac KH chinh thuc. Thuc hien theo BR 17</td></tr>
-<tr><td>6</td><td>Nut "Chinh sua"</td><td>Icon button</td><td>Mo form cap nhat thong tin Lead</td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Preview AI</td><td>Status bar</td><td>Dự báo điểm tiềm năng dựa trên thông tin đang nhập. Mặc định: "Chờ dữ liệu"</td><td></td><td></td></tr>
+<tr><td>2</td><td>Họ và tên</td><td>Textbox</td><td>Tên đầy đủ KH tiềm năng</td><td>x</td><td>x</td></tr>
+<tr><td>3</td><td>Số điện thoại</td><td>Textbox (number)</td><td>SĐT chính, format: 10 số bắt đầu bằng 0</td><td>x</td><td>x</td></tr>
+<tr><td>4</td><td>Email</td><td>Textbox</td><td>Email liên hệ</td><td></td><td>x</td></tr>
+<tr><td>5</td><td>Sản phẩm quan tâm</td><td>Dropdown</td><td>Chọn sản phẩm: Vay nhà, Thẻ tín dụng, Bảo hiểm, Tiết kiệm, Vay tiêu dùng</td><td>x</td><td>x</td></tr>
+<tr><td>6</td><td>Nguồn Lead</td><td>Dropdown</td><td>Giới thiệu, Walk-in, Digital, Event, Đối tác</td><td>x</td><td>x</td></tr>
+<tr><td>7</td><td>Ghi chú</td><td>Textarea</td><td>Ghi chú tự do của RM. Tối đa 500 ký tự</td><td></td><td>x</td></tr>
+<tr><td>8</td><td>Nút "Tạo Lead"</td><td>Button</td><td>Lưu thông tin và tạo Lead mới. Thực hiện theo BR 15</td><td></td><td></td></tr>
 </table>
 
-<h5>3.3.3.3. Quy tac nghiep vu</h5>
+<h5>3.3.2.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 17</td><td>Chuyen doi Lead: 1) Hien thi popup chon loai chuyen doi: "Tao Co hoi" hoac "Tao KH". 2) Neu chon "Tao Co hoi": Tao Opportunity moi voi thong tin tu Lead, chuyen trang thai Lead = "Da chuyen doi". 3) Neu chon "Tao KH": Chuyen sang form tao KH voi thong tin pre-fill tu Lead</td></tr>
-<tr><td>BR 18</td><td>AI RM Insight: Phan tich lich su tuong tac va goi y: "Nen goi vao [thoi gian] vi KH thuong online luc nay" hoac "KH da xem san pham [X] 3 lan tren app, nen tu van ngay"</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 15</td><td>Khi nhấn "Tạo Lead": 1) Validate các trường bắt buộc. 2) Kiểm tra trùng SĐT trong hệ thống. 3) Nếu trùng, hiển thị MSG 3. 4) Nếu hợp lệ, tạo Lead với trạng thái "Mới", gán cho RM hiện tại. 5) AI tự động chấm điểm Lead Score. 6) Hiển thị thông báo thành công và quay về danh sách</td></tr>
+<tr><td>BR 16</td><td>Preview AI: Cập nhật realtime khi RM nhập thông tin. Khi có đủ Tên + SĐT + Sản phẩm, AI bắt đầu tính điểm dự báo</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4 id="s333">3.3.3. Chi tiết Lead</h4>
+<h5>3.3.3.1. Mô tả tổng quan</h5>
+<table>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Nơi RM tập trung khai thác và tương tác chuyên sâu với KH tiềm năng</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Leads &gt; Click vào thẻ Lead</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM theo dõi pipeline, nhận gợi ý AI, và chuyển đổi Lead</td></tr>
+</table>
+
+<h5>3.3.3.2. Mô tả chi tiết</h5>
+<p><em>Hình 10: Chi tiết Lead</em></p>
+<table>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thông tin định danh</td><td>Header card</td><td>Ảnh đại diện, Tên, Sản phẩm quan tâm, Nút liên lạc nhanh (Gọi, Email, Chat)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Trạng thái Pipeline</td><td>Stepper</td><td>Thanh tiến trình: Mới &gt; Liên hệ &gt; Quan tâm &gt; Đàm phán &gt; Chuyển đổi. Highlight bước hiện tại</td><td></td><td></td></tr>
+<tr><td>3</td><td>Phân tích AI RM</td><td>Insight card</td><td>Gợi ý thời điểm chăm sóc KH tốt nhất, lý do cụ thể</td><td></td><td></td></tr>
+<tr><td>4</td><td>Lịch sử tương tác</td><td>Timeline</td><td>Dòng thời gian ghi lại các hoạt động: Gọi điện, Email, Gặp mặt, Ghi chú</td><td></td><td></td></tr>
+<tr><td>5</td><td>Nút "CHUYỂN ĐỔI"</td><td>Button (cam)</td><td>Chuyển Lead thành Opportunity hoặc KH chính thức. Thực hiện theo BR 17</td><td></td><td></td></tr>
+<tr><td>6</td><td>Nút "Chỉnh sửa"</td><td>Icon button</td><td>Mở form cập nhật thông tin Lead</td><td></td><td></td></tr>
+</table>
+
+<h5>3.3.3.3. Quy tắc nghiệp vụ</h5>
+<table>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 17</td><td>Chuyển đổi Lead: 1) Hiển thị popup chọn loại chuyển đổi: "Tạo Cơ hội" hoặc "Tạo KH". 2) Nếu chọn "Tạo Cơ hội": Tạo Opportunity mới với thông tin từ Lead, chuyển trạng thái Lead = "Đã chuyển đổi". 3) Nếu chọn "Tạo KH": Chuyển sang form tạo KH với thông tin pre-fill từ Lead</td></tr>
+<tr><td>BR 18</td><td>AI RM Insight: Phân tích lịch sử tương tác và gợi ý: "Nên gọi vào [thời gian] vì KH thường online lúc này" hoặc "KH đã xem sản phẩm [X] 3 lần trên app, nên tư vấn ngay"</td></tr>
 </table>
 </div>
 
@@ -498,94 +513,88 @@ tr:nth-child(even){background:#faf8ff}
 <h3 id="s34">3.4. Module Opportunities Management</h3>
 
 <div class="card">
-<h4 id="s341">3.4.1. Danh sach Co hoi</h4>
-<h5>3.4.1.1. Mo ta tong quan</h5>
+<h4 id="s341">3.4.1. Danh sách Cơ hội</h4>
+<h5>3.4.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Quan ly cac thuong vu dang trien khai</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Opps (opportunities.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM nam bat toan bo co hoi kinh doanh va trang thai xu ly</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Quản lý các thương vụ đang triển khai</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Opps (opportunities.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM nắm bắt toàn bộ cơ hội kinh doanh và trạng thái xử lý</td></tr>
 </table>
-
-<h5>3.4.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 11: Danh sach Co hoi</em></p>
+<h5>3.4.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 11: Danh sách Cơ hội</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Dashboard Tai chinh</td><td>Summary metrics</td><td>Thong ke nhanh: Tong so ho so, Gia tri tiem nang, Ty le chot</td></tr>
-<tr><td>2</td><td>Bo loc nhanh</td><td>Filter chips</td><td>Loc theo: Trang thai ho so, Loai san pham, Muc do uu tien, Sap het han</td></tr>
-<tr><td>3</td><td>The Co hoi (Opportunity Card)</td><td>Card list</td><td>Ten KH, San pham, Gia tri, Trang thai pipeline, Ngay tao, Nguoi xu ly</td></tr>
-<tr><td>4</td><td>Canh bao hanh dong</td><td>Badge</td><td>Nhan vang "Can follow-up" khi co hoi khong co tuong tac > 5 ngay</td></tr>
-<tr><td>5</td><td>FAB (+)</td><td>Floating button</td><td>Tao co hoi moi</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Dashboard Tài chính</td><td>Summary metrics</td><td>Thống kê nhanh: Tổng số hồ sơ, Giá trị tiềm năng, Tỷ lệ chốt</td><td></td><td></td></tr>
+<tr><td>2</td><td>Bộ lọc nhanh</td><td>Filter chips</td><td>Lọc theo: Trạng thái hồ sơ, Loại sản phẩm, Mức độ ưu tiên, Sắp hết hạn</td><td></td><td></td></tr>
+<tr><td>3</td><td>Thẻ Cơ hội</td><td>Card list</td><td>Tên KH, Sản phẩm, Giá trị, Trạng thái pipeline, Ngày tạo, Người xử lý</td><td></td><td></td></tr>
+<tr><td>4</td><td>Cảnh báo hành động</td><td>Badge</td><td>Nhãn vàng "Cần follow-up" khi cơ hội không có tương tác &gt; 5 ngày</td><td></td><td></td></tr>
+<tr><td>5</td><td>FAB (+)</td><td>Floating button</td><td>Tạo cơ hội mới</td><td></td><td></td></tr>
 </table>
-
-<h5>3.4.1.3. Quy tac nghiep vu</h5>
+<h5>3.4.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 19</td><td>Sap xep mac dinh: Co hoi "Can follow-up" len dau, sau do theo ngay tao (moi nhat truoc)</td></tr>
-<tr><td>BR 20</td><td>Canh bao "Can follow-up": Tu dong gan khi co hoi khong co bat ky tuong tac nao (goi dien, email, gap mat, ghi chu) trong 5 ngay lam viec</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 19</td><td>Sắp xếp mặc định: Cơ hội "Cần follow-up" lên đầu, sau đó theo ngày tạo (mới nhất trước)</td></tr>
+<tr><td>BR 20</td><td>Cảnh báo "Cần follow-up": Tự động gán khi cơ hội không có bất kỳ tương tác nào (gọi điện, email, gặp mặt, ghi chú) trong 5 ngày làm việc</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s342">3.4.2. Chi tiet Co hoi</h4>
-<h5>3.4.2.1. Mo ta tong quan</h5>
+<h4 id="s342">3.4.2. Chi tiết Cơ hội</h4>
+<h5>3.4.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Noi RM thuc hien cac tac vu chuyen sau de thuc day phe duyet ho so</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Opps &gt; Click vao the Co hoi</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM theo doi tien trinh va thuc hien hanh dong de chot deal</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Nơi RM thực hiện các tác vụ chuyên sâu để thúc đẩy phê duyệt hồ sơ</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Opps &gt; Click vào thẻ Cơ hội</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM theo dõi tiến trình và thực hiện hành động để chốt deal</td></tr>
 </table>
-
-<h5>3.4.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 12: Chi tiet Co hoi</em></p>
+<h5>3.4.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 12: Chi tiết Cơ hội</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Tien trinh (Stepper)</td><td>Progress stepper</td><td>Truc quan hoa: Tiep nhan > Thu thap HS > Tham dinh > Phe duyet > Giai ngan/Dong. Highlight buoc hien tai</td></tr>
-<tr><td>2</td><td>Phan tich AI</td><td>Insight card</td><td>Xac suat chot deal (%), Loi khuyen cu the de tang ty le thanh cong</td></tr>
-<tr><td>3</td><td>Quick Actions</td><td>Action buttons</td><td>4 nut: Goi dien, Nhan tin, Hen gap, Ghi chu - thiet ke to, de thao tac</td></tr>
-<tr><td>4</td><td>Thong tin co hoi</td><td>Detail fields</td><td>San pham, Gia tri, Ngay tao, Han xu ly, Nguon, Ghi chu</td></tr>
-<tr><td>5</td><td>Nut "Chuyen doi Account"</td><td>Button (cam)</td><td>Chinh thuc bien Co hoi thanh KH hien huu. Thuc hien theo BR 21</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Tiến trình (Stepper)</td><td>Progress stepper</td><td>Trực quan hóa: Tiếp nhận &gt; Thu thập HS &gt; Thẩm định &gt; Phê duyệt &gt; Giải ngân/Đóng</td><td></td><td></td></tr>
+<tr><td>2</td><td>Phân tích AI</td><td>Insight card</td><td>Xác suất chốt deal (%), Lời khuyên cụ thể để tăng tỷ lệ thành công</td><td></td><td></td></tr>
+<tr><td>3</td><td>Quick Actions</td><td>Action buttons</td><td>4 nút: Gọi điện, Nhắn tin, Hẹn gặp, Ghi chú — thiết kế to, dễ thao tác</td><td></td><td></td></tr>
+<tr><td>4</td><td>Thông tin cơ hội</td><td>Detail fields</td><td>Sản phẩm, Giá trị, Ngày tạo, Hạn xử lý, Nguồn, Ghi chú</td><td></td><td></td></tr>
+<tr><td>5</td><td>Nút "Chuyển đổi Account"</td><td>Button (cam)</td><td>Chính thức biến Cơ hội thành KH hiện hữu. Thực hiện theo BR 21</td><td></td><td></td></tr>
 </table>
-
-<h5>3.4.2.3. Quy tac nghiep vu</h5>
+<h5>3.4.2.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 21</td><td>Chuyen doi Account: 1) Chi cho phep khi trang thai = "Phe duyet". 2) He thong tao ban ghi KH moi trong Core Banking. 3) Cap nhat trang thai Opportunity = "Won/Closed". 4) Gui thong bao cho Team Leader</td></tr>
-<tr><td>BR 22</td><td>AI phan tich xac suat chot: Dua tren lich su cac deal tuong tu (cung san pham, cung phan khuc KH), thoi gian xu ly, so lan tuong tac. Cap nhat moi khi co tuong tac moi</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 21</td><td>Chuyển đổi Account: 1) Chỉ cho phép khi trạng thái = "Phê duyệt". 2) Hệ thống tạo bản ghi KH mới trong Core Banking. 3) Cập nhật trạng thái Opportunity = "Won/Closed". 4) Gửi thông báo cho Team Leader</td></tr>
+<tr><td>BR 22</td><td>AI phân tích xác suất chốt: Dựa trên lịch sử các deal tương tự (cùng sản phẩm, cùng phân khúc KH), thời gian xử lý, số lần tương tác. Cập nhật mỗi khi có tương tác mới</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s343">3.4.3. Tao/Chinh sua Co hoi</h4>
-<h5>3.4.3.1. Mo ta tong quan</h5>
+<h4 id="s343">3.4.3. Tạo/Chỉnh sửa Cơ hội</h4>
+<h5>3.4.3.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Cap nhat thong tin hoac tao moi thuong vu</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Opps &gt; FAB (+) hoac Nut "Chinh sua"</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>Co hoi duoc tao moi hoac cap nhat thanh cong</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Cập nhật thông tin hoặc tạo mới thương vụ</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Opps &gt; FAB (+) hoặc Nút "Chỉnh sửa"</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>Cơ hội được tạo mới hoặc cập nhật thành công</td></tr>
 </table>
-
-<h5>3.4.3.2. Mo ta chi tiet</h5>
-<p><em>Hinh 13: Form Tao/Chinh sua Co hoi</em></p>
+<h5>3.4.3.2. Mô tả chi tiết</h5>
+<p><em>Hình 13: Form Tạo/Chỉnh sửa Cơ hội</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th><th>Cho sua</th></tr>
-<tr><td>1</td><td>Khach hang</td><td>Dropdown (search)</td><td>Tim va chon KH tu danh sach. Hien thi: Ten + CIF</td><td>x</td><td>x</td></tr>
-<tr><td>2</td><td>San pham</td><td>Dropdown</td><td>Loai san pham: Vay nha, Vay tieu dung, The, Bao hiem, Tiet kiem</td><td>x</td><td>x</td></tr>
-<tr><td>3</td><td>Gia tri du kien</td><td>Number</td><td>So tien du kien (VND). Khong cho phep so thap phan. Phai > 0</td><td>x</td><td>x</td></tr>
-<tr><td>4</td><td>Ngay du kien chot</td><td>Datepicker</td><td>Khong cho phep chon ngay trong qua khu</td><td>x</td><td>x</td></tr>
-<tr><td>5</td><td>Muc uu tien</td><td>Dropdown</td><td>Cao / Trung binh / Thap</td><td>x</td><td>x</td></tr>
-<tr><td>6</td><td>Ghi chu</td><td>Textarea</td><td>Ghi chu tu do. Max 1000 ky tu</td><td></td><td>x</td></tr>
-<tr><td>7</td><td>Nut "Luu thay doi"</td><td>Button</td><td>Validate va luu du lieu. Hien thi MSG thanh cong</td><td></td><td></td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Khách hàng</td><td>Dropdown (search)</td><td>Tìm và chọn KH từ danh sách. Hiển thị: Tên + CIF</td><td>x</td><td>x</td></tr>
+<tr><td>2</td><td>Sản phẩm</td><td>Dropdown</td><td>Loại sản phẩm: Vay nhà, Vay tiêu dùng, Thẻ, Bảo hiểm, Tiết kiệm</td><td>x</td><td>x</td></tr>
+<tr><td>3</td><td>Giá trị dự kiến</td><td>Number</td><td>Số tiền dự kiến (VND). Không cho phép số thập phân. Phải &gt; 0</td><td>x</td><td>x</td></tr>
+<tr><td>4</td><td>Ngày dự kiến chốt</td><td>Datepicker</td><td>Không cho phép chọn ngày trong quá khứ</td><td>x</td><td>x</td></tr>
+<tr><td>5</td><td>Mức ưu tiên</td><td>Dropdown</td><td>Cao / Trung bình / Thấp</td><td>x</td><td>x</td></tr>
+<tr><td>6</td><td>Ghi chú</td><td>Textarea</td><td>Ghi chú tự do. Tối đa 1000 ký tự</td><td></td><td>x</td></tr>
+<tr><td>7</td><td>Nút "Lưu thay đổi"</td><td>Button</td><td>Validate và lưu dữ liệu. Hiển thị MSG thành công</td><td></td><td></td></tr>
 </table>
-
-<h5>3.4.3.3. Quy tac nghiep vu</h5>
+<h5>3.4.3.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 23</td><td>Validation gia tri: VND - chi cho phep so tu nhien > 0, khong cho nhap so thap phan. Format hien thi co dau phay ngan cach hang nghin</td></tr>
-<tr><td>BR 24</td><td>Khi tao moi: Trang thai mac dinh = "Chua xu ly", Ngay tao = ngay hien tai, Nguoi tao = RM dang dang nhap</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 23</td><td>Validation giá trị: VND — chỉ cho phép số tự nhiên &gt; 0, không cho nhập số thập phân. Format hiển thị có dấu phẩy ngăn cách hàng nghìn</td></tr>
+<tr><td>BR 24</td><td>Khi tạo mới: Trạng thái mặc định = "Chưa xử lý", Ngày tạo = ngày hiện tại, Người tạo = RM đang đăng nhập</td></tr>
 </table>
 </div>
 
@@ -593,190 +602,178 @@ tr:nth-child(even){background:#faf8ff}
 <h3 id="s35">3.5. Module Task Management</h3>
 
 <div class="card">
-<h4 id="s351">3.5.1. Danh sach Task</h4>
-<h5>3.5.1.1. Mo ta tong quan</h5>
+<h4 id="s351">3.5.1. Danh sách Task</h4>
+<h5>3.5.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Man hinh dieu hanh hang ngay, giup RM biet minh phai lam gi ngay bay gio</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Tasks (tasks.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM quan ly thoi gian va thu tu uu tien cong viec</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Màn hình điều hành hàng ngày, giúp RM biết mình phải làm gì ngay bây giờ</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Tasks (tasks.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM quản lý thời gian và thứ tự ưu tiên công việc</td></tr>
 </table>
-
-<h5>3.5.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 14: Danh sach Task</em></p>
+<h5>3.5.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 14: Danh sách Task</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Thanh trang thai</td><td>Summary bar</td><td>Hien thi: Task hom nay (so luong) va Qua han (so luong, mau do)</td></tr>
-<tr><td>2</td><td>Bo loc thoi gian</td><td>Tab chips</td><td>4 tab: Hom nay, Ngay mai, Sap toi, Qua han</td></tr>
-<tr><td>3</td><td>Goi y tu AI</td><td>Insight card</td><td>AI tu dong quet danh sach va khuyen RM nen uu tien xu ly task nao truoc, kem ly do</td></tr>
-<tr><td>4</td><td>Danh sach Task</td><td>Card list</td><td>Moi task hien thi: Loai hinh (Gap mat/Goi dien/Follow-up), Muc uu tien, Thoi gian, Dia diem, Ten KH</td></tr>
-<tr><td>5</td><td>Nut hanh dong nhanh</td><td>Button</td><td>"Bat dau" (cho gap mat) hoac "Goi ngay" (cho tu van dien thoai)</td></tr>
-<tr><td>6</td><td>FAB (+)</td><td>Floating button</td><td>Tao cong viec moi</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thanh trạng thái</td><td>Summary bar</td><td>Hiển thị: Task hôm nay (số lượng) và Quá hạn (số lượng, màu đỏ)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Bộ lọc thời gian</td><td>Tab chips</td><td>4 tab: Hôm nay, Ngày mai, Sắp tới, Quá hạn</td><td></td><td></td></tr>
+<tr><td>3</td><td>Gợi ý từ AI</td><td>Insight card</td><td>AI tự động quét danh sách và khuyên RM nên ưu tiên xử lý task nào trước, kèm lý do</td><td></td><td></td></tr>
+<tr><td>4</td><td>Danh sách Task</td><td>Card list</td><td>Mỗi task hiển thị: Loại hình (Gặp mặt/Gọi điện/Follow-up), Mức ưu tiên, Thời gian, Địa điểm, Tên KH</td><td></td><td></td></tr>
+<tr><td>5</td><td>Nút hành động nhanh</td><td>Button</td><td>"Bắt đầu" (cho gặp mặt) hoặc "Gọi ngay" (cho tư vấn điện thoại)</td><td></td><td></td></tr>
+<tr><td>6</td><td>FAB (+)</td><td>Floating button</td><td>Tạo công việc mới</td><td></td><td></td></tr>
 </table>
-
-<h5>3.5.1.3. Quy tac nghiep vu</h5>
+<h5>3.5.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 25</td><td>Sap xep task: Qua han (do) > Uu tien Cao > Uu tien TB > Uu tien Thap. Trong cung muc uu tien, sap xep theo thoi gian (som nhat truoc)</td></tr>
-<tr><td>BR 26</td><td>AI goi y uu tien: Phan tich dua tren: Muc uu tien, Thoi gian con lai, Gia tri co hoi lien quan, Lich su tuong tac KH. Hien thi 1 goi y noi bat nhat</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 25</td><td>Sắp xếp task: Quá hạn (đỏ) &gt; Ưu tiên Cao &gt; Ưu tiên TB &gt; Ưu tiên Thấp. Trong cùng mức ưu tiên, sắp xếp theo thời gian (sớm nhất trước)</td></tr>
+<tr><td>BR 26</td><td>AI gợi ý ưu tiên: Phân tích dựa trên: Mức ưu tiên, Thời gian còn lại, Giá trị cơ hội liên quan, Lịch sử tương tác KH. Hiển thị 1 gợi ý nổi bật nhất</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s352">3.5.2. Chi tiet cong viec</h4>
-<h5>3.5.2.1. Mo ta tong quan</h5>
+<h4 id="s352">3.5.2. Chi tiết công việc</h4>
+<h5>3.5.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Noi RM thuc hien va ghi nhan ket qua cho mot dau viec cu the</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Tasks &gt; Click vao task</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM hoan thanh task va ghi nhan ket qua</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Nơi RM thực hiện và ghi nhận kết quả cho một đầu việc cụ thể</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Tasks &gt; Click vào task</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM hoàn thành task và ghi nhận kết quả</td></tr>
 </table>
-
-<h5>3.5.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 15: Chi tiet cong viec</em></p>
+<h5>3.5.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 15: Chi tiết công việc</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Thong tin task</td><td>Detail card</td><td>Tieu de, Loai hinh, Muc uu tien, Thoi gian, Dia diem</td></tr>
-<tr><td>2</td><td>Nut Check-in</td><td>Button + GPS</td><td>Xac nhan vi tri qua GPS khi den gap KH. Chi enable khi o trong ban kinh 500m</td></tr>
-<tr><td>3</td><td>Tien trinh thuc hien</td><td>Stepper</td><td>Cac buoc: Chua bat dau > Dang thuc hien > Hoan thanh</td></tr>
-<tr><td>4</td><td>Thong tin KH</td><td>Info card</td><td>Ten KH, SDT (click de goi), Dia chi (click de mo ban do)</td></tr>
-<tr><td>5</td><td>Ghi chu</td><td>Textarea</td><td>Nhap noi dung trao doi quan trong trong buoi gap</td></tr>
-<tr><td>6</td><td>Nut "Hoan thanh"</td><td>Button</td><td>Dong task va cap nhat trang thai. Thuc hien theo BR 27</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thông tin task</td><td>Detail card</td><td>Tiêu đề, Loại hình, Mức ưu tiên, Thời gian, Địa điểm</td><td></td><td></td></tr>
+<tr><td>2</td><td>Nút Check-in</td><td>Button + GPS</td><td>Xác nhận vị trí qua GPS khi đến gặp KH. Chỉ enable khi ở trong bán kính 500m</td><td></td><td></td></tr>
+<tr><td>3</td><td>Tiến trình thực hiện</td><td>Stepper</td><td>Các bước: Chưa bắt đầu &gt; Đang thực hiện &gt; Hoàn thành</td><td></td><td></td></tr>
+<tr><td>4</td><td>Thông tin KH</td><td>Info card</td><td>Tên KH, SĐT (click để gọi), Địa chỉ (click để mở bản đồ)</td><td></td><td></td></tr>
+<tr><td>5</td><td>Ghi chú</td><td>Textarea</td><td>Nhập nội dung trao đổi quan trọng trong buổi gặp</td><td></td><td>x</td></tr>
+<tr><td>6</td><td>Nút "Hoàn thành"</td><td>Button</td><td>Đóng task và cập nhật trạng thái. Thực hiện theo BR 27</td><td></td><td></td></tr>
 </table>
-
-<h5>3.5.2.3. Quy tac nghiep vu</h5>
+<h5>3.5.2.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 27</td><td>Hoan thanh task: 1) Bat buoc nhap ghi chu (toi thieu 10 ky tu). 2) Neu la task "Gap mat", yeu cau Check-in GPS truoc khi hoan thanh. 3) Cap nhat trang thai = "Hoan thanh", thoi gian hoan thanh = hien tai. 4) Tu dong tao ban ghi trong Lich su tuong tac cua KH</td></tr>
-<tr><td>BR 28</td><td>Check-in GPS: He thong so sanh toa do hien tai voi dia chi hen. Neu khoang cach <= 500m: Cho phep check-in. Neu > 500m: Hien thi canh bao "Ban chua o gan dia diem hen", van cho phep check-in nhung ghi nhan khoang cach</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 27</td><td>Hoàn thành task: 1) Bắt buộc nhập ghi chú (tối thiểu 10 ký tự). 2) Nếu là task "Gặp mặt", yêu cầu Check-in GPS trước khi hoàn thành. 3) Cập nhật trạng thái = "Hoàn thành", thời gian hoàn thành = hiện tại. 4) Tự động tạo bản ghi trong Lịch sử tương tác của KH</td></tr>
+<tr><td>BR 28</td><td>Check-in GPS: Hệ thống so sánh tọa độ hiện tại với địa chỉ hẹn. Nếu khoảng cách &le; 500m: Cho phép check-in. Nếu &gt; 500m: Hiển thị cảnh báo "Bạn chưa ở gần địa điểm hẹn", vẫn cho phép check-in nhưng ghi nhận khoảng cách</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s353">3.5.3. Tao cong viec moi</h4>
-<h5>3.5.3.1. Mo ta tong quan</h5>
+<h4 id="s353">3.5.3. Tạo công việc mới</h4>
+<h5>3.5.3.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>RM chu dong lap ke hoach lam viec</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; Tasks &gt; FAB (+)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>Task moi duoc tao va hien thi trong danh sach</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>RM chủ động lập kế hoạch làm việc</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; Tasks &gt; FAB (+)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>Task mới được tạo và hiển thị trong danh sách</td></tr>
 </table>
-
-<h5>3.5.3.2. Mo ta chi tiet</h5>
-<p><em>Hinh 16: Tao cong viec moi</em></p>
+<h5>3.5.3.2. Mô tả chi tiết</h5>
+<p><em>Hình 16: Tạo công việc mới</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th><th>Cho sua</th></tr>
-<tr><td>1</td><td>Goi y AI</td><td>Insight bar</td><td>AI phan tich lich trinh va khuyen thoi gian tot nhat (vd: "15:00 chieu nay la khoang trong tot nhat")</td><td></td><td></td></tr>
-<tr><td>2</td><td>Tieu de</td><td>Textbox</td><td>Mo ta ngan gon cong viec. Max 100 ky tu</td><td>x</td><td>x</td></tr>
-<tr><td>3</td><td>Loai hinh</td><td>Dropdown</td><td>Gap mat / Goi dien / Email / Follow-up / Khac</td><td>x</td><td>x</td></tr>
-<tr><td>4</td><td>Khach hang</td><td>Dropdown (search)</td><td>Chon KH lien quan tu danh sach</td><td>x</td><td>x</td></tr>
-<tr><td>5</td><td>Ngay thuc hien</td><td>Datepicker</td><td>Khong cho chon ngay trong qua khu</td><td>x</td><td>x</td></tr>
-<tr><td>6</td><td>Gio</td><td>Timepicker</td><td>Gio bat dau thuc hien</td><td>x</td><td>x</td></tr>
-<tr><td>7</td><td>Dia diem</td><td>Textbox</td><td>Dia chi gap mat (neu loai hinh = Gap mat)</td><td></td><td>x</td></tr>
-<tr><td>8</td><td>Muc uu tien</td><td>Dropdown</td><td>Cao / Trung binh / Thap. Mac dinh: Trung binh</td><td>x</td><td>x</td></tr>
-<tr><td>9</td><td>Nut "Tao cong viec"</td><td>Button</td><td>Validate va luu. Thuc hien theo BR 29</td><td></td><td></td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Gợi ý AI</td><td>Insight bar</td><td>AI phân tích lịch trình và khuyên thời gian tốt nhất (ví dụ: "15:00 chiều nay là khoảng trống tốt nhất")</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tiêu đề</td><td>Textbox</td><td>Mô tả ngắn gọn công việc. Tối đa 100 ký tự</td><td>x</td><td>x</td></tr>
+<tr><td>3</td><td>Loại hình</td><td>Dropdown</td><td>Gặp mặt / Gọi điện / Email / Follow-up / Khác</td><td>x</td><td>x</td></tr>
+<tr><td>4</td><td>Khách hàng</td><td>Dropdown (search)</td><td>Chọn KH liên quan từ danh sách</td><td>x</td><td>x</td></tr>
+<tr><td>5</td><td>Ngày thực hiện</td><td>Datepicker</td><td>Không cho chọn ngày trong quá khứ</td><td>x</td><td>x</td></tr>
+<tr><td>6</td><td>Giờ</td><td>Timepicker</td><td>Giờ bắt đầu thực hiện</td><td>x</td><td>x</td></tr>
+<tr><td>7</td><td>Địa điểm</td><td>Textbox</td><td>Địa chỉ gặp mặt (nếu loại hình = Gặp mặt)</td><td></td><td>x</td></tr>
+<tr><td>8</td><td>Mức ưu tiên</td><td>Dropdown</td><td>Cao / Trung bình / Thấp. Mặc định: Trung bình</td><td>x</td><td>x</td></tr>
+<tr><td>9</td><td>Nút "Tạo công việc"</td><td>Button</td><td>Validate và lưu. Thực hiện theo BR 29</td><td></td><td></td></tr>
 </table>
-
-<h5>3.5.3.3. Quy tac nghiep vu</h5>
+<h5>3.5.3.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 29</td><td>Tao task: 1) Validate truong bat buoc. 2) Kiem tra trung lich (cung ngay gio voi task khac). Neu trung, hien thi canh bao nhung van cho tao. 3) Trang thai mac dinh = "Chua bat dau". 4) Gui notification nhac truoc 30 phut</td></tr>
-<tr><td>BR 30</td><td>AI goi y thoi gian: Phan tich lich trinh hien tai cua RM (cac task da co) va de xuat khung gio trong tot nhat, tranh chong cheo</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 29</td><td>Tạo task: 1) Validate trường bắt buộc. 2) Kiểm tra trùng lịch (cùng ngày giờ với task khác). Nếu trùng, hiển thị cảnh báo nhưng vẫn cho tạo. 3) Trạng thái mặc định = "Chưa bắt đầu". 4) Gửi notification nhắc trước 30 phút</td></tr>
+<tr><td>BR 30</td><td>AI gợi ý thời gian: Phân tích lịch trình hiện tại của RM (các task đã có) và đề xuất khung giờ trống tốt nhất, tránh chồng chéo</td></tr>
 </table>
 </div>
 
-<!-- 3.6 CASES -->
+<!-- 3.6 CASES + 3.7 SALES SUPPORT + SECTION 4 + CLOSING -->
 <h3 id="s36">3.6. Module Cases (Customer Service)</h3>
 
 <div class="card">
-<h4 id="s361">3.6.1. Danh sach Case</h4>
-<h5>3.6.1.1. Mo ta tong quan</h5>
+<h4 id="s361">3.6.1. Danh sách Case</h4>
+<h5>3.6.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Giup RM theo doi khoi luong cong viec can ho tro</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; More &gt; Cases (cases.html)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM nam bat toan bo case dang xu ly va uu tien xu ly dung han</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Giúp RM theo dõi khối lượng công việc cần hỗ trợ</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; More &gt; Cases (cases.html)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM nắm bắt toàn bộ case đang xử lý và ưu tiên xử lý đúng hạn</td></tr>
 </table>
-
-<h5>3.6.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 17: Danh sach Case</em></p>
+<h5>3.6.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 17: Danh sách Case</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Bang dieu khien Case</td><td>Metric cards</td><td>3 chi so: Dang xu ly (12), Qua han (03), Moi tao (05)</td></tr>
-<tr><td>2</td><td>Bo loc & Tim kiem</td><td>Search + Filter</td><td>Loc theo trang thai, muc uu tien, sap den han cam ket</td></tr>
-<tr><td>3</td><td>Danh sach Case</td><td>Card list</td><td>Moi case: Ma case, Tieu de, KH, Muc uu tien (badge mau), Trang thai, Ngay tao</td></tr>
-<tr><td>4</td><td>FAB (+)</td><td>Floating button</td><td>Tao case moi</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Bảng điều khiển Case</td><td>Metric cards</td><td>3 chỉ số: Đang xử lý (12), Quá hạn (03), Mới tạo (05)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Bộ lọc &amp; Tìm kiếm</td><td>Search + Filter</td><td>Lọc theo trạng thái, mức ưu tiên, sắp đến hạn cam kết</td><td></td><td></td></tr>
+<tr><td>3</td><td>Danh sách Case</td><td>Card list</td><td>Mỗi case: Mã case, Tiêu đề, KH, Mức ưu tiên (badge màu), Trạng thái, Ngày tạo</td><td></td><td></td></tr>
+<tr><td>4</td><td>FAB (+)</td><td>Floating button</td><td>Tạo case mới</td><td></td><td></td></tr>
 </table>
-
-<h5>3.6.1.3. Quy tac nghiep vu</h5>
+<h5>3.6.1.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 31</td><td>Sap xep case: Qua han > Uu tien Cao > Moi tao > Dang xu ly. Case qua han SLA hien thi badge do canh bao</td></tr>
-<tr><td>BR 32</td><td>SLA (Service Level Agreement): Uu tien Cao = 24h, Trung binh = 48h, Thap = 72h. He thong tu dong tinh thoi gian con lai va canh bao khi con < 4h</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 31</td><td>Sắp xếp case: Quá hạn &gt; Ưu tiên Cao &gt; Mới tạo &gt; Đang xử lý. Case quá hạn SLA hiển thị badge đỏ cảnh báo</td></tr>
+<tr><td>BR 32</td><td>SLA (Service Level Agreement): Ưu tiên Cao = 24h, Trung bình = 48h, Thấp = 72h. Hệ thống tự động tính thời gian còn lại và cảnh báo khi còn &lt; 4h</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s362">3.6.2. Chi tiet Case</h4>
-<h5>3.6.2.1. Mo ta tong quan</h5>
+<h4 id="s362">3.6.2. Chi tiết Case</h4>
+<h5>3.6.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Theo doi tien do va thuc hien cac buoc giai quyet case</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; More &gt; Cases &gt; Click vao case</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM cap nhat tien do xu ly va dong case khi hoan thanh</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Theo dõi tiến độ và thực hiện các bước giải quyết case</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; More &gt; Cases &gt; Click vào case</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM cập nhật tiến độ xử lý và đóng case khi hoàn thành</td></tr>
 </table>
-
-<h5>3.6.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 18: Chi tiet Case</em></p>
+<h5>3.6.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 18: Chi tiết Case</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Thong tin case</td><td>Detail card</td><td>Ma case, Tieu de, Chu de, Nguoi lien he, Kenh tiep nhan, Nguoi xu ly</td></tr>
-<tr><td>2</td><td>Tien do xu ly</td><td>Stepper</td><td>Cac giai doan: Tiep nhan > Dang xu ly > Cho phan hoi > Hoan thanh</td></tr>
-<tr><td>3</td><td>Trung tam lien lac</td><td>Action buttons</td><td>Goi dien, Nhan tin nhanh cho KH de cap nhat tinh hinh</td></tr>
-<tr><td>4</td><td>Lich su xu ly</td><td>Timeline</td><td>Ghi nhan cac buoc da thuc hien, thoi gian, nguoi thuc hien</td></tr>
-<tr><td>5</td><td>Nut "Cap nhat"</td><td>Button</td><td>Thay doi trang thai hoac them ghi chu moi. Thuc hien theo BR 33</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Thông tin case</td><td>Detail card</td><td>Mã case, Tiêu đề, Chủ đề, Người liên hệ, Kênh tiếp nhận, Người xử lý</td><td></td><td></td></tr>
+<tr><td>2</td><td>Tiến độ xử lý</td><td>Stepper</td><td>Các giai đoạn: Tiếp nhận &gt; Đang xử lý &gt; Chờ phản hồi &gt; Hoàn thành</td><td></td><td></td></tr>
+<tr><td>3</td><td>Trung tâm liên lạc</td><td>Action buttons</td><td>Gọi điện, Nhắn tin nhanh cho KH để cập nhật tình hình</td><td></td><td></td></tr>
+<tr><td>4</td><td>Lịch sử xử lý</td><td>Timeline</td><td>Ghi nhận các bước đã thực hiện, thời gian, người thực hiện</td><td></td><td></td></tr>
+<tr><td>5</td><td>Nút "Cập nhật"</td><td>Button</td><td>Thay đổi trạng thái hoặc thêm ghi chú mới. Thực hiện theo BR 33</td><td></td><td></td></tr>
 </table>
-
-<h5>3.6.2.3. Quy tac nghiep vu</h5>
+<h5>3.6.2.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 33</td><td>Cap nhat Case: 1) Cho phep chuyen trang thai theo luong: Tiep nhan > Dang xu ly > Cho phan hoi > Hoan thanh. 2) Khong cho phep quay lai trang thai truoc. 3) Khi chuyen "Hoan thanh", bat buoc nhap ket qua xu ly (min 20 ky tu). 4) Tu dong cap nhat Ngay dong = ngay hien tai</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 33</td><td>Cập nhật Case: 1) Cho phép chuyển trạng thái theo luồng: Tiếp nhận &gt; Đang xử lý &gt; Chờ phản hồi &gt; Hoàn thành. 2) Không cho phép quay lại trạng thái trước. 3) Khi chuyển "Hoàn thành", bắt buộc nhập kết quả xử lý (tối thiểu 20 ký tự). 4) Tự động cập nhật Ngày đóng = ngày hiện tại</td></tr>
 </table>
 </div>
 
 <div class="card">
-<h4 id="s363">3.6.3. Tao moi Case</h4>
-<h5>3.6.3.1. Mo ta tong quan</h5>
+<h4 id="s363">3.6.3. Tạo mới Case</h4>
+<h5>3.6.3.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Khoi tao vu viec ho tro moi cho KH</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; More &gt; Cases &gt; FAB (+)</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>Case moi duoc tao va phan bo cho nguoi xu ly</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Khởi tạo vụ việc hỗ trợ mới cho KH</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; More &gt; Cases &gt; FAB (+)</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>Case mới được tạo và phân bổ cho người xử lý</td></tr>
 </table>
-
-<h5>3.6.3.2. Mo ta chi tiet</h5>
-<p><em>Hinh 19: Tao moi Case</em></p>
+<h5>3.6.3.2. Mô tả chi tiết</h5>
+<p><em>Hình 19: Tạo mới Case</em></p>
 <table>
-<tr><th>STT</th><th>Truong</th><th>Dinh dang</th><th>Mo ta</th><th>Bat buoc</th><th>Cho sua</th></tr>
-<tr><td>1</td><td>Khach hang</td><td>Dropdown (search)</td><td>Chon KH tu danh sach</td><td>x</td><td>x</td></tr>
-<tr><td>2</td><td>Chu de</td><td>Dropdown</td><td>Phan loai: Khieu nai, Ho tro, Yeu cau nghiep vu, Khac</td><td>x</td><td>x</td></tr>
-<tr><td>3</td><td>Tieu de</td><td>Textbox</td><td>Mo ta ngan gon van de. Max 200 ky tu</td><td>x</td><td>x</td></tr>
-<tr><td>4</td><td>Mo ta chi tiet</td><td>Textarea</td><td>Mo ta day du van de KH gap phai. Max 2000 ky tu</td><td>x</td><td>x</td></tr>
-<tr><td>5</td><td>Muc uu tien</td><td>Dropdown</td><td>Cao / Trung binh / Thap. Mac dinh: Trung binh</td><td>x</td><td>x</td></tr>
-<tr><td>6</td><td>Kenh tiep nhan</td><td>Dropdown</td><td>App Mobile / Tai quay / Hotline / Email</td><td>x</td><td>x</td></tr>
-<tr><td>7</td><td>Nut "Tao Case"</td><td>Button</td><td>Validate va luu. Thuc hien theo BR 34</td><td></td><td></td></tr>
+<tr><th>STT</th><th>Trường</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Khách hàng</td><td>Dropdown (search)</td><td>Chọn KH từ danh sách</td><td>x</td><td>x</td></tr>
+<tr><td>2</td><td>Chủ đề</td><td>Dropdown</td><td>Phân loại: Khiếu nại, Hỗ trợ, Yêu cầu nghiệp vụ, Khác</td><td>x</td><td>x</td></tr>
+<tr><td>3</td><td>Tiêu đề</td><td>Textbox</td><td>Mô tả ngắn gọn vấn đề. Tối đa 200 ký tự</td><td>x</td><td>x</td></tr>
+<tr><td>4</td><td>Mô tả chi tiết</td><td>Textarea</td><td>Mô tả đầy đủ vấn đề KH gặp phải. Tối đa 2000 ký tự</td><td>x</td><td>x</td></tr>
+<tr><td>5</td><td>Mức ưu tiên</td><td>Dropdown</td><td>Cao / Trung bình / Thấp. Mặc định: Trung bình</td><td>x</td><td>x</td></tr>
+<tr><td>6</td><td>Kênh tiếp nhận</td><td>Dropdown</td><td>App Mobile / Tại quầy / Hotline / Email</td><td>x</td><td>x</td></tr>
+<tr><td>7</td><td>Nút "Tạo Case"</td><td>Button</td><td>Validate và lưu. Thực hiện theo BR 34</td><td></td><td></td></tr>
 </table>
-
-<h5>3.6.3.3. Quy tac nghiep vu</h5>
+<h5>3.6.3.3. Quy tắc nghiệp vụ</h5>
 <table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 34</td><td>Tao Case: 1) Validate truong bat buoc. 2) Tu dong sinh Ma Case theo format: C-[NAM]-[STT 3 so] (vd: C-2026-001). 3) Trang thai mac dinh = "Tiep nhan". 4) Ngay mo = ngay hien tai. 5) Nguoi xu ly = RM tao case (co the doi sau). 6) Bat dau tinh SLA tu thoi diem tao</td></tr>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 34</td><td>Tạo Case: 1) Validate trường bắt buộc. 2) Tự động sinh Mã Case theo format: C-[NĂM]-[STT 3 số] (ví dụ: C-2026-001). 3) Trạng thái mặc định = "Tiếp nhận". 4) Ngày mở = ngày hiện tại. 5) Người xử lý = RM tạo case (có thể đổi sau). 6) Bắt đầu tính SLA từ thời điểm tạo</td></tr>
 </table>
 </div>
 
@@ -784,91 +781,118 @@ tr:nth-child(even){background:#faf8ff}
 <h3 id="s37">3.7. Module Sales Support</h3>
 
 <div class="card">
-<h4 id="s371">3.7.1. Cam nang san pham</h4>
-<h5>3.7.1.1. Mo ta tong quan</h5>
+<h4 id="s371">3.7.1. Cẩm nang sản phẩm</h4>
+<h5>3.7.1.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>Thu vien tom tat cac diem dac gia nhat cua tung san pham</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; More &gt; Sales Support &gt; Cam nang san pham</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM tra cuu nhanh thong tin san pham de tu van KH</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>Thư viện tóm tắt các điểm đắt giá nhất của từng sản phẩm</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; More &gt; Sales Support &gt; Cẩm nang sản phẩm</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM tra cứu nhanh thông tin sản phẩm để tư vấn KH</td></tr>
 </table>
-
-<h5>3.7.1.2. Mo ta chi tiet</h5>
-<p><em>Hinh 20: Cam nang san pham</em></p>
+<h5>3.7.1.2. Mô tả chi tiết</h5>
+<p><em>Hình 20: Cẩm nang sản phẩm</em></p>
 <table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Danh muc san pham</td><td>Category tabs</td><td>Phan loai: Vay, The, Tiet kiem, Bao hiem, Dau tu</td></tr>
-<tr><td>2</td><td>The san pham</td><td>Card</td><td>Ten san pham, Diem noi bat (bullet points), Doi tuong phu hop, Lai suat/Phi</td></tr>
-<tr><td>3</td><td>Tim kiem</td><td>Search box</td><td>Tim kiem theo ten san pham hoac tu khoa</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h4 id="s372">3.7.2. AI goi y kich ban</h4>
-<h5>3.7.2.1. Mo ta tong quan</h5>
-<table>
-<tr><th>Muc</th><th>Noi dung</th></tr>
-<tr><td><strong>Muc dich</strong></td><td>AI goi y RM cach tu van va tra loi theo tung tinh huong ca nhan hoa</td></tr>
-<tr><td><strong>Nguoi thuc hien</strong></td><td>RM</td></tr>
-<tr><td><strong>Duong dan</strong></td><td>TPBank CRM &gt; More &gt; Sales Support &gt; AI goi y</td></tr>
-<tr><td><strong>Ket qua</strong></td><td>RM nhan duoc kich ban tu van phu hop voi tung KH cu the</td></tr>
-</table>
-
-<h5>3.7.2.2. Mo ta chi tiet</h5>
-<p><em>Hinh 21: AI goi y kich ban ban hang</em></p>
-<table>
-<tr><th>STT</th><th>Truong/Thanh phan</th><th>Dinh dang</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Chon KH</td><td>Dropdown (search)</td><td>Chon KH de AI phan tich va goi y kich ban phu hop</td></tr>
-<tr><td>2</td><td>Chon san pham</td><td>Dropdown</td><td>San pham muon tu van</td></tr>
-<tr><td>3</td><td>Kich ban goi y</td><td>Text card</td><td>AI sinh kich ban tu van bao gom: Cau mo dau, Diem nhan manh, Xu ly tu choi, Cau chot</td></tr>
-<tr><td>4</td><td>Tinh huong phu</td><td>Accordion list</td><td>Cac tinh huong KH co the hoi va cach tra loi goi y</td></tr>
-<tr><td>5</td><td>Nut "Tao lai"</td><td>Button</td><td>Yeu cau AI sinh kich ban moi voi goc tiep can khac</td></tr>
-</table>
-
-<h5>3.7.2.3. Quy tac nghiep vu</h5>
-<table>
-<tr><th>BR</th><th>Mo ta</th></tr>
-<tr><td>BR 35</td><td>AI kich ban: Phan tich du lieu KH (thu nhap, san pham hien co, lich su tuong tac, hanh vi) de sinh kich ban ca nhan hoa. Moi lan "Tao lai" se cho goc tiep can khac (vd: lan 1 tap trung loi ich tai chinh, lan 2 tap trung tien ich)</td></tr>
-</table>
-</div>
-
-<!-- 4. PHU LUC -->
-<h2 id="s4">4. Phu luc</h2>
-
-<div class="card">
-<h3 id="s41">4.1. Danh sach thong bao</h3>
-<table>
-<tr><th>STT</th><th>Ma</th><th>Loai</th><th>Noi dung</th></tr>
-<tr><td>1</td><td>MSG 1</td><td>Thong bao tren man hinh</td><td>Khong tim thay ban ghi thoa man dieu kien tim kiem</td></tr>
-<tr><td>2</td><td>MSG 2</td><td>Thong bao tren man hinh</td><td>Loi ket noi, khong the tai du lieu. Vui long thu lai</td></tr>
-<tr><td>3</td><td>MSG 3</td><td>Thong bao tren man hinh</td><td>So dien thoai nay da ton tai trong he thong (Lead: [Ten KH], Trang thai: [Trang thai])</td></tr>
-<tr><td>4</td><td>MSG 4</td><td>Thong bao loi tai truong</td><td>Truong [Ten truong] la bat buoc</td></tr>
-<tr><td>5</td><td>MSG 5</td><td>Popup thong bao</td><td>Tao [Lead/Opportunity/Task/Case] thanh cong!</td></tr>
-<tr><td>6</td><td>MSG 6</td><td>Popup thong bao</td><td>Cap nhat thong tin thanh cong!</td></tr>
-<tr><td>7</td><td>MSG 7</td><td>Thong bao xac nhan dong y</td><td>Ban co chac chan muon chuyen doi Lead nay thanh [Co hoi/Khach hang]? Hanh dong nay khong the hoan tac.</td></tr>
-<tr><td>8</td><td>MSG 8</td><td>Thong bao xac nhan dong y</td><td>Ban co chac chan muon dong Case nay? Vui long xac nhan ket qua xu ly da day du.</td></tr>
-<tr><td>9</td><td>MSG 9</td><td>Thong bao tren man hinh</td><td>Du lieu duoc cap nhat luc [HH:mm dd/MM/yyyy]. Ket noi mang khong on dinh.</td></tr>
-<tr><td>10</td><td>MSG 10</td><td>Thong bao canh bao</td><td>Ban chua o gan dia diem hen (khoang cach: [X]m). Van tiep tuc check-in?</td></tr>
-<tr><td>11</td><td>MSG 11</td><td>Thong bao canh bao</td><td>Thoi gian nay trung voi task "[Ten task]" luc [HH:mm]. Van tiep tuc tao?</td></tr>
-<tr><td>12</td><td>MSG 12</td><td>Push notification</td><td>Nhac nho: Ban co task "[Ten task]" voi KH [Ten KH] luc [HH:mm]. Con 30 phut nua!</td></tr>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Danh mục sản phẩm</td><td>Category tabs</td><td>Phân loại: Vay, Thẻ, Tiết kiệm, Bảo hiểm, Đầu tư</td><td></td><td></td></tr>
+<tr><td>2</td><td>Thẻ sản phẩm</td><td>Card</td><td>Tên sản phẩm, Điểm nổi bật (bullet points), Đối tượng phù hợp, Lãi suất/Phí</td><td></td><td></td></tr>
+<tr><td>3</td><td>Tìm kiếm</td><td>Search box</td><td>Tìm kiếm theo tên sản phẩm hoặc từ khóa</td><td></td><td></td></tr>
 </table>
 </div>
 
 <div class="card">
-<h3 id="s42">4.2. Yeu cau ANBM (An ninh Bao mat)</h3>
+<h4 id="s372">3.7.2. AI gợi ý kịch bản</h4>
+<h5>3.7.2.1. Mô tả tổng quan</h5>
 <table>
-<tr><th>STT</th><th>Yeu cau</th><th>Mo ta</th></tr>
-<tr><td>1</td><td>Xac thuc nguoi dung</td><td>RM phai dang nhap bang tai khoan noi bo (AD/LDAP) + OTP truoc khi truy cap ung dung</td></tr>
-<tr><td>2</td><td>Phan quyen truy cap</td><td>RM chi xem duoc thong tin KH thuoc danh muc quan ly cua minh. Team Leader xem duoc KH cua ca nhom</td></tr>
-<tr><td>3</td><td>Ma hoa du lieu</td><td>Thong tin nhay cam (CCCD, SDT, so TK) duoc ma hoa AES-256 khi luu tru va truyen tai (TLS 1.3)</td></tr>
-<tr><td>4</td><td>Session timeout</td><td>Phien lam viec tu dong het han sau 15 phut khong tuong tac. Yeu cau dang nhap lai</td></tr>
-<tr><td>5</td><td>Audit log</td><td>Ghi nhan toan bo hanh dong cua RM: Xem thong tin KH, Tao/Sua/Xoa du lieu, Chuyen doi Lead/Opp</td></tr>
-<tr><td>6</td><td>Che thong tin</td><td>SDT va CCCD hien thi dang che (vd: 0912***789, 001***456). Chi hien day du khi RM xac nhan can xem</td></tr>
-<tr><td>7</td><td>GPS privacy</td><td>Du lieu vi tri chi duoc su dung cho chuc nang Check-in, khong luu tru lau dai (xoa sau 30 ngay)</td></tr>
+<tr><th>Mục</th><th>Nội dung</th></tr>
+<tr><td><strong>Mục đích</strong></td><td>AI gợi ý RM cách tư vấn và trả lời theo từng tình huống cá nhân hóa</td></tr>
+<tr><td><strong>Người thực hiện</strong></td><td>RM</td></tr>
+<tr><td><strong>Đường dẫn</strong></td><td>TPBank CRM &gt; More &gt; Sales Support &gt; AI gợi ý</td></tr>
+<tr><td><strong>Kết quả</strong></td><td>RM nhận được kịch bản tư vấn phù hợp với từng KH cụ thể</td></tr>
+</table>
+<h5>3.7.2.2. Mô tả chi tiết</h5>
+<p><em>Hình 21: AI gợi ý kịch bản bán hàng</em></p>
+<table>
+<tr><th>STT</th><th>Trường/Thành phần</th><th>Định dạng</th><th>Mô tả</th><th>Bắt buộc</th><th>Cho sửa</th></tr>
+<tr><td>1</td><td>Chọn KH</td><td>Dropdown (search)</td><td>Chọn KH để AI phân tích và gợi ý kịch bản phù hợp</td><td>x</td><td>x</td></tr>
+<tr><td>2</td><td>Chọn sản phẩm</td><td>Dropdown</td><td>Sản phẩm muốn tư vấn</td><td>x</td><td>x</td></tr>
+<tr><td>3</td><td>Kịch bản gợi ý</td><td>Text card</td><td>AI sinh kịch bản tư vấn bao gồm: Câu mở đầu, Điểm nhấn mạnh, Xử lý từ chối, Câu chốt</td><td></td><td></td></tr>
+<tr><td>4</td><td>Tình huống phụ</td><td>Accordion list</td><td>Các tình huống KH có thể hỏi và cách trả lời gợi ý</td><td></td><td></td></tr>
+<tr><td>5</td><td>Nút "Tạo lại"</td><td>Button</td><td>Yêu cầu AI sinh kịch bản mới với góc tiếp cận khác</td><td></td><td></td></tr>
+</table>
+<h5>3.7.2.3. Quy tắc nghiệp vụ</h5>
+<table>
+<tr><th>BR</th><th>Mô tả</th></tr>
+<tr><td>BR 35</td><td>AI kịch bản: Phân tích dữ liệu KH (thu nhập, sản phẩm hiện có, lịch sử tương tác, hành vi) để sinh kịch bản cá nhân hóa. Mỗi lần "Tạo lại" sẽ cho góc tiếp cận khác (ví dụ: lần 1 tập trung lợi ích tài chính, lần 2 tập trung tiện ích)</td></tr>
 </table>
 </div>
 
-</div><!-- end container -->
+<!-- 4. PHỤ LỤC -->
+<h2 id="s4">4. Phụ lục</h2>
+
+<div class="card">
+<h3 id="s41">4.1. Danh sách thông báo</h3>
+<table>
+<tr><th>STT</th><th>Mã</th><th>Loại</th><th>Nội dung</th></tr>
+<tr><td>1</td><td>MSG 1</td><td>Thông báo trên màn hình</td><td>Không tìm thấy bản ghi thỏa mãn điều kiện tìm kiếm</td></tr>
+<tr><td>2</td><td>MSG 2</td><td>Thông báo trên màn hình</td><td>Lỗi kết nối, không thể tải dữ liệu. Vui lòng thử lại</td></tr>
+<tr><td>3</td><td>MSG 3</td><td>Thông báo trên màn hình</td><td>Số điện thoại này đã tồn tại trong hệ thống (Lead: [Tên KH], Trạng thái: [Trạng thái])</td></tr>
+<tr><td>4</td><td>MSG 4</td><td>Thông báo lỗi tại trường</td><td>Trường [Tên trường] là bắt buộc</td></tr>
+<tr><td>5</td><td>MSG 5</td><td>Popup thông báo</td><td>Tạo [Lead/Opportunity/Task/Case] thành công!</td></tr>
+<tr><td>6</td><td>MSG 6</td><td>Popup thông báo</td><td>Cập nhật thông tin thành công!</td></tr>
+<tr><td>7</td><td>MSG 7</td><td>Thông báo xác nhận đồng ý</td><td>Bạn có chắc chắn muốn chuyển đổi Lead này thành [Cơ hội/Khách hàng]? Hành động này không thể hoàn tác.</td></tr>
+<tr><td>8</td><td>MSG 8</td><td>Thông báo xác nhận đồng ý</td><td>Bạn có chắc chắn muốn đóng Case này? Vui lòng xác nhận kết quả xử lý đã đầy đủ.</td></tr>
+<tr><td>9</td><td>MSG 9</td><td>Thông báo trên màn hình</td><td>Dữ liệu được cập nhật lúc [HH:mm dd/MM/yyyy]. Kết nối mạng không ổn định.</td></tr>
+<tr><td>10</td><td>MSG 10</td><td>Thông báo cảnh báo</td><td>Bạn chưa ở gần địa điểm hẹn (khoảng cách: [X]m). Vẫn tiếp tục check-in?</td></tr>
+<tr><td>11</td><td>MSG 11</td><td>Thông báo cảnh báo</td><td>Thời gian này trùng với task "[Tên task]" lúc [HH:mm]. Vẫn tiếp tục tạo?</td></tr>
+<tr><td>12</td><td>MSG 12</td><td>Push notification</td><td>Nhắc nhở: Bạn có task "[Tên task]" với KH [Tên KH] lúc [HH:mm]. Còn 30 phút nữa!</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3 id="s42">4.2. Yêu cầu ANBM (An ninh Bảo mật)</h3>
+<table>
+<tr><th>STT</th><th>Yêu cầu</th><th>Mô tả</th></tr>
+<tr><td>1</td><td>Xác thực người dùng</td><td>RM phải đăng nhập bằng tài khoản nội bộ (AD/LDAP) + OTP trước khi truy cập ứng dụng</td></tr>
+<tr><td>2</td><td>Phân quyền truy cập</td><td>RM chỉ xem được thông tin KH thuộc danh mục quản lý của mình. Team Leader xem được KH của cả nhóm</td></tr>
+<tr><td>3</td><td>Mã hóa dữ liệu</td><td>Thông tin nhạy cảm (CCCD, SĐT, số TK) được mã hóa AES-256 khi lưu trữ và truyền tải (TLS 1.3)</td></tr>
+<tr><td>4</td><td>Session timeout</td><td>Phiên làm việc tự động hết hạn sau 15 phút không tương tác. Yêu cầu đăng nhập lại</td></tr>
+<tr><td>5</td><td>Audit log</td><td>Ghi nhận toàn bộ hành động của RM: Xem thông tin KH, Tạo/Sửa/Xóa dữ liệu, Chuyển đổi Lead/Opp</td></tr>
+<tr><td>6</td><td>Che thông tin</td><td>SĐT và CCCD hiển thị dạng che (ví dụ: 0912***789, 001***456). Chỉ hiện đầy đủ khi RM xác nhận cần xem</td></tr>
+<tr><td>7</td><td>GPS privacy</td><td>Dữ liệu vị trí chỉ được sử dụng cho chức năng Check-in, không lưu trữ lâu dài (xóa sau 30 ngày)</td></tr>
+</table>
+</div>
+
+</div><!-- end main-content -->
+</div><!-- end layout -->
+
+<!-- SCROLL SPY SCRIPT -->
+<script>
+(function(){
+  const links = document.querySelectorAll('#toc-sidebar a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if(el) sections.push({el, link});
+  });
+
+  function onScroll(){
+    let current = sections[0];
+    for(let i = sections.length - 1; i >= 0; i--){
+      if(sections[i].el.getBoundingClientRect().top <= 80){
+        current = sections[i];
+        break;
+      }
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if(current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+</script>
+
 </body>
 </html>
