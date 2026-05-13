@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TPBank CRM - Mindmap tính năng</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Manrope', sans-serif; background: #f8f9ff; }
+.header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-left img { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; }
+.header-left h1 { font-size: 18px; font-weight: 700; color: #390259; }
+.header-left p { font-size: 11px; color: #4c444f; }
+.btn-demo {
+  padding: 8px 16px;
+  background: #390259;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-demo:hover { background: #502070; }
+#markmap-container {
+  width: 100%;
+  height: calc(100vh - 65px);
+}
+svg.markmap { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo"/>
+    <div>
+      <h1>TPBank CRM</h1>
+      <p>Mindmap tính năng — Interactive</p>
+    </div>
+  </div>
+  <a href="dashboard.html" class="btn-demo">Xem Demo →</a>
+</div>
+
+<div id="markmap-container">
+  <svg id="markmap"></svg>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-view@0.15.4/dist/browser/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15.4/dist/browser/index.js"></script>
+
+<script>
+const md = `
+# 🏦 TPBank CRM Mobile
+
+## 📊 Dashboard
+- Theo dõi KPI
+  - Thẻ tín dụng
+  - Cho vay
+  - Bảo hiểm
+- 🤖 AI dự báo KPI
+- Phân bổ KH tiềm năng
+  - Donut chart
+  - Filter: Hôm nay / Tháng
+- Phân bổ Cơ hội bán
+  - Donut chart theo trạng thái
+  - Stacked bar theo sản phẩm
+- Nhiệm vụ hôm nay
+  - Đang thực hiện
+  - Chờ xử lý
+  - Hoàn thành
+  - Quá hạn
+- Sự kiện hôm nay
+  - Sinh nhật KH
+  - Sổ tiết kiệm đáo hạn
+- KH theo phân khúc
+  - Mass (60%)
+  - Premier (40%)
+- ⚠️ Cảnh báo KH rời bỏ
+  - Mức cao (AUM giảm mạnh)
+  - Mức trung bình
+
+## 👤 Customer 360
+- Thông tin cá nhân
+- Phân khúc & hạng KH
+- Tài sản (AUM)
+- Sản phẩm đang sử dụng
+- Lịch sử giao dịch
+- Lịch sử tương tác
+- Cases liên quan
+- Opportunities liên quan
+
+## 📈 Leads
+- Danh sách Lead
+  - Filter theo trạng thái
+  - Filter theo chỉ thị
+- Chi tiết Lead
+- Tạo Lead mới
+  - Bổ sung trường nghề nghiệp
+- Chuyển đổi Lead → Opportunity
+
+## 💼 Opportunities
+- Danh sách Opportunity
+  - Bottom menu icons
+- Chi tiết Opportunity
+  - Bổ sung ngày sinh
+  - Timeline trạng thái
+- Tạo Opportunity mới
+  - Bước 1: Thông tin cơ bản
+  - Bước 2: Thông tin chi tiết
+
+## ✅ Tasks
+- Danh sách công việc
+  - Theo ngày / tuần
+  - Menu v2
+- Chi tiết công việc
+  - Bottom menu
+- Tạo công việc mới
+- Trạng thái
+  - Chờ xử lý
+  - Đang thực hiện
+  - Hoàn thành
+  - Quá hạn
+
+## 📁 Cases
+- Danh sách Case
+  - Bottom menu v2
+- Chi tiết Case
+  - Lịch sử xử lý
+- Tạo Case mới
+
+## 🤖 Sales Support
+- AI đề xuất kịch bản bán
+  - Theo sản phẩm
+  - Theo phân khúc KH
+- Cẩm nang sản phẩm
+- Customer Insights
+  - Bottom menu v2
+- Digital Banker
+
+## 📉 Reports
+- Báo cáo KH rời bỏ (Churn)
+  - Danh sách KH nguy cơ
+  - Mức độ rủi ro
+  - Hành động đề xuất
+- Báo cáo Leads
+  - Phân bổ theo nguồn
+  - Tỷ lệ chuyển đổi
+
+## 🎨 Tech Stack
+- HTML5
+- Tailwind CSS
+- Chart.js
+- Material Symbols
+- Manrope Font
+- GitHub Pages
+`;
+
+const { Transformer } = window.markmap;
+const { Markmap } = window.markmap;
+
+const transformer = new Transformer();
+const { root } = transformer.transform(md);
+
+const svg = document.getElementById('markmap');
+const mm = Markmap.create(svg, {
+  colorFreezeLevel: 2,
+  duration: 300,
+  maxWidth: 280,
+  paddingX: 16,
+  initialExpandLevel: 2,
+  zoom: true,
+  pan: true
+}, root);
+</script>
+
+</body>
+</html>
