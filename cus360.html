@@ -377,21 +377,21 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   </div>
   <div class="space-y-2">
     <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
-      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <span class="material-symbols-outlined text-outline text-[20px] shrink-0">check_box_outline_blank</span>
       <div class="flex-1 min-w-0">
         <p class="text-label-md font-bold text-on-surface">Call: Remind mortgage payment</p>
         <p class="text-[10px] text-on-surface-variant">10:30 • <span class="text-error font-semibold">Ưu tiên cao</span></p>
       </div>
     </label>
     <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
-      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <span class="material-symbols-outlined text-outline text-[20px] shrink-0">check_box_outline_blank</span>
       <div class="flex-1 min-w-0">
         <p class="text-label-md font-bold text-on-surface">Email: Introduce Signature card</p>
         <p class="text-[10px] text-on-surface-variant">14:00 • Tiếp thị</p>
       </div>
     </label>
     <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
-      <input class="rounded border-outline text-primary focus:ring-primary h-4 w-4 shrink-0" type="checkbox"/>
+      <span class="material-symbols-outlined text-outline text-[20px] shrink-0">check_box_outline_blank</span>
       <div class="flex-1 min-w-0">
         <p class="text-label-md font-bold text-on-surface">Follow-up: Loan application</p>
         <p class="text-[10px] text-on-surface-variant">16:00 • Tín dụng</p>
@@ -1010,7 +1010,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Kênh tiếp nhận</p><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-on-surface-variant">person</span><p class="text-label-md font-semibold text-on-surface">Tại quầy</p></div></div>
       <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Người xử lý</p><p class="text-label-md font-semibold text-on-surface">antt100 (CSKH)</p></div>
     </div>
-  </div>
+  </a>
 </main>
 </div>
 
@@ -1078,7 +1078,12 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 </main>
 </div>
 
-<!-- ===== FR-1.4: Bottom Navigation ===== -->
+<!-- ===== FR-1.5: FAB ===== -->
+<button class="fixed bottom-20 right-[calc(50%-215px+16px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" id="fab" onclick="window.location.href='opportunities.html?action=create'">
+  <span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+
+<!-- ===== Bottom Navigation (Shared Style) ===== -->
 <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html">
     <span class="material-symbols-outlined text-[24px]">home</span>
@@ -1130,11 +1135,6 @@ function toggleMoreMenu(){
   else{o.classList.add('hidden');m.classList.add('hidden');}
 }
 </script>
-
-<!-- ===== FR-1.5: FAB ===== -->
-<button class="fixed bottom-20 right-[calc(50%-215px+16px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" id="fab" onclick="window.location.href='opportunities.html?action=create'">
-  <span class="material-symbols-outlined text-[28px]">add</span>
-</button>
 
 </div><!-- end device-frame -->
 
