@@ -48,60 +48,77 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </header>
 
 <main class="px-4 py-4 space-y-5 pb-28">
-<!-- Customer Profile Card -->
-<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex items-center gap-4">
-  <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center ring-2 ring-secondary-container text-primary font-bold text-xl shrink-0">VY</div>
-  <div class="flex-1">
-    <div class="flex items-center gap-2 flex-wrap">
-      <a href="cus360.html" class="text-headline-sm text-on-surface font-bold hover:text-primary transition-colors">Chị Đặng Khánh Vy</a>
-      <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">GOLD</span>
+
+<!-- AI Sales Assistant - Unified -->
+<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm space-y-4">
+  <div class="flex items-center gap-2">
+    <div class="w-9 h-9 rounded-lg ai-glow flex items-center justify-center">
+      <span class="material-symbols-outlined text-white text-[18px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
     </div>
-    <div class="flex items-center gap-2 mt-2 flex-wrap">
-      <span class="px-2.5 py-0.5 bg-error-container text-error rounded-full text-label-sm font-semibold">Ưu tiên</span>
-      <span class="px-2.5 py-0.5 bg-blue-100 text-blue-700 rounded-full text-label-sm font-semibold">Vay mua nhà</span>
+    <h3 class="text-body-lg font-bold text-primary">AI Hỗ trợ tư vấn</h3>
+  </div>
+
+  <!-- Customer Selection with Search -->
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant">Chọn khách hàng</label>
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+      <input type="text" id="customerSearch" class="w-full h-12 pl-10 pr-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" placeholder="Tìm theo tên khách hàng..." oninput="filterCustomers(this.value)" onfocus="document.getElementById('customerDropdown').classList.remove('hidden')" value="Đặng Khánh Vy"/>
+      <div id="customerDropdown" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-outline-variant rounded-xl shadow-lg z-10 max-h-40 overflow-y-auto">
+        <div class="p-3 cursor-pointer hover:bg-surface-container-low active:bg-surface-container text-body-md" onclick="selectCustomer('Đặng Khánh Vy')">Đặng Khánh Vy <span class="text-on-surface-variant text-label-sm">(1988)</span></div>
+        <div class="p-3 cursor-pointer hover:bg-surface-container-low active:bg-surface-container text-body-md" onclick="selectCustomer('Nguyễn Minh Tuấn')">Nguyễn Minh Tuấn <span class="text-on-surface-variant text-label-sm">(1985)</span></div>
+        <div class="p-3 cursor-pointer hover:bg-surface-container-low active:bg-surface-container text-body-md" onclick="selectCustomer('Nguyễn Lan Anh')">Nguyễn Lan Anh <span class="text-on-surface-variant text-label-sm">(1992)</span></div>
+        <div class="p-3 cursor-pointer hover:bg-surface-container-low active:bg-surface-container text-body-md" onclick="selectCustomer('Phạm Thành Lương')">Phạm Thành Lương <span class="text-on-surface-variant text-label-sm">(1990)</span></div>
+        <div class="p-3 cursor-pointer hover:bg-surface-container-low active:bg-surface-container text-body-md" onclick="selectCustomer('Đỗ Hùng Dũng')">Đỗ Hùng Dũng <span class="text-on-surface-variant text-label-sm">(1993)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Source -->
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant">Nguồn kịch bản</label>
+    <div class="grid grid-cols-2 gap-2">
+      <button class="p-3 rounded-xl border-2 border-primary bg-primary/5 text-center active:scale-95 transition-all" id="srcAI" onclick="selectSource('ai')">
+        <span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+        <p class="text-[10px] font-bold text-primary mt-1">AI đề xuất</p>
+      </button>
+      <button class="p-3 rounded-xl border border-outline-variant bg-white text-center active:scale-95 transition-all" id="srcCustom" onclick="showView('view-chat')">
+        <span class="material-symbols-outlined text-on-surface-variant text-xl">edit_note</span>
+        <p class="text-[10px] font-bold text-on-surface-variant mt-1">Chat với AI</p>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- Status Banner -->
-<section class="bg-primary-container rounded-xl p-4 flex items-center justify-between">
-  <div class="flex items-center gap-3">
-    <div class="w-2.5 h-2.5 bg-green-400 rounded-full pulse-dot"></div>
-    <span class="text-white font-semibold text-body-lg">Đang tư vấn trực tiếp</span>
+<!-- Script Content Area -->
+<section id="scriptContent" class="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-5 border-2 border-primary/10">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="material-symbols-outlined text-secondary-container text-[18px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
+    <span class="text-label-md font-bold text-primary uppercase tracking-wider">Kịch bản AI đề xuất</span>
   </div>
-  <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full">
-    <span class="material-symbols-outlined text-white text-[18px]">timer</span>
-    <span class="text-white font-bold text-headline-sm" id="consultTimer">15:00</span>
+  <div class="space-y-3">
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Chào chị Vy, em thấy chị thường xuyên đi du lịch và chi tiêu ở nước ngoài. Thẻ Platinum Visa sẽ giúp chị <span class="font-bold text-primary">hoàn tiền 10%</span> cho mọi giao dịch quốc tế.</p>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Ngoài ra, chị còn được <span class="font-bold text-primary">bảo hiểm du lịch</span> toàn cầu lên đến 500 triệu và quyền truy cập phòng chờ VIP tại hơn 1000 sân bay.</p>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-2 h-2 bg-secondary-container rounded-full mt-2 shrink-0"></div>
+      <p class="text-body-md text-on-surface leading-relaxed">Thẻ Platinum thể hiện <span class="font-bold text-primary">phong cách sống</span> đẳng cấp, rất phù hợp với profile của chị.</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 mt-4 overflow-x-auto no-scrollbar">
+    <span class="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Hoàn tiền cao</span>
+    <span class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Phòng chờ VIP</span>
+    <span class="px-3 py-1.5 bg-orange-100 text-orange-700 rounded-full text-label-sm font-semibold whitespace-nowrap">Bảo hiểm du lịch</span>
   </div>
 </section>
 
-<!-- Main Action Cards -->
-<section class="space-y-3">
-  <!-- Card 1: AI Sales Script -->
-  <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-script')">
-    <div class="w-11 h-11 rounded-xl ai-glow flex items-center justify-center shrink-0">
-      <span class="material-symbols-outlined text-white text-[22px]" style='font-variation-settings:"FILL" 1;'>auto_awesome</span>
-    </div>
-    <div class="flex-1">
-      <h3 class="text-body-lg font-bold text-on-surface">AI Gợi ý kịch bản bán</h3>
-      <p class="text-label-sm text-on-surface-variant mt-0.5">Kịch bản tư vấn cá nhân hóa</p>
-    </div>
-    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
-  </div>
-
-  <!-- Card 2: AI Situation -->
-  <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-situation')">
-    <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
-      <span class="material-symbols-outlined text-secondary-container text-[22px]">psychology_alt</span>
-    </div>
-    <div class="flex-1">
-      <h3 class="text-body-lg font-bold text-on-surface">AI Đề xuất theo tình huống</h3>
-      <p class="text-label-sm text-on-surface-variant mt-0.5">Xử lý phản đối & tình huống</p>
-    </div>
-    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
-  </div>
-
-  <!-- Card 3: Product Handbook -->
+<!-- Product Handbook Link -->
+<section>
   <div class="bg-white rounded-xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-products')">
     <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
       <span class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
@@ -111,21 +128,6 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
       <p class="text-label-sm text-on-surface-variant mt-0.5">Tra cứu thông tin & USP</p>
     </div>
     <span class="material-symbols-outlined text-slate-400">chevron_right</span>
-  </div>
-</section>
-
-<!-- Products of Interest -->
-<section class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm">
-  <h4 class="text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Sản phẩm KH quan tâm</h4>
-  <div class="space-y-2.5">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="showView('view-products')">
-      <span class="material-symbols-outlined text-green-600 text-[20px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
-      <span class="text-body-md font-medium text-on-surface">Thẻ Platinum Visa</span>
-    </div>
-    <div class="flex items-center gap-3 cursor-pointer" onclick="showView('view-products')">
-      <span class="material-symbols-outlined text-green-600 text-[20px]" style='font-variation-settings:"FILL" 1;'>check_circle</span>
-      <span class="text-body-md font-medium text-on-surface">Gói vay HomeLoan</span>
-    </div>
   </div>
 </section>
 </main>
@@ -475,11 +477,69 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </main>
 </div>
 
+<!-- ========== VIEW: CHAT WITH AI ========== -->
+<div class="view" id="view-chat">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-hub')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full ai-glow flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-[16px]" style='font-variation-settings:"FILL" 1;'>smart_toy</span>
+      </div>
+      <div>
+        <h1 class="font-bold text-body-lg text-primary">AI Sales Assistant</h1>
+        <p class="text-[10px] text-green-600 font-semibold">Online</p>
+      </div>
+    </div>
+  </div>
+  <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50" onclick="clearChat()"><span class="material-symbols-outlined text-slate-500">delete_sweep</span></button>
+</header>
+
+<main class="flex flex-col h-[calc(932px-64px-72px)]">
+  <!-- Chat Messages -->
+  <div class="flex-1 overflow-y-auto p-4 space-y-4" id="chatMessages">
+    <!-- AI Welcome -->
+    <div class="flex gap-2.5">
+      <div class="w-8 h-8 rounded-full ai-glow flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-white text-[14px]">smart_toy</span>
+      </div>
+      <div class="bg-white p-3.5 rounded-2xl rounded-tl-sm max-w-[80%] shadow-sm border border-slate-100">
+        <p class="text-body-md text-on-surface leading-relaxed">Xin chào! Tôi là AI Sales Assistant của TPBank. Tôi có thể giúp bạn:</p>
+        <ul class="mt-2 space-y-1.5 text-body-md text-on-surface-variant">
+          <li class="flex items-start gap-1.5"><span class="material-symbols-outlined text-[14px] text-secondary-container mt-0.5">check_circle</span>Gợi ý kịch bản tư vấn</li>
+          <li class="flex items-start gap-1.5"><span class="material-symbols-outlined text-[14px] text-secondary-container mt-0.5">check_circle</span>Xử lý tình huống bị từ chối</li>
+          <li class="flex items-start gap-1.5"><span class="material-symbols-outlined text-[14px] text-secondary-container mt-0.5">check_circle</span>Tra cứu thông tin sản phẩm</li>
+          <li class="flex items-start gap-1.5"><span class="material-symbols-outlined text-[14px] text-secondary-container mt-0.5">check_circle</span>Phân tích nhu cầu khách hàng</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Suggestions -->
+    <div class="flex flex-wrap gap-2 pl-10">
+      <button class="px-3 py-1.5 bg-primary/5 border border-primary/20 text-primary text-[11px] font-semibold rounded-full active:scale-95" onclick="sendQuickChat('KH nói phí cao quá, tôi nên trả lời thế nào?')">Xử lý phản đối phí</button>
+      <button class="px-3 py-1.5 bg-primary/5 border border-primary/20 text-primary text-[11px] font-semibold rounded-full active:scale-95" onclick="sendQuickChat('Gợi ý kịch bản tư vấn thẻ Platinum cho KH hay đi du lịch')">Kịch bản thẻ Platinum</button>
+      <button class="px-3 py-1.5 bg-primary/5 border border-primary/20 text-primary text-[11px] font-semibold rounded-full active:scale-95" onclick="sendQuickChat('So sánh lãi suất vay mua nhà TPBank với thị trường')">So sánh lãi suất</button>
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="p-4 bg-white border-t border-slate-100">
+    <div class="flex gap-2">
+      <input type="text" id="chatInput" class="flex-1 h-12 px-4 rounded-full bg-surface-container-low border border-outline-variant text-body-md outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Hỏi AI bất kỳ điều gì..." onkeypress="if(event.key==='Enter')sendChat()"/>
+      <button class="w-12 h-12 rounded-full bg-secondary-container text-white flex items-center justify-center active:scale-90 transition-transform shadow-md" onclick="sendChat()">
+        <span class="material-symbols-outlined text-[22px]">send</span>
+      </button>
+    </div>
+  </div>
+</main>
+</div>
+
 <!-- ===== Bottom Navigation ===== -->
 <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
   <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>menu</span><span class="text-[10px] font-bold mt-0.5">More</span></a>
 </nav>
@@ -490,7 +550,6 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div><span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span></a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl bg-purple-50 ring-2 ring-primary/20 active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]" style='font-variation-settings:"FILL" 1;'>support_agent</span></div><span class="text-label-md text-primary text-center leading-tight font-bold">Sales Support</span></a>
     <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
   </div>
@@ -527,6 +586,84 @@ function showView(viewId) {
   const bottomNav = document.getElementById('bottomNav');
   bottomNav.style.display = viewId === 'view-hub' ? 'flex' : 'none';
 }
+
+function selectSource(type) {
+  const sources = ['ai','custom'];
+  sources.forEach(s => {
+    const btn = document.getElementById('src' + s.charAt(0).toUpperCase() + s.slice(1));
+    const icon = btn.querySelector('.material-symbols-outlined');
+    const label = btn.querySelector('p');
+    if (s === type) {
+      btn.className = 'p-3 rounded-xl border-2 border-primary bg-primary/5 text-center active:scale-95 transition-all';
+      icon.className = 'material-symbols-outlined text-primary text-xl';
+      label.className = 'text-[10px] font-bold text-primary mt-1';
+    } else {
+      btn.className = 'p-3 rounded-xl border border-outline-variant bg-white text-center active:scale-95 transition-all';
+      icon.className = 'material-symbols-outlined text-on-surface-variant text-xl';
+      label.className = 'text-[10px] font-bold text-on-surface-variant mt-1';
+    }
+  });
+  document.getElementById('scriptContent').classList.toggle('hidden', type !== 'ai');
+}
+
+function filterCustomers(val) {
+  const dropdown = document.getElementById('customerDropdown');
+  const items = dropdown.querySelectorAll('div');
+  let hasMatch = false;
+  items.forEach(item => {
+    const match = item.textContent.toLowerCase().includes(val.toLowerCase());
+    item.style.display = match ? '' : 'none';
+    if (match) hasMatch = true;
+  });
+  dropdown.classList.toggle('hidden', !val || !hasMatch);
+}
+
+function selectCustomer(name) {
+  document.getElementById('customerSearch').value = name;
+  document.getElementById('customerDropdown').classList.add('hidden');
+  showToast('Đã chọn KH: ' + name, 'success');
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const container = document.getElementById('chatMessages');
+  // User message
+  container.innerHTML += `<div class="flex gap-2.5 justify-end"><div class="bg-primary text-white p-3.5 rounded-2xl rounded-tr-sm max-w-[80%] shadow-sm"><p class="text-body-md">${msg}</p></div></div>`;
+  input.value = '';
+  container.scrollTop = container.scrollHeight;
+  // AI response (simulated)
+  setTimeout(() => {
+    const responses = [
+      'Dựa trên profile KH, tôi gợi ý bạn nhấn mạnh vào lợi ích hoàn tiền và phòng chờ VIP khi tư vấn. KH có tần suất chi tiêu quốc tế cao, đây là điểm mạnh để thuyết phục.',
+      'Với tình huống này, bạn nên lắng nghe KH trước, sau đó đưa ra so sánh cụ thể: "Em hiểu anh/chị lo ngại. Tuy nhiên nếu so sánh tổng chi phí và lợi ích, thẻ TPBank tiết kiệm hơn khoảng 2-3 triệu/năm."',
+      'Hãy tập trung vào nhu cầu thực tế của KH. Câu mở đầu gợi ý: "Anh/chị có thường xuyên giao dịch quốc tế không? Em có một giải pháp giúp tiết kiệm đáng kể chi phí chuyển đổi ngoại tệ."',
+      'Theo dữ liệu, KH này có khả năng chốt cao nếu được offer miễn phí năm đầu. Gợi ý: "Hiện TPBank đang có chương trình đặc biệt miễn phí thường niên năm đầu tiên cho KH mới."'
+    ];
+    const reply = responses[Math.floor(Math.random() * responses.length)];
+    container.innerHTML += `<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full ai-glow flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-white text-[14px]">smart_toy</span></div><div class="bg-white p-3.5 rounded-2xl rounded-tl-sm max-w-[80%] shadow-sm border border-slate-100"><p class="text-body-md text-on-surface leading-relaxed">${reply}</p></div></div>`;
+    container.scrollTop = container.scrollHeight;
+  }, 1000);
+}
+
+function sendQuickChat(msg) {
+  document.getElementById('chatInput').value = msg;
+  sendChat();
+}
+
+function clearChat() {
+  const container = document.getElementById('chatMessages');
+  container.innerHTML = `<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full ai-glow flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-white text-[14px]">smart_toy</span></div><div class="bg-white p-3.5 rounded-2xl rounded-tl-sm max-w-[80%] shadow-sm border border-slate-100"><p class="text-body-md text-on-surface">Đã xóa lịch sử chat. Bạn có thể bắt đầu cuộc hội thoại mới.</p></div></div>`;
+  showToast('Đã xóa lịch sử chat', 'success');
+}
+
+// Close customer dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#customerSearch') && !e.target.closest('#customerDropdown')) {
+    document.getElementById('customerDropdown').classList.add('hidden');
+  }
+});
 
 function showToast(message, type='success') {
   const container = document.getElementById('toastContainer');
