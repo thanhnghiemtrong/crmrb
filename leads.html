@@ -49,10 +49,8 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 
 <header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-100">
   <div class="flex items-center gap-3">
-    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center border-2 border-purple-200">
-      <span class="material-symbols-outlined text-primary text-[20px]">person</span>
-    </div>
-    <h1 class="text-lg font-extrabold text-primary tracking-tight">TPBank CRM</h1>
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo" class="w-10 h-10 rounded-lg object-contain">
+    <h1 class="text-lg font-extrabold text-primary tracking-tight">Danh sách lead</h1>
   </div>
   <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-primary">
     <span class="material-symbols-outlined">search</span>
@@ -96,7 +94,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   </div>
 
   <!-- Lead Card 1: Hot -->
-  <div class="bg-white rounded-xl p-4 border border-outline-variant shadow-sm relative cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+  <div class="lead-card bg-white rounded-xl p-4 border border-outline-variant shadow-sm relative cursor-pointer active:scale-[0.99] transition-all" data-expiry="2026-12" data-priority="true" onclick="showView('view-detail')">
     <button class="absolute top-4 right-4 active:scale-90 transition-transform" onclick="event.stopPropagation();toggleStar(this)">
       <span class="material-symbols-outlined text-yellow-500" style='font-variation-settings:"FILL" 1;font-size:20px;'>star</span>
     </button>
@@ -133,7 +131,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   </div>
 
   <!-- Lead Card 2: Warm -->
-  <div class="bg-white rounded-xl p-4 border border-outline-variant shadow-sm relative cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+  <div class="lead-card bg-white rounded-xl p-4 border border-outline-variant shadow-sm relative cursor-pointer active:scale-[0.99] transition-all" data-expiry="2026-06" onclick="showView('view-detail')">
     <div class="flex items-start gap-3 mb-3">
       <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 font-bold text-lg shrink-0">MQ</div>
       <div>
@@ -166,39 +164,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
     </div>
   </div>
 
-  <!-- Lead Card 3: Cold / Expiring -->
-  <div class="bg-white rounded-xl p-4 border border-error-container/50 shadow-sm relative cursor-pointer active:scale-[0.99] transition-all">
-    <div class="flex items-start gap-3 mb-3">
-      <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 font-bold text-lg shrink-0">TH</div>
-      <div>
-        <h3 class="text-headline-sm text-on-surface">Trần Thanh Hà</h3>
-        <p class="text-label-md text-outline">Bảo hiểm nhân thọ</p>
-        <p class="text-label-sm text-outline">090 111 2233</p>
-      </div>
-    </div>
-    <div class="grid grid-cols-3 gap-2 mb-3 bg-surface-container-low p-3 rounded-lg">
-      <div class="space-y-0.5">
-        <p class="text-label-sm text-outline">Điểm lead</p>
-        <p class="font-bold text-on-surface-variant flex items-center gap-1">35 <span class="material-symbols-outlined text-[14px]">bolt</span></p>
-      </div>
-      <div class="space-y-0.5 border-l border-outline-variant/30 pl-3">
-        <p class="text-label-sm text-outline">Phân loại</p>
-        <span class="inline-flex px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 uppercase">Cold</span>
-      </div>
-      <div class="space-y-0.5 border-l border-outline-variant/30 pl-3">
-        <p class="text-label-sm text-outline">Hết hạn</p>
-        <p class="font-bold text-error text-[12px]">10/05/2026</p>
-      </div>
-    </div>
-    <div class="flex items-center justify-between">
-      <span class="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-error uppercase">⚠ Sắp hết hạn</span>
-      <div class="flex gap-2" onclick="event.stopPropagation()">
-        <button class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-high text-primary active:bg-primary-container active:text-white transition-all"><span class="material-symbols-outlined text-[18px]">call</span></button>
-        <button class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-high text-primary active:bg-primary-container active:text-white transition-all"><span class="material-symbols-outlined text-[18px]">mail</span></button>
-        <button class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-high text-primary active:bg-primary-container active:text-white transition-all"><span class="material-symbols-outlined text-[18px]">chat</span></button>
-      </div>
-    </div>
-  </div>
+
 </section>
 </main>
 
@@ -225,12 +191,6 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </header>
 
 <!-- Expiring Warning Banner -->
-<div class="mx-4 mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-2">
-  <span class="material-symbols-outlined text-amber-600 text-[18px]">warning</span>
-  <p class="text-label-md text-amber-800 flex-1">Lead sẽ hết hạn trong <strong>5 ngày</strong>.</p>
-  <button class="text-[11px] font-bold text-primary px-2 py-1 bg-white rounded-lg border border-primary/20">Gia hạn</button>
-</div>
-
 <main class="p-4 space-y-5 pb-32">
 
 <!-- Basic Info -->
@@ -264,7 +224,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
     <div class="absolute top-1/2 left-0 w-full h-[2px] bg-slate-100 -translate-y-4"></div>
     <div class="flex justify-between items-start relative z-10">
       <div class="flex flex-col items-center gap-2 flex-1"><div class="w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center border border-purple-200"><span class="material-symbols-outlined text-[14px] text-primary font-bold">check</span></div><span class="text-[9px] font-bold text-primary uppercase">Mới</span></div>
-      <div class="flex flex-col items-center gap-2 flex-1"><div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-sm"><div class="w-2 h-2 rounded-full bg-white"></div></div><span class="text-[9px] font-extrabold text-primary uppercase">Chăm sóc</span></div>
+      <div class="flex flex-col items-center gap-2 flex-1"><div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-sm"><div class="w-2 h-2 rounded-full bg-white"></div></div><span class="text-[9px] font-extrabold text-primary uppercase">Đang chăm sóc</span></div>
       <div class="flex flex-col items-center gap-2 flex-1"><div class="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center"><div class="w-2 h-2 rounded-full bg-slate-400"></div></div><span class="text-[9px] font-medium text-slate-400 uppercase">Từ chối</span></div>
       <div class="flex flex-col items-center gap-2 flex-1"><div class="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center"><div class="w-2 h-2 rounded-full bg-slate-400"></div></div><span class="text-[9px] font-medium text-slate-400 uppercase">Hoàn thành</span></div>
     </div>
@@ -322,11 +282,42 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
     </div>
   </div>
 </section>
+
+<!-- Tài liệu đính kèm -->
+<section class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-xl">attach_file</span>
+      <h3 class="text-body-lg font-bold text-primary">Tài liệu đính kèm</h3>
+    </div>
+    <button class="flex items-center gap-1 px-3 py-1.5 bg-secondary-container text-white text-[10px] font-bold rounded-full active:scale-95" onclick="openLeadAttachModal()">
+      <span class="material-symbols-outlined text-[14px]">add</span>Thêm file
+    </button>
+  </div>
+  <div class="space-y-2">
+    <div class="flex items-center gap-3 p-2.5 bg-surface-container-low rounded-lg">
+      <div class="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-red-600 text-[18px]">picture_as_pdf</span></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-semibold text-on-surface truncate">CCCD_DangKhanhVy.pdf</p>
+        <p class="text-[10px] text-on-surface-variant">320 KB • 20/04/2026</p>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+    </div>
+    <div class="flex items-center gap-3 p-2.5 bg-surface-container-low rounded-lg">
+      <div class="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-green-600 text-[18px]">table_chart</span></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-semibold text-on-surface truncate">SaoKeLuong_3thang.xlsx</p>
+        <p class="text-[10px] text-on-surface-variant">156 KB • 22/04/2026</p>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+    </div>
+  </div>
+</section>
 </main>
 
 <!-- Bottom Action Bar -->
 <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white border-t border-slate-100 px-4 py-4 pb-8 flex gap-3 z-50 rounded-b-[40px]">
-  <button class="flex-[2] h-14 bg-secondary-container text-white flex items-center justify-center gap-2 rounded-2xl font-bold shadow-lg active:scale-95 transition-all" onclick="showView('view-convert')">
+  <button class="flex-[2] h-14 bg-secondary-container text-white flex items-center justify-center gap-2 rounded-2xl font-bold shadow-lg active:scale-95 transition-all" onclick="openConvertPopup()">
     <span class="material-symbols-outlined text-xl" style='font-variation-settings:"FILL" 1;'>rocket_launch</span>
     <span class="text-body-lg uppercase tracking-tight">Chuyển đổi</span>
   </button>
@@ -401,7 +392,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
     <span class="material-symbols-outlined text-[20px]">close</span><span class="text-label-md">Hủy</span>
   </button>
   <h1 class="text-lg font-bold text-primary">Tạo Lead Mới</h1>
-  <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[18px]">person_add</span></div>
+  <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary cursor-pointer active:scale-95 transition-transform" onclick="clearCreateForm()"><span class="material-symbols-outlined text-[18px]">refresh</span></div>
 </header>
 
 <main class="px-4 pt-5 pb-32 space-y-5">
@@ -430,6 +421,14 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
     <label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">mail</span>Email</label>
     <input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="example@email.com" type="email" oninput="updateAIScore()"/>
   </div>
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">id_card</span>Số định danh</label>
+    <input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập CCCD/CMND/Hộ chiếu" type="text"/>
+  </div>
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">location_on</span>Địa chỉ liên hệ</label>
+    <input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập địa chỉ liên hệ" type="text"/>
+  </div>
   <div class="grid grid-cols-2 gap-3">
     <div class="space-y-2"><label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>Ngày sinh</label><input class="w-full h-12 px-3 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md outline-none transition-all" type="date"/></div>
     <div class="space-y-2"><label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">wc</span>Giới tính</label><select class="w-full h-12 px-3 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md outline-none appearance-none"><option value="">Chọn</option><option>Nam</option><option>Nữ</option></select></div>
@@ -437,6 +436,10 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   <div class="space-y-2">
     <label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">work</span>Nghề nghiệp</label>
     <input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập nghề nghiệp" type="text" oninput="updateAIScore()"/>
+  </div>
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">badge</span>Chức vụ</label>
+    <input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none transition-all placeholder:text-outline" placeholder="Nhập chức vụ" type="text"/>
   </div>
 </div>
 
@@ -522,6 +525,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
   <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="leads.html"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>leaderboard</span><span class="text-[10px] font-bold mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]">menu</span><span class="text-[10px] font-medium mt-0.5">More</span></a>
 </nav>
@@ -532,7 +536,6 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div><span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span></a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div><span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span></a>
     <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
   </div>
@@ -592,17 +595,33 @@ function closeBottomSheet() {
   document.getElementById('bottomSheet').classList.add('hidden');
 }
 
+// Convert Popup - choose pipeline transition
+function openConvertPopup() {
+  showModal(
+    'Chuyển đổi trạng thái',
+    'Chọn trạng thái pipeline mới cho Lead:',
+    `<button class="w-full flex items-center gap-3 p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low active:scale-[0.98] transition-all text-left" onclick="closeModal();showToast('✅ Update Trạng thái lead thành công','success')">
+        <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-error text-[18px]">block</span></div>
+        <span class="text-body-md font-bold text-on-surface">Từ chối</span>
+      </button>
+      <button class="w-full flex items-center gap-3 p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low active:scale-[0.98] transition-all text-left" onclick="closeModal();showView('view-convert')">
+        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span></div>
+        <span class="text-body-md font-bold text-on-surface">Hoàn thành</span>
+      </button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl active:bg-slate-50 transition-colors text-label-md" onclick="closeModal()">Hủy</button>`
+  );
+}
+
 // Filter Sheet
 function openFilterSheet() {
   openBottomSheet(`
     <h3 class="text-headline-sm font-semibold text-on-surface mb-4">Lọc theo trạng thái</h3>
     <div class="space-y-3">
       <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="text-body-md text-on-surface">Tất cả</span></label>
-      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 uppercase mr-2">Mới</span><span class="text-body-md text-on-surface">Mới</span></label>
-      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 uppercase mr-2">Đang CS</span><span class="text-body-md text-on-surface">Đang chăm sóc</span></label>
-      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 uppercase mr-2">Chờ</span><span class="text-body-md text-on-surface">Chờ phản hồi</span></label>
-      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 uppercase mr-2">Xong</span><span class="text-body-md text-on-surface">Hoàn thành</span></label>
-      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-error uppercase mr-2">Hết hạn</span><span class="text-body-md text-on-surface">Hết hạn</span></label>
+      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="text-body-md text-on-surface">Mới</span></label>
+      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="text-body-md text-on-surface">Đang chăm sóc</span></label>
+      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="text-body-md text-on-surface">Từ chối</span></label>
+      <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low cursor-pointer"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary h-5 w-5"/><span class="text-body-md text-on-surface">Hoàn thành</span></label>
     </div>
     <div class="flex gap-3 mt-6">
       <button class="flex-1 py-3 text-primary font-semibold rounded-xl active:bg-slate-50 transition-colors" onclick="closeBottomSheet()">Xoá bộ lọc</button>
@@ -614,13 +633,60 @@ function openFilterSheet() {
 // More Menu
 function openMoreMenu() {
   openBottomSheet(`
-    <div class="space-y-1">
-      <button class="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-surface-container-low active:bg-surface-container transition-colors text-left" onclick="closeBottomSheet();showView('view-edit')"><span class="material-symbols-outlined text-primary">edit</span><span class="text-body-md text-on-surface">Chỉnh sửa</span></button>
-      <button class="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-surface-container-low active:bg-surface-container transition-colors text-left" onclick="closeBottomSheet();showToast('Đã sao chép thông tin','success')"><span class="material-symbols-outlined text-primary">content_copy</span><span class="text-body-md text-on-surface">Sao chép thông tin</span></button>
-      <button class="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-surface-container-low active:bg-surface-container transition-colors text-left" onclick="closeBottomSheet()"><span class="material-symbols-outlined text-primary">share</span><span class="text-body-md text-on-surface">Chia sẻ</span></button>
-      <button class="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-surface-container-low active:bg-surface-container transition-colors text-left" onclick="closeBottomSheet();toggleStar(null)"><span class="material-symbols-outlined text-yellow-500">star</span><span class="text-body-md text-on-surface">Đánh dấu ưu tiên</span></button>
-      <div class="border-t border-slate-100 my-2"></div>
-      <button class="w-full flex items-center gap-3 p-4 rounded-xl hover:bg-red-50 active:bg-red-100 transition-colors text-left" onclick="closeBottomSheet();confirmDelete()"><span class="material-symbols-outlined text-error">delete</span><span class="text-body-md text-error">Xoá Lead</span></button>
+    <h3 class="text-headline-sm font-semibold text-on-surface mb-4">Thông tin chi tiết Lead</h3>
+    <div class="space-y-3">
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Họ và tên</span>
+        <span class="text-label-md font-bold text-on-surface">Đặng Khánh Vy</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Số điện thoại</span>
+        <span class="text-label-md font-bold text-on-surface">098 765 4321</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Email</span>
+        <span class="text-label-md font-bold text-on-surface">khanhvy@gmail.com</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Số định danh</span>
+        <span class="text-label-md font-bold text-on-surface">001234567890</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Địa chỉ liên hệ</span>
+        <span class="text-label-md font-bold text-on-surface">Q. Tân Bình, TP.HCM</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Ngày sinh</span>
+        <span class="text-label-md font-bold text-on-surface">12/03/1995</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Giới tính</span>
+        <span class="text-label-md font-bold text-on-surface">Nữ</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Nghề nghiệp</span>
+        <span class="text-label-md font-bold text-on-surface">Nhân viên văn phòng</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Chức vụ</span>
+        <span class="text-label-md font-bold text-on-surface">Trưởng phòng</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Sản phẩm quan tâm</span>
+        <span class="text-label-md font-bold text-primary">Thẻ tín dụng</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+        <span class="text-label-md text-on-surface-variant">Nguồn lead</span>
+        <span class="text-label-md font-bold text-on-surface">Campaign</span>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-label-md text-on-surface-variant">Ghi chú</span>
+        <span class="text-label-md font-bold text-on-surface">KH quan tâm hoàn tiền 10%</span>
+      </div>
+    </div>
+    <div class="flex gap-2 mt-5">
+      <button class="flex-1 py-3 bg-primary text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeBottomSheet();showView('view-edit')">Chỉnh sửa</button>
+      <button class="flex-1 py-3 border border-outline-variant text-on-surface-variant font-semibold rounded-xl active:bg-slate-50" onclick="closeBottomSheet()">Đóng</button>
     </div>
   `);
 }
@@ -647,9 +713,37 @@ function toggleChip(el) {
   if (isActive) {
     el.classList.remove('bg-primary-container','text-on-primary-container');
     el.classList.add('bg-white','border','border-outline-variant','text-on-surface-variant');
+    // Show all cards
+    document.querySelectorAll('.lead-card').forEach(card => card.style.display = '');
+    document.getElementById('leadCount').textContent = document.querySelectorAll('.lead-card').length + ' Leads';
   } else {
     el.classList.add('bg-primary-container','text-on-primary-container');
     el.classList.remove('bg-white','border-outline-variant','text-on-surface-variant');
+    if (el.id === 'filterExpiring') {
+      let count = 0;
+      document.querySelectorAll('.lead-card').forEach(card => {
+        if (card.dataset.expiry === '2026-06') {
+          card.style.display = '';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('leadCount').textContent = count + ' Leads';
+      showToast('Đang lọc: Leads hết hạn tháng 6/2026', 'success');
+    } else if (el.id === 'filterPriority') {
+      let count = 0;
+      document.querySelectorAll('.lead-card').forEach(card => {
+        if (card.dataset.priority === 'true') {
+          card.style.display = '';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('leadCount').textContent = count + ' Leads';
+      showToast('Đang lọc: Leads ưu tiên (⭐)', 'success');
+    }
   }
 }
 
@@ -677,8 +771,23 @@ function confirmDelete() {
 // Confirm convert
 function confirmConvert() {
   showModal('Xác nhận chuyển đổi?', 'Lead <strong>Đặng Khánh Vy</strong> sẽ được chuyển thành <strong>Cơ hội bán hàng</strong>. Thao tác này không thể hoàn tác.',
-    `<button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-95 transition-all" onclick="closeModal();showView('view-list');showToast('🚀 Chuyển đổi thành công! Lead đã trở thành Cơ hội bán hàng.','success',{label:'Xem',onclick:\\"showView(\\'view-list\\')\\"})">Xác nhận</button>
+    `<button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-95 transition-all" onclick="closeModal();showToast('🚀 Chuyển đổi Lead thành công!','success');setTimeout(function(){window.location.href='opportunities.html'},1200)">Xác nhận</button>
      <button class="w-full py-3 text-primary font-semibold rounded-xl active:bg-slate-50 transition-colors" onclick="closeModal()">Huỷ</button>`
+  );
+}
+
+// Attach file modal (Lead Detail only)
+function openLeadAttachModal() {
+  showModal('Đính kèm tài liệu', '',
+    `<div class="space-y-4 text-left">
+      <div class="w-full h-32 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container-low">
+        <span class="material-symbols-outlined text-on-surface-variant text-3xl">cloud_upload</span>
+        <p class="text-label-md text-on-surface-variant">Chọn file hoặc kéo thả vào đây</p>
+        <p class="text-[10px] text-on-surface-variant">PDF, DOC, XLS, JPG (tối đa 10MB)</p>
+      </div>
+      <button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('✅ Đã tải lên thành công','success')">Tải lên</button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>
+    </div>`
   );
 }
 
@@ -686,6 +795,17 @@ function confirmConvert() {
 function saveEdit() {
   showView('view-detail');
   showToast('✓ Đã lưu thay đổi cho lead Đặng Khánh Vy.', 'success');
+}
+
+// Clear create form
+function clearCreateForm() {
+  const form = document.getElementById('view-create');
+  form.querySelectorAll('input').forEach(el => { el.value = ''; });
+  form.querySelectorAll('select').forEach(el => { el.selectedIndex = 0; });
+  form.querySelectorAll('textarea').forEach(el => { el.value = ''; });
+  const aiScore = document.getElementById('aiScore');
+  if (aiScore) { aiScore.textContent = '--'; }
+  showToast('Đã xóa toàn bộ dữ liệu nhập', 'success');
 }
 
 // Submit create lead
@@ -716,6 +836,18 @@ function toggleMoreMenu(){
   if(hidden){o.classList.remove('hidden');m.classList.remove('hidden');}
   else{o.classList.add('hidden');m.classList.add('hidden');}
 }
+
+// Handle URL params on load
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('filter') === 'expiring') {
+    const chip = document.getElementById('filterExpiring');
+    if (chip) toggleChip(chip);
+  }
+  if (params.get('view') === 'detail') {
+    showView('view-detail');
+  }
+})();
 </script>
 </body>
 </html>
