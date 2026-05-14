@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TPBank CRM - Giới thiệu Modules</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Manrope', sans-serif; background: #f8f9ff; color: #0b1c30; }
+.header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-left img { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; }
+.header-left h1 { font-size: 18px; font-weight: 700; color: #390259; }
+.header-left p { font-size: 11px; color: #4c444f; }
+.btn-demo {
+  padding: 8px 16px;
+  background: #390259;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-demo:hover { background: #502070; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+.page-title { font-size: 28px; font-weight: 800; color: #390259; margin-bottom: 8px; }
+.page-subtitle { font-size: 15px; color: #4c444f; margin-bottom: 40px; line-height: 1.6; }
+
+.modules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+
+.module-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #cfc3d1;
+  padding: 28px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(57, 2, 89, 0.1);
+  border-color: #390259;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 16px 16px 0 0;
+}
+.module-card[data-color="purple"]::before { background: #390259; }
+.module-card[data-color="orange"]::before { background: #fc7728; }
+.module-card[data-color="blue"]::before { background: #3b82f6; }
+.module-card[data-color="green"]::before { background: #16a34a; }
+.module-card[data-color="red"]::before { background: #dc2626; }
+.module-card[data-color="amber"]::before { background: #d97706; }
+.module-card[data-color="teal"]::before { background: #0d9488; }
+
+.module-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.module-icon .material-symbols-outlined { font-size: 28px; color: white; font-variation-settings: 'FILL' 1; }
+.module-card[data-color="purple"] .module-icon { background: #390259; }
+.module-card[data-color="orange"] .module-icon { background: #fc7728; }
+.module-card[data-color="blue"] .module-icon { background: #3b82f6; }
+.module-card[data-color="green"] .module-icon { background: #16a34a; }
+.module-card[data-color="red"] .module-icon { background: #dc2626; }
+.module-card[data-color="amber"] .module-icon { background: #d97706; }
+.module-card[data-color="teal"] .module-icon { background: #0d9488; }
+
+.module-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4c444f;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.module-name { font-size: 18px; font-weight: 700; color: #390259; margin-bottom: 8px; }
+.module-desc { font-size: 13px; color: #4c444f; line-height: 1.7; margin-bottom: 16px; }
+
+.module-details { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px dashed #cfc3d1; }
+.module-details.active { display: block; }
+.module-details h4 { font-size: 13px; font-weight: 700; color: #390259; margin-bottom: 8px; margin-top: 14px; }
+.module-details h4:first-child { margin-top: 0; }
+.module-details p, .module-details li { font-size: 12px; color: #4c444f; line-height: 1.7; }
+.module-details ul { padding-left: 16px; margin-bottom: 8px; }
+.module-details li { margin-bottom: 4px; }
+
+.module-links { margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9; }
+.module-links span { font-size: 10px; font-weight: 700; color: #7d7480; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px; }
+.module-links .link-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.module-links .link-tag {
+  padding: 3px 10px;
+  background: #f4daff;
+  color: #390259;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fc7728;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+.toggle-btn .material-symbols-outlined { font-size: 18px; transition: transform 0.3s; }
+.toggle-btn.active .material-symbols-outlined { transform: rotate(180deg); }
+
+@media (max-width: 768px) {
+  .modules-grid { grid-template-columns: 1fr; }
+  .container { padding: 24px 16px; }
+  .page-title { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo"/>
+    <div>
+      <h1>TPBank CRM</h1>
+      <p>Giới thiệu các Modules</p>
+    </div>
+  </div>
+  <a href="dashboard.html" class="btn-demo">Xem Demo →</a>
+</div>
+
+<div class="container">
+  <h2 class="page-title">Modules hệ thống CRM</h2>
+  <p class="page-subtitle">Tổng quan về các module chính trong hệ thống TPBank CRM dành cho Relationship Manager (RM). Mỗi module được thiết kế để hỗ trợ RM trong từng giai đoạn của quy trình bán hàng và chăm sóc khách hàng.</p>
+
+  <div class="modules-grid">
+
+    <!-- Module 1: Dashboard -->
+    <div class="module-card" data-color="purple">
+      <div class="module-icon"><span class="material-symbols-outlined">dashboard</span></div>
+      <div class="module-menu">Home</div>
+      <h3 class="module-name">Trang chủ - Dashboard</h3>
+      <p class="module-desc">Màn hình tổng hợp dữ liệu giúp RM có cái nhìn toàn cảnh về hiệu suất và những việc cần ưu tiên trong ngày.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>Các nhóm thông tin chính:</h4>
+        <ul>
+          <li><strong>Theo dõi KPI:</strong> Tiến độ hoàn thành của từng chỉ tiêu trong tháng</li>
+          <li><strong>Phân bổ KH tiềm năng:</strong> Báo cáo tổng quan về số lượng hồ sơ đang xử lý và cơ hội bán được phân bổ</li>
+          <li><strong>Phân bổ cơ hội:</strong> Báo cáo tổng quan về cơ hội bán, click "Xem danh sách cơ hội sắp đến hạn" để xem chi tiết</li>
+          <li><strong>Nhiệm vụ hôm nay:</strong> Danh sách các nhiệm vụ cần theo dõi, cho phép thêm mới</li>
+          <li><strong>Sự kiện hôm nay:</strong> Danh sách sự kiện, cho phép gọi điện hoặc gửi SMS liên hệ KH</li>
+          <li><strong>KH theo phân khúc:</strong> Báo cáo số lượng KH quản lý chia theo phân khúc</li>
+          <li><strong>Cảnh báo KH rời bỏ:</strong> Danh sách KH sắp rời bỏ theo từng phân khúc</li>
+        </ul>
+        <div class="module-links">
+          <span>Có thể đi đến</span>
+          <div class="link-tags">
+            <span class="link-tag">Lead management</span>
+            <span class="link-tag">Opportunities</span>
+            <span class="link-tag">Task Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2: Customer 360 -->
+    <div class="module-card" data-color="orange">
+      <div class="module-icon"><span class="material-symbols-outlined">account_circle</span></div>
+      <div class="module-menu">Cus360</div>
+      <h3 class="module-name">Customer 360</h3>
+      <p class="module-desc">Cung cấp cho RM một cái nhìn 360 độ để thấu hiểu chân dung, hành vi, tài sản và các mối quan hệ của khách hàng, từ đó đưa ra quyết định tư vấn cá nhân hóa.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>1. Tổng quan (Tab Tổng quan)</h4>
+        <ul>
+          <li>Thông tin tổng quan KH: Tên, trạng thái, đánh giá CIC, phân hạng</li>
+          <li>AI Insights & Summary: Điểm gắn kết và gợi ý bán sản phẩm</li>
+          <li>Nhiệm vụ hôm nay, Life events</li>
+          <li>Biến động AUM: Biểu đồ tăng trưởng tài sản 6 tháng - 1 năm</li>
+          <li>Báo cáo Nợ, Rủi ro & Tuân thủ</li>
+          <li>Hoạt động gần đây: Dòng thời gian giao dịch đa kênh</li>
+        </ul>
+        <h4>2. Tóm tắt KH</h4>
+        <ul>
+          <li>Đánh giá chung (AI Summary): Tóm tắt tự động cho RM</li>
+          <li>Hành động tiếp theo (Next Best Actions): AI sắp xếp theo ưu tiên</li>
+          <li>Tài liệu đính kèm: Quản lý file CCCD, hợp đồng, sao kê</li>
+        </ul>
+        <h4>3. Thông tin KH</h4>
+        <ul>
+          <li>Thông tin cơ bản: CCCD, ngày cấp, trình độ, hôn nhân</li>
+          <li>Thông tin liên hệ: SĐT, Email, địa chỉ</li>
+          <li>Thông tin nghề nghiệp: Đơn vị công tác, chức vụ</li>
+        </ul>
+        <h4>4. Sản phẩm đang sử dụng</h4>
+        <ul>
+          <li>Thẻ: Danh sách thẻ, hạn mức, ngày hết hạn</li>
+          <li>Tài khoản: Danh sách TK, số dư khả dụng</li>
+          <li>Khoản vay: Chi tiết dư nợ gốc, kỳ hạn trả nợ</li>
+        </ul>
+        <h4>5. KH tiềm năng & Cơ hội bán</h4>
+        <ul>
+          <li>Leads: Sản phẩm KH quan tâm, Lead Score</li>
+          <li>Opportunities: Hồ sơ đang xử lý, tỷ lệ Win Rate</li>
+        </ul>
+        <h4>6. Cases</h4>
+        <ul>
+          <li>Danh sách yêu cầu đang xử lý/hoàn thành</li>
+          <li>Mức độ ưu tiên, người xử lý, kênh tiếp nhận</li>
+        </ul>
+        <h4>7. Relationships</h4>
+        <ul>
+          <li>Sơ đồ mối quan hệ gia đình/người thân</li>
+          <li>Dữ liệu liên kết để tư vấn gói sản phẩm gia đình</li>
+        </ul>
+        <div class="module-links">
+          <span>Có thể đi đến</span>
+          <div class="link-tags">
+            <span class="link-tag">Opportunities</span>
+            <span class="link-tag">Lead management</span>
+            <span class="link-tag">Task management</span>
+            <span class="link-tag">Case management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3: Lead Management -->
+    <div class="module-card" data-color="blue">
+      <div class="module-icon"><span class="material-symbols-outlined">leaderboard</span></div>
+      <div class="module-menu">Leads</div>
+      <h3 class="module-name">Lead Management</h3>
+      <p class="module-desc">Quản lý danh sách khách hàng tiềm năng, cho phép cập nhật sales pipeline và tạo mới/update/chuyển đổi lead.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>1. Danh sách Lead</h4>
+        <ul>
+          <li>Thanh tìm kiếm & Bộ lọc: Tìm theo tên, SĐT, lọc theo Trạng thái, Ưu tiên</li>
+          <li>Dashboard mini: Số lượng Lead mới, Tỷ lệ chuyển đổi mục tiêu</li>
+          <li>Thẻ thông tin Lead: Tên, sản phẩm quan tâm, Điểm Lead (AI), Phân loại Hot/Warm</li>
+          <li>Phím tắt hành động: Gọi điện, Gửi email, Nhắn tin ngay</li>
+        </ul>
+        <h4>2. Tạo Lead mới</h4>
+        <ul>
+          <li>Preview AI: Dự báo điểm tiềm năng dựa trên thông tin đang nhập</li>
+          <li>Biểu mẫu thông tin: Các trường nhập liệu cơ bản</li>
+          <li>Tính năng quét/nhập nhanh</li>
+        </ul>
+        <h4>3. Chi tiết Lead</h4>
+        <ul>
+          <li>Trạng thái Pipeline: Thanh tiến trình trực quan</li>
+          <li>Phân tích AI RM: Gợi ý thời điểm chăm sóc KH</li>
+          <li>Lịch sử tương tác: Dòng thời gian hoạt động</li>
+          <li>Nút Chuyển đổi: Chuyển Lead thành Opportunity hoặc KH chính thức</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 4: Opportunities -->
+    <div class="module-card" data-color="green">
+      <div class="module-icon"><span class="material-symbols-outlined">trending_up</span></div>
+      <div class="module-menu">Opps</div>
+      <h3 class="module-name">Opportunities Management</h3>
+      <p class="module-desc">Quản lý danh sách cơ hội kinh doanh, cho phép cập nhật sales pipeline và tạo mới/update/chuyển đổi cơ hội.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>1. Danh sách Cơ hội</h4>
+        <ul>
+          <li>Dashboard Tài chính: Thống kê nhanh số lượng hồ sơ</li>
+          <li>Bộ lọc nhanh: Trạng thái, Sản phẩm, Ưu tiên, Sắp hết hạn</li>
+          <li>Thẻ Opportunity: Chi tiết thông tin cơ hội</li>
+          <li>Cảnh báo hành động: Nhãn "Cần follow-up"</li>
+        </ul>
+        <h4>2. Chi tiết Cơ hội</h4>
+        <ul>
+          <li>Tiến trình (Stepper): Trực quan hóa từ tiếp nhận đến đóng thương vụ</li>
+          <li>Phân tích AI: Xác suất chốt deal và lời khuyên cụ thể</li>
+          <li>Quick Actions: Gọi điện, Nhắn tin, Hẹn gặp, Ghi chú</li>
+          <li>Nút Chuyển đổi Account: Biến Cơ hội thành KH hiện hữu</li>
+        </ul>
+        <h4>3. Chỉnh sửa/Thêm Cơ hội</h4>
+        <ul>
+          <li>Giao diện cập nhật thông tin chi tiết hoặc tạo mới thương vụ</li>
+          <li>Nút Lưu thay đổi để xác nhận cập nhật</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 5: Tasks -->
+    <div class="module-card" data-color="amber">
+      <div class="module-icon"><span class="material-symbols-outlined">assignment</span></div>
+      <div class="module-menu">Tasks</div>
+      <h3 class="module-name">Activity & Task Management</h3>
+      <p class="module-desc">Quản lý danh sách công việc giúp RM quản lý thời gian và thứ tự ưu tiên. Biến chiến lược từ Lead/Opportunity thành hành động cụ thể.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>1. Danh sách Task</h4>
+        <ul>
+          <li>Thanh trạng thái: Task hôm nay và số lượng Quá hạn</li>
+          <li>Bộ lọc thời gian: Hôm nay, Ngày mai, Sắp tới, Quá hạn</li>
+          <li>Gợi ý từ AI: Khuyên RM ưu tiên xử lý task nào trước</li>
+          <li>Nút hành động nhanh: Bắt đầu hoặc Gọi ngay chỉ với một chạm</li>
+        </ul>
+        <h4>2. Chi tiết công việc</h4>
+        <ul>
+          <li>Nút Check-in GPS: Xác nhận vị trí khi đến gặp KH</li>
+          <li>Tiến trình thực hiện: Theo dõi trạng thái task</li>
+          <li>Thông tin KH & Bản đồ: Gọi nhanh và dẫn đường</li>
+          <li>Ghi chú & Hoàn thành: Nhập nội dung trao đổi và đóng task</li>
+        </ul>
+        <h4>3. Tạo công việc mới</h4>
+        <ul>
+          <li>Gợi ý từ AI: Phân tích lịch trình và khuyên thời gian tốt nhất</li>
+          <li>Form nhập liệu: Thông tin theo từng sản phẩm</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 6: Cases -->
+    <div class="module-card" data-color="red">
+      <div class="module-icon"><span class="material-symbols-outlined">folder_open</span></div>
+      <div class="module-menu">More › Cases</div>
+      <h3 class="module-name">Customer Service (Cases)</h3>
+      <p class="module-desc">Quản lý các yêu cầu hỗ trợ, khiếu nại hoặc nghiệp vụ phát sinh sau khi khách hàng đã sử dụng sản phẩm.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>1. Danh sách Case</h4>
+        <ul>
+          <li>Bảng điều khiển: Đang xử lý (12), Quá hạn (03), Mới tạo (05)</li>
+          <li>Bộ lọc & Tìm kiếm: Lọc theo trạng thái, ưu tiên, sắp đến hạn</li>
+          <li>Danh sách Case: Hiển thị chi tiết từng case</li>
+        </ul>
+        <h4>2. Tạo mới yêu cầu</h4>
+        <ul>
+          <li>Giao diện khởi tạo vụ việc hỗ trợ mới cho KH</li>
+        </ul>
+        <h4>3. Chi tiết Case</h4>
+        <ul>
+          <li>Tiến độ xử lý: Theo dõi các giai đoạn</li>
+          <li>Trung tâm liên lạc: Gọi điện hoặc nhắn tin cập nhật tình hình</li>
+          <li>Nút Cập nhật: Thay đổi trạng thái hoặc thêm ghi chú</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 7: Sales Support -->
+    <div class="module-card" data-color="teal">
+      <div class="module-icon"><span class="material-symbols-outlined">support_agent</span></div>
+      <div class="module-menu">More › Sales Support</div>
+      <h3 class="module-name">Sales Support</h3>
+      <p class="module-desc">Các công cụ hỗ trợ sales trong quá trình tư vấn, giúp RM tự tin hơn khi tiếp cận khách hàng.</p>
+      <button class="toggle-btn" onclick="toggleDetails(this)">Xem chi tiết <span class="material-symbols-outlined">expand_more</span></button>
+      <div class="module-details">
+        <h4>Các công cụ chính:</h4>
+        <ul>
+          <li><strong>Cẩm nang sản phẩm:</strong> Thư viện tóm tắt các điểm đắt giá nhất của từng sản phẩm</li>
+          <li><strong>AI gợi ý kịch bản:</strong> AI gợi ý RM cách tư vấn và trả lời theo từng tình huống cá nhân hóa theo từng khách hàng</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleDetails(btn) {
+  const details = btn.nextElementSibling;
+  btn.classList.toggle('active');
+  details.classList.toggle('active');
+  btn.innerHTML = details.classList.contains('active')
+    ? 'Thu gọn <span class="material-symbols-outlined">expand_more</span>'
+    : 'Xem chi tiết <span class="material-symbols-outlined">expand_more</span>';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Tài liệu phân tích</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff","primary":"#390259","on-primary":"#ffffff","on-surface":"#0b1c30","on-surface-variant":"#4c444f","outline-variant":"#cfc3d1","surface-container":"#e5eeff","background":"#f8f9ff"},fontFamily:{"headline-sm":["Manrope"],"label-md":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]}}}}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
+@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+</style>
+</head>
+<body class="bg-background m-0 p-0">
+<div class="device-frame bg-background text-on-surface no-scrollbar">
+
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-100">
+  <div class="flex items-center gap-3">
+    <a href="dashboard.html" class="text-primary active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="text-lg font-bold text-primary">Tài liệu phân tích</h1>
+  </div>
+</header>
+
+<main class="px-4 py-5 pb-10 space-y-5">
+
+<section class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm text-center">
+  <div class="w-16 h-16 mx-auto rounded-full bg-surface-container-low flex items-center justify-center mb-4">
+    <span class="material-symbols-outlined text-on-surface-variant text-3xl">folder_off</span>
+  </div>
+  <h2 class="text-headline-sm font-bold text-on-surface">Chưa có tài liệu</h2>
+  <p class="text-body-md text-on-surface-variant mt-2 leading-relaxed">Tài liệu phân tích module đang được cập nhật. Vui lòng quay lại sau.</p>
+</section>
+
+</main>
+</div>
+</body>
+</html>

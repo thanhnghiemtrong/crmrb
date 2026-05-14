@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Báo cáo KH Tiềm năng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff",
+        "primary":"#390259","on-primary":"#ffffff","on-surface":"#0b1c30",
+        "on-surface-variant":"#4c444f","outline-variant":"#cfc3d1",
+        "surface-container":"#e5eeff","error":"#ba1a1a","secondary":"#a04100",
+        "inverse-surface":"#213145","background":"#f8f9ff"
+      },
+      fontFamily:{"headline-md":["Manrope"],"label-sm":["Manrope"],"label-md":["Manrope"],"headline-sm":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]},
+      fontSize:{
+        "headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],
+        "label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],
+        "body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],
+        "body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
+.filter-active{background:#390259;color:#fff;}
+</style>
+</head>
+<body class="bg-background m-0 p-0">
+<div class="device-frame bg-background text-on-surface no-scrollbar" id="app">
+
+<!-- Header -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-100">
+  <div class="flex items-center gap-3">
+    <a href="dashboard.html" class="text-primary active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="text-lg font-bold text-primary">Báo cáo KH Tiềm năng</h1>
+  </div>
+  <div class="flex items-center gap-2">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary" onclick="toggleFilters()">
+      <span class="material-symbols-outlined">filter_list</span>
+    </button>
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary">
+      <span class="material-symbols-outlined">download</span>
+    </button>
+  </div>
+</header>
+
+<!-- Summary Stats -->
+<div class="px-4 py-3 bg-white border-b border-slate-100">
+  <div class="grid grid-cols-4 gap-2">
+    <div class="text-center p-2 bg-surface-container-low rounded-lg">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Tổng</p>
+      <p class="text-body-lg font-bold text-primary">42</p>
+    </div>
+    <div class="text-center p-2 bg-green-50 rounded-lg">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Mới</p>
+      <p class="text-body-lg font-bold text-green-600">28</p>
+    </div>
+    <div class="text-center p-2 bg-blue-50 rounded-lg">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Đang CS</p>
+      <p class="text-body-lg font-bold text-blue-600">10</p>
+    </div>
+    <div class="text-center p-2 bg-orange-50 rounded-lg">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Hoàn thành</p>
+      <p class="text-body-lg font-bold text-secondary-container">4</p>
+    </div>
+  </div>
+</div>
+
+<!-- Detailed Filter Panel (toggle with filter icon) -->
+<div id="filterPanel" class="hidden px-4 py-3 bg-surface-container-low border-b border-outline-variant/30 space-y-3">
+  <div class="flex justify-between items-center">
+    <p class="text-label-md font-bold text-on-surface-variant uppercase">Bộ lọc nâng cao</p>
+    <button class="text-[10px] text-primary font-bold" onclick="toggleFilters()">Đóng</button>
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Trạng thái</option>
+      <option>Mới</option>
+      <option>Đang chăm sóc</option>
+      <option>Từ chối</option>
+      <option>Hoàn thành</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Đánh giá</option>
+      <option>Hot</option>
+      <option>Warm</option>
+      <option>Cold</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Nguồn KH</option>
+      <option>Website</option>
+      <option>Hotline</option>
+      <option>Giới thiệu</option>
+      <option>Campaign</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Sản phẩm</option>
+      <option>Thẻ tín dụng</option>
+      <option>Vay mua nhà</option>
+      <option>Tiết kiệm</option>
+      <option>Bảo hiểm</option>
+    </select>
+    <input type="date" class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none" placeholder="Từ ngày"/>
+    <input type="date" class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none" placeholder="Đến ngày"/>
+  </div>
+  <div class="flex gap-2">
+    <button class="flex-1 py-2 text-label-md font-semibold text-primary rounded-lg border border-primary/20 active:bg-slate-50">Xóa lọc</button>
+    <button class="flex-1 py-2 text-label-md font-bold text-white bg-secondary-container rounded-lg active:scale-[0.98]">Áp dụng</button>
+  </div>
+</div>
+
+<!-- Table (header + body scroll together) -->
+<div class="px-4 pb-28 overflow-x-auto no-scrollbar">
+  <div class="min-w-[700px]">
+    <!-- Table Header -->
+    <div class="py-2 bg-surface-container border-b border-outline-variant/30">
+      <div class="flex items-center text-[10px] font-bold text-on-surface-variant uppercase">
+        <div class="w-[80px] shrink-0 px-1">Trạng thái</div>
+        <div class="w-[55px] shrink-0 px-1">Đánh giá</div>
+        <div class="w-[110px] shrink-0 px-1">Họ tên</div>
+        <div class="w-[130px] shrink-0 px-1">Email</div>
+        <div class="w-[80px] shrink-0 px-1">Nguồn KH</div>
+        <div class="w-[75px] shrink-0 px-1">Assign Date</div>
+        <div class="w-[90px] shrink-0 px-1">SP quan tâm</div>
+        <div class="w-[75px] shrink-0 px-1">Ngày hết hạn</div>
+      </div>
+    </div>
+    <!-- Table Body -->
+    <div class="divide-y divide-outline-variant/30">
+    <!-- Row 1 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded-full uppercase">Mới</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-red-100 text-red-600 text-[9px] font-bold rounded-full uppercase">Hot</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Đặng Khánh Vy</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">khanhvy@gmail.com</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Campaign</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">20/04/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Thẻ tín dụng</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">15/06/2026</div>
+    </div>
+    <!-- Row 2 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[9px] font-bold rounded-full uppercase">Đang CS</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-orange-100 text-orange-600 text-[9px] font-bold rounded-full uppercase">Warm</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Nguyễn Minh Tuấn</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">minhtuan@email.com</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Website</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">15/04/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Vay mua nhà</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">30/06/2026</div>
+    </div>
+    <!-- Row 3 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded-full uppercase">Mới</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-orange-100 text-orange-600 text-[9px] font-bold rounded-full uppercase">Warm</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Trần Thị Hương</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">huong.tran@mail.vn</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Giới thiệu</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">10/04/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Bảo hiểm</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">20/07/2026</div>
+    </div>
+    <!-- Row 4 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded-full uppercase">Hoàn thành</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-red-100 text-red-600 text-[9px] font-bold rounded-full uppercase">Hot</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Lê Văn Phúc</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">phuc.le@company.vn</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Hotline</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">05/03/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Tiết kiệm</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">01/05/2026</div>
+    </div>
+    <!-- Row 5 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded-full uppercase">Mới</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-blue-100 text-blue-600 text-[9px] font-bold rounded-full uppercase">Cold</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Phạm Quốc Bảo</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">bao.pham@work.com</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Website</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">01/05/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Vay tiêu dùng</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">01/08/2026</div>
+    </div>
+    <!-- Row 6 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[9px] font-bold rounded-full uppercase">Đang CS</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-red-100 text-red-600 text-[9px] font-bold rounded-full uppercase">Hot</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Hoàng Thị Mai</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">mai.hoang@abc.vn</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Campaign</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">18/04/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Thẻ tín dụng</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">18/06/2026</div>
+    </div>
+    <!-- Row 7 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded-full uppercase">Mới</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-orange-100 text-orange-600 text-[9px] font-bold rounded-full uppercase">Warm</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Vũ Đức Anh</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">ducanh.vu@mail.com</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Giới thiệu</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">08/05/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Vay mua nhà</div>
+      <div class="w-[75px] shrink-0 px-1 text-secondary-container font-semibold">08/08/2026</div>
+    </div>
+    <!-- Row 8 -->
+    <div class="flex items-center py-3 text-[11px]">
+      <div class="w-[80px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-red-100 text-red-600 text-[9px] font-bold rounded-full uppercase">Từ chối</span></div>
+      <div class="w-[55px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-blue-100 text-blue-600 text-[9px] font-bold rounded-full uppercase">Cold</span></div>
+      <div class="w-[110px] shrink-0 px-1 font-semibold text-on-surface">Ngô Thanh Tùng</div>
+      <div class="w-[130px] shrink-0 px-1 text-on-surface-variant truncate">tung.ngo@xyz.vn</div>
+      <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">Hotline</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">22/03/2026</div>
+      <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Bảo hiểm</div>
+      <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">22/05/2026</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#"><span class="material-symbols-outlined text-[24px]">menu</span><span class="text-[10px] font-medium mt-0.5">More</span></a>
+</nav>
+
+</div><!-- end device-frame -->
+
+<script>
+function toggleFilters() {
+  document.getElementById('filterPanel').classList.toggle('hidden');
+}
+</script>
+</body>
+</html>

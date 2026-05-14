@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="vi">
 <head>
 <meta charset="utf-8"/>
@@ -15,8 +15,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .no-scrollbar::-webkit-scrollbar{display:none;}
 .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
-.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
-@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
 .view{display:none;}.view.active{display:block;}
 .toast{animation:slideDown .3s ease-out;}
 @keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -24,7 +23,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
 </head>
-<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<body class="bg-background m-0 p-0">
 <div class="device-frame bg-background text-on-background no-scrollbar" id="app">
 
 <!-- Toast Container -->
@@ -36,7 +35,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <div class="view active" id="view-list">
 <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-200 h-16 flex justify-between items-center px-4 w-full">
   <div class="flex items-center gap-3">
-    <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary-container text-[16px]">person</span></div>
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo" class="w-10 h-10 rounded-lg object-contain">
     <h1 class="font-extrabold text-lg text-primary">Công việc & Nhắc việc</h1>
   </div>
   <div class="flex items-center gap-1">
@@ -94,7 +93,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
       <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-label-sm font-semibold">Sắp tới</span>
       <div class="flex gap-2" onclick="event.stopPropagation()">
         <button class="p-2 rounded-full bg-slate-50 text-slate-600 border border-slate-100 active:scale-95 transition-transform"><span class="material-symbols-outlined text-[20px]">directions</span></button>
-        <button class="px-4 py-2 rounded-full bg-secondary-container text-white text-label-md font-bold active:scale-95 transition-transform">Bắt đầu</button>
+        <button class="px-4 py-2 rounded-full bg-secondary-container text-white text-label-md font-bold active:scale-95 transition-transform" onclick="showToast('✓ Check-in thành công tại Chi nhánh TPBank Hội Sở!','success')">Checkin</button>
       </div>
     </div>
   </div>
@@ -238,7 +237,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </main>
 
 <!-- Bottom Actions -->
-<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 grid grid-cols-2 gap-3 z-50 rounded-b-[40px]">
+<div class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 grid grid-cols-2 gap-3 z-50 rounded-b-[40px]">
   <button class="h-12 border border-primary text-primary font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2"><span class="material-symbols-outlined text-[20px]">edit_note</span>Ghi chú</button>
   <button class="h-12 bg-secondary-container text-white font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2" onclick="completeTask()"><span class="material-symbols-outlined text-[20px]">task_alt</span>Hoàn thành</button>
 </div>
@@ -315,7 +314,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </div>
 </main>
 
-<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+<footer class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
   <button class="w-full h-14 bg-secondary-container text-white rounded-2xl font-bold text-headline-sm shadow-lg shadow-orange-500/20 active:scale-95 transition-transform flex items-center justify-center gap-2" onclick="submitTask()">
     <span class="material-symbols-outlined">add_task</span>Tạo công việc
   </button>
@@ -323,21 +322,21 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </div>
 
 <!-- ===== Bottom Navigation ===== -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
   <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="tasks.html"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>assignment</span><span class="text-[10px] font-bold mt-0.5">Tasks</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]">menu</span><span class="text-[10px] font-medium mt-0.5">More</span></a>
 </nav>
 
 <!-- More Menu -->
 <div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
-<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
+<div id="moreMenu" class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div><span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span></a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div><span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span></a>
     <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
   </div>
@@ -389,6 +388,13 @@ function toggleMoreMenu(){
   if(hidden){o.classList.remove('hidden');m.classList.remove('hidden');}
   else{o.classList.add('hidden');m.classList.add('hidden');}
 }
+
+// Handle URL params
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('action') === 'create') { showView('view-create'); }
+  if (params.get('view') === 'detail') { showView('view-detail'); }
+})();
 </script>
 </body>
 </html>

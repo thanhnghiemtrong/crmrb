@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Báo cáo KH xu hướng rời bỏ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff",
+        "primary":"#390259","on-primary":"#ffffff","on-surface":"#0b1c30",
+        "on-surface-variant":"#4c444f","outline-variant":"#cfc3d1",
+        "surface-container":"#e5eeff","error":"#ba1a1a","secondary":"#a04100",
+        "inverse-surface":"#213145","background":"#f8f9ff"
+      },
+      fontFamily:{"headline-sm":["Manrope"],"label-md":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]},
+      fontSize:{
+        "headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],
+        "label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],
+        "body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],
+        "body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
+</style>
+</head>
+<body class="bg-background m-0 p-0">
+<div class="device-frame bg-background text-on-surface no-scrollbar" id="app">
+
+<!-- Header -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-100">
+  <div class="flex items-center gap-3">
+    <a href="dashboard.html" class="text-primary active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="text-lg font-bold text-primary">BC KH xu hướng rời bỏ</h1>
+  </div>
+  <div class="flex items-center gap-2">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary" onclick="toggleFilters()">
+      <span class="material-symbols-outlined">filter_list</span>
+    </button>
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary">
+      <span class="material-symbols-outlined">download</span>
+    </button>
+  </div>
+</header>
+
+<!-- Summary Stats -->
+<div class="px-4 py-3 bg-white border-b border-slate-100">
+  <div class="grid grid-cols-3 gap-2">
+    <div class="text-center p-2 bg-red-50 rounded-lg border border-red-100">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Rủi ro cao</p>
+      <p class="text-body-lg font-bold text-error">5</p>
+    </div>
+    <div class="text-center p-2 bg-amber-50 rounded-lg border border-amber-100">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Trung bình</p>
+      <p class="text-body-lg font-bold text-amber-600">4</p>
+    </div>
+    <div class="text-center p-2 bg-green-50 rounded-lg border border-green-100">
+      <p class="text-[9px] text-on-surface-variant uppercase font-bold">Thấp</p>
+      <p class="text-body-lg font-bold text-green-600">3</p>
+    </div>
+  </div>
+</div>
+
+<!-- Filter Panel -->
+<div id="filterPanel" class="hidden px-4 py-3 bg-surface-container-low border-b border-outline-variant/30 space-y-3">
+  <div class="flex justify-between items-center">
+    <p class="text-label-md font-bold text-on-surface-variant uppercase">Bộ lọc nâng cao</p>
+    <button class="text-[10px] text-primary font-bold" onclick="toggleFilters()">Đóng</button>
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Phân khúc</option>
+      <option>Mass</option>
+      <option>Premier</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">% Churn</option>
+      <option>≥ 80%</option>
+      <option>50% - 79%</option>
+      <option>< 50%</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">RM phụ trách</option>
+      <option>Nguyễn Văn A</option>
+      <option>Trần Thị B</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface focus:ring-primary focus:border-primary outline-none">
+      <option value="">Điểm gắn kết</option>
+      <option>≤ 3</option>
+      <option>4 - 6</option>
+      <option>≥ 7</option>
+    </select>
+  </div>
+  <div class="flex gap-2">
+    <button class="flex-1 py-2 text-label-md font-semibold text-primary rounded-lg border border-primary/20 active:bg-slate-50">Xóa lọc</button>
+    <button class="flex-1 py-2 text-label-md font-bold text-white bg-secondary-container rounded-lg active:scale-[0.98]">Áp dụng</button>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="px-4 pb-28 overflow-x-auto no-scrollbar">
+  <div class="min-w-[750px]">
+    <!-- Table Header -->
+    <div class="py-2 bg-surface-container border-b border-outline-variant/30">
+      <div class="flex items-center text-[10px] font-bold text-on-surface-variant uppercase">
+        <div class="w-[100px] shrink-0 px-1">Tên KH</div>
+        <div class="w-[75px] shrink-0 px-1">Mã CIF</div>
+        <div class="w-[70px] shrink-0 px-1">Phân khúc</div>
+        <div class="w-[90px] shrink-0 px-1">RM phụ trách</div>
+        <div class="w-[75px] shrink-0 px-1">% Churn</div>
+        <div class="w-[75px] shrink-0 px-1">Điểm GK</div>
+        <div class="w-[80px] shrink-0 px-1">Ngày nhận diện</div>
+      </div>
+    </div>
+    <!-- Table Body -->
+    <div class="divide-y divide-outline-variant/30">
+      <!-- Row 1 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Nguyễn Anh Đức</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">87654321</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">92%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">2.1/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">01/05/2026</div>
+      </div>
+      <!-- Row 2 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Trần Minh Quân</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">76543210</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">85%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">3.0/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">28/04/2026</div>
+      </div>
+      <!-- Row 3 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Lê Thị Hồng</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">65432109</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Trần Thị B</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">80%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">4.2/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">15/04/2026</div>
+      </div>
+      <!-- Row 4 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Phạm Văn Toàn</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">54321098</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">88%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">2.5/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">10/04/2026</div>
+      </div>
+      <!-- Row 5 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Hoàng Thị Lan</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">43210987</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Trần Thị B</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">82%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-error">3.5/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">05/05/2026</div>
+      </div>
+      <!-- Row 6 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Vũ Đức Hải</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">32109876</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">65%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">4.8/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">20/04/2026</div>
+      </div>
+      <!-- Row 7 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Ngô Thanh Tùng</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">21098765</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Trần Thị B</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">58%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">5.2/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">12/04/2026</div>
+      </div>
+      <!-- Row 8 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Đỗ Minh Châu</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">10987654</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">55%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">5.8/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">08/05/2026</div>
+      </div>
+      <!-- Row 9 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Bùi Thị Ngọc</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">98765432</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Trần Thị B</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="text-green-600 font-bold">35%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-green-600">7.1/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">25/04/2026</div>
+      </div>
+      <!-- Row 10 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Trịnh Văn Nam</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">87651234</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="text-green-600 font-bold">28%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-green-600">8.0/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">18/04/2026</div>
+      </div>
+      <!-- Row 11 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Cao Thị Yến</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">76541230</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-slate-100 text-on-surface text-[9px] font-bold rounded-full">Mass</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Trần Thị B</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="text-green-600 font-bold">22%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-green-600">8.5/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">30/04/2026</div>
+      </div>
+      <!-- Row 12 -->
+      <div class="flex items-center py-3 text-[11px]">
+        <div class="w-[100px] shrink-0 px-1 font-semibold text-on-surface">Đinh Quốc Việt</div>
+        <div class="w-[75px] shrink-0 px-1 text-on-surface-variant">65430987</div>
+        <div class="w-[70px] shrink-0 px-1"><span class="px-1.5 py-0.5 bg-purple-100 text-primary text-[9px] font-bold rounded-full">Premier</span></div>
+        <div class="w-[90px] shrink-0 px-1 text-on-surface-variant">Nguyễn Văn A</div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">72%</span></div>
+        <div class="w-[75px] shrink-0 px-1"><span class="font-bold text-amber-600">4.0/10</span></div>
+        <div class="w-[80px] shrink-0 px-1 text-on-surface-variant">02/05/2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#"><span class="material-symbols-outlined text-[24px]">menu</span><span class="text-[10px] font-medium mt-0.5">More</span></a>
+</nav>
+
+</div><!-- end device-frame -->
+
+<script>
+function toggleFilters() {
+  document.getElementById('filterPanel').classList.toggle('hidden');
+}
+</script>
+</body>
+</html>

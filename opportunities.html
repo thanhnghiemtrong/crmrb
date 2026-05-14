@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="vi">
 <head>
 <meta charset="utf-8"/>
@@ -15,8 +15,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .no-scrollbar::-webkit-scrollbar{display:none;}
 .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
-.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
-@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
 .view{display:none;}.view.active{display:block;}
 .toast{animation:slideDown .3s ease-out;}
 @keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -24,7 +23,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
 </head>
-<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<body class="bg-background m-0 p-0">
 <div class="device-frame bg-background text-on-background no-scrollbar" id="app">
 
 <!-- Toast Container -->
@@ -36,9 +35,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <div class="view active" id="view-list">
 <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
   <div class="flex items-center gap-3">
-    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed bg-primary-container flex items-center justify-center">
-      <span class="material-symbols-outlined text-on-primary-container text-[18px]">person</span>
-    </div>
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo" class="w-10 h-10 rounded-lg object-contain">
     <h1 class="font-extrabold text-lg text-primary">Cơ hội kinh doanh</h1>
   </div>
   <div class="flex items-center gap-1">
@@ -52,8 +49,8 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4">
   <button class="px-4 py-2 rounded-full bg-primary-container text-white text-label-md whitespace-nowrap shadow-sm font-bold">Trạng thái</button>
   <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Sản phẩm</button>
-  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Ưu tiên</button>
-  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap">Sắp hết hạn</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap" id="oppFilterPriority" onclick="toggleOppChip(this)">Ưu tiên</button>
+  <button class="px-4 py-2 rounded-full bg-white border border-outline-variant text-on-surface-variant text-label-md whitespace-nowrap" id="oppFilterExpiring" onclick="toggleOppChip(this)">Sắp hết hạn</button>
 </div>
 
 <!-- KPI Summary -->
@@ -73,7 +70,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <!-- Opportunity Cards -->
 <div class="space-y-4">
   <!-- Card 1: High Potential with Warning -->
-  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+  <div class="opp-card bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" data-priority="true" data-close-month="11" onclick="showView('view-detail')">
     <div class="flex justify-between items-start mb-3">
       <div>
         <h3 class="text-headline-sm text-on-surface">Đặng Khánh Vy</h3>
@@ -110,7 +107,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   </div>
 
   <!-- Card 2: Regular -->
-  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+  <div class="opp-card bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" data-priority="false" data-close-month="12" onclick="showView('view-detail')">
     <div class="flex justify-between items-start mb-3">
       <div>
         <h3 class="text-headline-sm text-on-surface">Trần Minh Tâm</h3>
@@ -140,7 +137,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
   </div>
 
   <!-- Card 3: Priority with high win rate -->
-  <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" onclick="showView('view-detail')">
+  <div class="opp-card bg-white rounded-xl p-4 border border-slate-100 shadow-sm relative overflow-hidden cursor-pointer active:scale-[0.99] transition-all" data-priority="true" data-close-month="12" onclick="showView('view-detail')">
     <div class="flex justify-between items-start mb-3">
       <div>
         <h3 class="text-headline-sm text-on-surface">Lê Thị Mai Anh</h3>
@@ -303,27 +300,60 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <!-- Detailed Information -->
 <section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
   <div class="p-4 border-b border-slate-50 bg-slate-50/50">
-    <h3 class="text-headline-sm text-on-surface">Thông tin chi tiết</h3>
+    <h3 class="text-headline-sm text-on-surface">Thông tin chung</h3>
   </div>
   <div class="divide-y divide-slate-50">
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Sản phẩm</span><span class="text-sm font-semibold text-right text-on-surface">Thẻ Platinum Visa</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Nguồn</span><span class="text-sm font-semibold text-right text-on-surface">Kênh Digital</span></div>
+  </div>
+</section>
+
+<section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-slate-50 bg-slate-50/50">
+    <h3 class="text-headline-sm text-on-surface">Thông tin khách hàng</h3>
+  </div>
+  <div class="divide-y divide-slate-50">
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Họ và tên</span><span class="text-sm font-semibold text-right text-on-surface">Đặng Khánh Vy</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày sinh</span><span class="text-sm font-semibold text-right text-on-surface">12/05/1988</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Giới tính</span><span class="text-sm font-semibold text-right text-on-surface">Nữ</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Quốc tịch</span><span class="text-sm font-semibold text-right text-on-surface">Việt Nam</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày sinh</span><span class="text-sm font-semibold text-right text-on-surface">12/05/1988</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Số điện thoại</span><span class="text-sm font-semibold text-right text-on-surface">0912 xxx 456</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Số định danh</span><span class="text-sm font-semibold text-right text-on-surface">001234567890</span></div>
+  </div>
+</section>
+
+<section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-slate-50 bg-slate-50/50">
+    <h3 class="text-headline-sm text-on-surface">Thông tin địa chỉ</h3>
+  </div>
+  <div class="divide-y divide-slate-50">
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ thường trú</span><span class="text-sm font-semibold text-right text-on-surface">Ba Đình, Hà Nội</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ tạm trú</span><span class="text-sm font-semibold text-right text-on-surface">Quận 1, TP. HCM</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Địa chỉ hiện tại</span><span class="text-sm font-semibold text-right text-on-surface">Quận 1, TP. HCM</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Thời gian cư trú</span><span class="text-sm font-semibold text-right text-on-surface">3 năm 5 tháng</span></div>
+  </div>
+</section>
+
+<section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-slate-50 bg-slate-50/50">
+    <h3 class="text-headline-sm text-on-surface">Thông tin nghề nghiệp</h3>
+  </div>
+  <div class="divide-y divide-slate-50">
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Nghề nghiệp</span><span class="text-sm font-semibold text-right text-on-surface">Kinh doanh tự do</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Chức danh</span><span class="text-sm font-semibold text-right text-on-surface">Chủ hộ kinh doanh</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Thu nhập bình quân</span><span class="text-sm font-semibold text-right text-on-surface">35.000.000 VND</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Giá trị/Hạn mức</span><span class="text-sm font-semibold text-right text-on-surface">50.000.000 VND</span></div>
+  </div>
+</section>
+
+<section class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+  <div class="p-4 border-b border-slate-50 bg-slate-50/50">
+    <h3 class="text-headline-sm text-on-surface">Chi tiết cơ hội</h3>
+  </div>
+  <div class="divide-y divide-slate-50">
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Giá trị dự kiến</span><span class="text-sm font-semibold text-right text-primary">50.000.000 VND</span></div>
     <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Loại tiền</span><span class="text-sm font-semibold text-right text-on-surface">VND</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày tiếp nhận</span><span class="text-sm font-semibold text-right text-on-surface">20/11/2024</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày dự kiến đóng</span><span class="text-sm font-semibold text-right text-on-surface">30/11/2024</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Nguồn</span><span class="text-sm font-semibold text-right text-on-surface">Facebook Leads</span></div>
-    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Lý do từ chối</span><span class="text-sm font-semibold text-right text-slate-400">N/A</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày tiếp nhận</span><span class="text-sm font-semibold text-right text-on-surface">01/10/2024</span></div>
+    <div class="p-4 grid grid-cols-2"><span class="text-sm text-slate-500">Ngày dự kiến đóng</span><span class="text-sm font-semibold text-right text-secondary-container">30/11/2024</span></div>
   </div>
 </section>
 
@@ -331,7 +361,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <section class="space-y-4">
   <div class="flex items-center justify-between px-1">
     <h3 class="text-headline-sm">Lịch sử tương tác</h3>
-    <button class="text-purple-700 text-xs font-bold uppercase tracking-wide">Xem tất cả</button>
+    <button class="text-purple-700 text-xs font-bold uppercase tracking-wide" onclick="showAllInteractions()">Xem tất cả</button>
   </div>
   <div class="space-y-4">
     <div class="relative pl-8 pb-4">
@@ -354,7 +384,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </main>
 
 <!-- Bottom Actions -->
-<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+<div class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
   <div class="flex gap-3">
     <button class="flex-[2] h-14 bg-secondary-container text-white font-bold rounded-2xl shadow-lg shadow-orange-200 flex items-center justify-center gap-2 active:scale-[0.98] transition-all" onclick="convertToAccount()">
       <span class="material-symbols-outlined">person_add</span>Chuyển thành Account
@@ -558,29 +588,91 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </main>
 
 <!-- Submit Button -->
-<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+<footer class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
   <button class="w-full h-14 bg-secondary-container text-white rounded-2xl font-bold text-headline-sm shadow-lg shadow-orange-500/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2" onclick="submitOpportunity()">
     <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;'>add_circle</span><span id="submitBtnText">Tạo Cơ hội</span>
   </button>
 </footer>
 </div>
 
+<!-- ========== VIEW: ALL INTERACTIONS ========== -->
+<div class="view" id="view-interactions">
+<header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
+  <div class="flex items-center gap-3">
+    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="showView('view-detail')"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <h1 class="font-bold text-lg text-primary">Lịch sử tương tác</h1>
+  </div>
+</header>
+<main class="px-4 py-4 space-y-5 pb-28">
+  <p class="text-label-md text-on-surface-variant uppercase tracking-wider">Tổng: 6 tương tác</p>
+  <div class="space-y-4">
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">call</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Cuộc gọi tư vấn thành công</h4><span class="text-[10px] text-slate-400">2 giờ trước</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Đã trao đổi về các tính năng của thẻ Platinum và phí thường niên.</p>
+      </div>
+    </div>
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">description</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Gửi tài liệu đề xuất</h4><span class="text-[10px] text-slate-400">Hôm qua</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Đã gửi email kèm brochure sản phẩm.</p>
+      </div>
+    </div>
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">chat</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Nhắn tin Zalo</h4><span class="text-[10px] text-slate-400">20/05/2026</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Gửi link đăng ký mở thẻ online cho KH.</p>
+      </div>
+    </div>
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">event</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Hẹn gặp tại chi nhánh</h4><span class="text-[10px] text-slate-400">18/05/2026</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">KH đến CN Bến Nghé nộp hồ sơ bổ sung.</p>
+      </div>
+    </div>
+    <div class="relative pl-8 pb-4">
+      <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-slate-100"></div>
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">call</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Gọi điện lần đầu</h4><span class="text-[10px] text-slate-400">15/05/2026</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Giới thiệu sản phẩm thẻ tín dụng Platinum, KH quan tâm.</p>
+      </div>
+    </div>
+    <div class="relative pl-8">
+      <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center"><span class="material-symbols-outlined text-[12px]">add_circle</span></div>
+      <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+        <div class="flex justify-between items-start"><h4 class="text-sm font-bold">Tạo cơ hội</h4><span class="text-[10px] text-slate-400">10/05/2026</span></div>
+        <p class="text-xs text-on-surface-variant mt-1">Cơ hội được tạo từ Lead chuyển đổi.</p>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
 <!-- ===== Bottom Navigation ===== -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="opportunities.html"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>trending_up</span><span class="text-[10px] font-bold mt-0.5">Opps</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
-  <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>menu</span><span class="text-[10px] font-bold mt-0.5">More</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]">menu</span><span class="text-[10px] font-medium mt-0.5">More</span></a>
 </nav>
 
 <!-- More Menu -->
 <div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
-<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
+<div id="moreMenu" class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl bg-purple-50 ring-2 ring-primary/20 active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]" style='font-variation-settings:"FILL" 1;'>trending_up</span></div><span class="text-label-md text-primary text-center leading-tight font-bold">Opportunities</span></a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div><span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span></a>
     <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]">folder_open</span></div><span class="text-label-md text-on-surface text-center leading-tight">Cases</span></a>
   </div>
@@ -630,6 +722,10 @@ function toggleMoreMenu(){
 function toggleDetailMenu(){
   const menu = document.getElementById('detailMenuDropdown');
   menu.classList.toggle('hidden');
+}
+
+function showAllInteractions(){
+  showView('view-interactions');
 }
 
 function convertToAccount(){
@@ -692,6 +788,45 @@ document.addEventListener('click', function(e) {
     menu.classList.add('hidden');
   }
 });
+
+// Toggle opportunity filter chips
+function toggleOppChip(el) {
+  const isActive = el.classList.contains('bg-primary-container');
+  if (isActive) {
+    el.classList.remove('bg-primary-container','text-white','shadow-sm','font-bold');
+    el.classList.add('bg-white','border','border-outline-variant','text-on-surface-variant');
+    document.querySelectorAll('.opp-card').forEach(card => card.style.display = '');
+  } else {
+    el.classList.add('bg-primary-container','text-white','shadow-sm','font-bold');
+    el.classList.remove('bg-white','border-outline-variant','text-on-surface-variant');
+    if (el.id === 'oppFilterPriority') {
+      document.querySelectorAll('.opp-card').forEach(card => {
+        card.style.display = card.dataset.priority === 'true' ? '' : 'none';
+      });
+      showToast('Đang lọc: Cơ hội ưu tiên (⭐)', 'success');
+    } else if (el.id === 'oppFilterExpiring') {
+      document.querySelectorAll('.opp-card').forEach(card => {
+        card.style.display = card.dataset.closeMonth === '11' ? '' : 'none';
+      });
+      showToast('Đang lọc: Cơ hội sắp đến hạn (tháng 11)', 'success');
+    }
+  }
+}
+
+// Handle URL params on load
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('filter') === 'expiring') {
+    const chip = document.getElementById('oppFilterExpiring');
+    if (chip) toggleOppChip(chip);
+  }
+  if (params.get('action') === 'create') {
+    showView('view-create');
+  }
+  if (params.get('view') === 'detail') {
+    showView('view-detail');
+  }
+})();
 </script>
 </body>
 </html>

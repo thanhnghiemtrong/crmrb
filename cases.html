@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="vi">
 <head>
 <meta charset="utf-8"/>
@@ -15,8 +15,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .no-scrollbar::-webkit-scrollbar{display:none;}
 .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
-.device-frame{width:430px;height:932px;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:40px;box-shadow:0 25px 60px rgba(0,0,0,0.15);}
-@media(max-width:430px){.device-frame{width:100%;height:100vh;border-radius:0;box-shadow:none;}}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
 .view{display:none;}.view.active{display:block;}
 .toast{animation:slideDown .3s ease-out;}
 @keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -24,7 +23,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 </style>
 </head>
-<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<body class="bg-background m-0 p-0">
 <div class="device-frame bg-background text-on-background no-scrollbar" id="app">
 <div id="toastContainer" class="fixed top-20 left-1/2 -translate-x-1/2 w-[400px] max-w-[calc(100%-32px)] z-[100] pointer-events-none"></div>
 <div id="modalOverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] flex items-center justify-center p-6 hidden modal-overlay"><div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl space-y-4" id="modalContent"></div></div>
@@ -33,10 +32,10 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 <div class="view active" id="view-list">
 <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100 h-16 flex justify-between items-center px-4 w-full">
   <div class="flex items-center gap-3">
-    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 active:scale-95" onclick="window.location.href='dashboard.html'"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo" class="w-10 h-10 rounded-lg object-contain">
     <h1 class="font-extrabold text-lg text-primary">Case Management</h1>
   </div>
-  <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50"><span class="material-symbols-outlined text-slate-600">search</span></button>
+  <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50"><span class="material-symbols-outlined text-slate-600">notifications</span></button>
 </header>
 <main class="px-4 py-4 space-y-5 pb-28">
 <!-- Search -->
@@ -191,10 +190,10 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </section>
 </main>
 <!-- Bottom Actions -->
-<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white/90 backdrop-blur-md px-4 py-4 pb-8 flex items-center gap-3 border-t border-slate-100 z-50 rounded-b-[40px]">
+<div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md px-4 py-4 pb-8 flex items-center gap-3 border-t border-slate-100 z-50 rounded-b-[40px]">
   <button class="flex-1 h-12 rounded-xl bg-surface-container flex items-center justify-center gap-2 active:scale-95 transition-all"><span class="material-symbols-outlined text-primary">call</span><span class="text-label-md font-bold text-primary">Gọi điện</span></button>
   <button class="flex-1 h-12 rounded-xl bg-surface-container flex items-center justify-center gap-2 active:scale-95 transition-all"><span class="material-symbols-outlined text-primary">chat_bubble</span><span class="text-label-md font-bold text-primary">Nhắn tin</span></button>
-  <button class="flex-[1.5] h-12 rounded-xl bg-secondary-container text-white flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-orange-200" onclick="showToast('✓ Case đã được cập nhật!','success')"><span class="material-symbols-outlined">sync</span><span class="text-label-md font-bold">Cập nhật</span></button>
+  <button class="flex-[1.5] h-12 rounded-xl bg-secondary-container text-white flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-orange-200" onclick="openUpdateCasePopup()"><span class="material-symbols-outlined">sync</span><span class="text-label-md font-bold">Cập nhật</span></button>
 </div>
 </div>
 
@@ -287,7 +286,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </main>
 
 <!-- Submit -->
-<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
+<footer class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 z-50 rounded-b-[40px]">
   <button class="w-full h-14 bg-secondary-container text-white rounded-2xl font-bold text-headline-sm shadow-lg shadow-orange-500/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2" onclick="submitCase()">
     <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;'>task_alt</span>Tạo Case
   </button>
@@ -296,21 +295,21 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 </div>
 
 <!-- ===== Bottom Navigation ===== -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-30 rounded-b-[40px]" id="bottomNav">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html"><span class="material-symbols-outlined text-[24px]">home</span><span class="text-[10px] font-medium mt-0.5">Home</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="cus360.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-[10px] font-medium mt-0.5">Cus360</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html"><span class="material-symbols-outlined text-[24px]">leaderboard</span><span class="text-[10px] font-medium mt-0.5">Leads</span></a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html"><span class="material-symbols-outlined text-[24px]">trending_up</span><span class="text-[10px] font-medium mt-0.5">Opps</span></a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="text-[10px] font-medium mt-0.5">Tasks</span></a>
   <a class="flex flex-col items-center justify-center text-[#F37021] bg-[#F37021]/10 rounded-xl px-3 py-1" href="#" onclick="event.preventDefault();toggleMoreMenu()"><span class="material-symbols-outlined text-[24px]" style='font-variation-settings:"FILL" 1;'>menu</span><span class="text-[10px] font-bold mt-0.5">More</span></a>
 </nav>
 
 <!-- More Menu -->
 <div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
-<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
+<div id="moreMenu" class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5">
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div><span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span></a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div><span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span></a>
     <a href="cases.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl bg-purple-50 ring-2 ring-primary/20 active:scale-95 transition-all"><div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600 text-[24px]" style='font-variation-settings:"FILL" 1;'>folder_open</span></div><span class="text-label-md text-primary text-center leading-tight font-bold">Cases</span></a>
   </div>
@@ -350,6 +349,36 @@ function submitCase(){
   showView('view-list');
   showToast('✓ Tạo Case thành công! Case mới đã được ghi nhận.','success');
 }
+
+function openUpdateCasePopup(){
+  showModal('Cập nhật Case','',`
+    <div class="space-y-4 text-left">
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Trạng thái *</label>
+        <select class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none appearance-none">
+          <option>Đang xử lý</option>
+          <option>Chờ phản hồi KH</option>
+          <option>Đã giải quyết</option>
+          <option>Đóng</option>
+        </select>
+      </div>
+      <div class="space-y-2">
+        <label class="text-label-md text-on-surface-variant">Ghi chú</label>
+        <textarea class="w-full p-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md outline-none resize-none" rows="3" placeholder="Nhập ghi chú cập nhật..."></textarea>
+      </div>
+      <button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('✓ Case đã được cập nhật!','success')">Xác nhận</button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>
+    </div>
+  `);
+}
+
+// Handle URL params
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('view') === 'detail') {
+    showView('view-detail');
+  }
+})();
 </script>
 </body>
 </html>

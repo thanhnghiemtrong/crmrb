@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="vi">
 <head>
 <meta charset="utf-8"/>
@@ -83,19 +83,18 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.device-frame { width: 430px; height: 932px; margin: 0 auto; overflow-y: auto; overflow-x: hidden; position: relative; border-radius: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
-@media (max-width: 430px) { .device-frame { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; } }
+.device-frame { width: 100%; max-width: 100%; height: 100vh; margin: 0 auto; overflow-y: auto; overflow-x: hidden; position: relative; border-radius: 0; box-shadow: none; }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 </style>
 </head>
-<body class="bg-slate-100 flex items-center justify-center min-h-screen py-8">
+<body class="bg-background m-0 p-0">
 <div class="device-frame bg-surface text-on-surface no-scrollbar" id="app">
 
 <!-- ===== FR-1.1: Top AppBar ===== -->
 <header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-200">
   <div class="flex items-center gap-3">
-    <button class="text-slate-600 active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></button>
+    <img src="UI Demo/logo TPB.png" alt="TPBank Logo" class="w-10 h-10 rounded-lg object-contain">
     <h1 class="font-headline-md text-headline-sm text-primary leading-tight">Customer 360</h1>
   </div>
   <div class="flex items-center gap-3">
@@ -104,9 +103,6 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <span class="material-symbols-outlined">notifications</span>
       <span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-white text-[9px] font-bold rounded-full flex items-center justify-center">3</span>
     </button>
-    <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-container bg-purple-100 flex items-center justify-center">
-      <span class="material-symbols-outlined text-primary text-[18px]">person</span>
-    </div>
   </div>
 </header>
 
@@ -114,8 +110,8 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 <section class="px-4 pt-4 pb-2">
   <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-start gap-4">
     <div class="relative">
-      <div class="w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center">
-        <span class="material-symbols-outlined text-primary text-4xl">account_circle</span>
+      <div class="w-16 h-16 rounded-xl overflow-hidden bg-white flex items-center justify-center">
+        <img src="UI Demo/avar KH.png" alt="Nguyễn Lan Anh" class="w-full h-full object-contain">
       </div>
       <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
     </div>
@@ -129,6 +125,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
               <span class="material-symbols-outlined text-[12px]" style='font-variation-settings: "FILL" 1;'>star</span>Rất tốt
             </span>
           </div>
+          <span class="flex items-center gap-1.5 px-3 py-1 mt-2 bg-amber-100 text-amber-700 text-label-md font-bold rounded-full cursor-pointer border border-dashed border-amber-400 w-fit" onclick="showPlatinumTooltip(this)"><span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>diamond</span>Platinum<span class="material-symbols-outlined text-[12px] ml-0.5 opacity-70">touch_app</span></span>
         </div>
         <div class="flex gap-2 shrink-0">
           <button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
@@ -137,11 +134,17 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
           <button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
             <span class="material-symbols-outlined text-[20px]">mail</span>
           </button>
+          <button class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full text-primary active:bg-primary-container active:text-white transition-all">
+            <span class="material-symbols-outlined text-[20px]">chat</span>
+          </button>
         </div>
       </div>
       <div class="mt-3 flex items-center gap-4 text-label-md text-on-surface-variant">
         <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">id_card</span><span>0123456789</span></div>
         <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span><span>Hà Nội</span></div>
+      </div>
+      <div class="mt-2 flex items-center gap-1 text-label-md text-on-surface-variant">
+        <span class="material-symbols-outlined text-[16px]">badge</span><span>CIF: 12345678</span>
       </div>
     </div>
   </div>
@@ -151,6 +154,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 <nav class="border-b border-outline-variant/30 sticky top-16 bg-surface z-40">
   <div class="flex overflow-x-auto no-scrollbar px-4 gap-1" id="tabNav">
     <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap border-b-2 border-primary text-primary font-bold" data-tab="tab-overview">Tổng quan</button>
+    <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-summary">Tóm tắt KH</button>
     <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-info">Thông tin KH</button>
     <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-products">Sản phẩm</button>
     <button class="tab-btn py-3 px-3 text-label-md whitespace-nowrap text-on-surface-variant border-b-2 border-transparent" data-tab="tab-leads">KH tiềm năng</button>
@@ -160,37 +164,200 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   </div>
 </nav>
 
+<!-- ===== TAB: TÓM TẮT KH ===== -->
+<div class="tab-content" id="tab-summary">
+<main class="mt-4 space-y-5 px-4 pb-28">
+
+<!-- 1. Profile -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="material-symbols-outlined text-primary text-xl">person</span>
+    <h3 class="text-body-lg font-bold text-primary">Profile</h3>
+  </div>
+  <div class="space-y-3">
+    <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+      <span class="text-label-md text-on-surface-variant">Số dư TK trung bình</span>
+      <span class="text-label-md font-bold text-primary">850,000,000 VND</span>
+    </div>
+    <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+      <span class="text-label-md text-on-surface-variant">Nguồn khách hàng</span>
+      <span class="text-label-md font-bold text-on-surface">Giới thiệu từ KH cũ</span>
+    </div>
+    <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+      <span class="text-label-md text-on-surface-variant">Khách hàng từ</span>
+      <span class="text-label-md font-bold text-on-surface">15/08/2017</span>
+    </div>
+    <div class="flex justify-between items-center py-2 border-b border-dashed border-outline-variant/50">
+      <span class="text-label-md text-on-surface-variant">Tầm quan trọng</span>
+      <span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full uppercase">Cao</span>
+    </div>
+    <div class="flex justify-between items-center py-2">
+      <span class="text-label-md text-on-surface-variant">Kênh ưu thích</span>
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-primary text-[16px]">smartphone</span>
+        <span class="text-label-md font-bold text-on-surface">Mobile App</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Đánh giá chung -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="material-symbols-outlined text-primary text-xl">assessment</span>
+    <h3 class="text-body-lg font-bold text-primary">Đánh giá chung</h3>
+  </div>
+  <div class="space-y-3">
+    <div class="p-3 bg-surface-container-low rounded-lg border border-surface-container">
+      <p class="text-body-md text-on-surface leading-relaxed">Khách hàng thuộc phân khúc <strong>Priority/Platinum</strong>, có lịch sử giao dịch ổn định và tăng trưởng AUM tốt (+12.5% trong 6 tháng). Tần suất sử dụng app cao, tương tác tích cực qua kênh digital. Không có nợ quá hạn, credit score 780 — thuộc nhóm rủi ro thấp.</p>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="text-center p-2 bg-green-50 rounded-lg border border-green-100">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Rủi ro</p>
+        <p class="text-label-md font-bold text-green-600 mt-0.5">Thấp</p>
+      </div>
+      <div class="text-center p-2 bg-blue-50 rounded-lg border border-blue-100">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Tiềm năng</p>
+        <p class="text-label-md font-bold text-blue-600 mt-0.5">Cao</p>
+      </div>
+      <div class="text-center p-2 bg-purple-50 rounded-lg border border-purple-100">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Engagement</p>
+        <p class="text-label-md font-bold text-primary mt-0.5">9.2/10</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Hành động tiếp theo -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="material-symbols-outlined text-primary text-xl">task_alt</span>
+    <h3 class="text-body-lg font-bold text-primary">Hành động tiếp theo</h3>
+  </div>
+  <div class="space-y-3">
+    <div class="flex items-start gap-3 p-3 bg-secondary-container/5 rounded-lg border border-secondary-container/20">
+      <div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center shrink-0 mt-0.5">
+        <span class="material-symbols-outlined text-secondary-container text-[16px]">call</span>
+      </div>
+      <div class="flex-1">
+        <p class="text-label-md font-bold text-on-surface">Gọi tư vấn thẻ Signature</p>
+        <p class="text-[10px] text-on-surface-variant mt-0.5">KH có chi tiêu cao, phù hợp nâng cấp thẻ với hoàn tiền 3%</p>
+        <p class="text-[10px] text-secondary-container font-bold mt-1">Ưu tiên: Cao • Hạn: 15/05/2026</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 bg-surface-container-low rounded-lg border border-surface-container">
+      <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+        <span class="material-symbols-outlined text-blue-600 text-[16px]">mail</span>
+      </div>
+      <div class="flex-1">
+        <p class="text-label-md font-bold text-on-surface">Gửi email ưu đãi bảo hiểm</p>
+        <p class="text-[10px] text-on-surface-variant mt-0.5">Sổ tiết kiệm sắp đáo hạn 500M, tư vấn chuyển sang bảo hiểm đầu tư</p>
+        <p class="text-[10px] text-blue-600 font-bold mt-1">Ưu tiên: Trung bình • Hạn: 20/05/2026</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 bg-surface-container-low rounded-lg border border-surface-container">
+      <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5">
+        <span class="material-symbols-outlined text-green-600 text-[16px]">event</span>
+      </div>
+      <div class="flex-1">
+        <p class="text-label-md font-bold text-on-surface">Đặt lịch hẹn gặp tại CN</p>
+        <p class="text-[10px] text-on-surface-variant mt-0.5">Tư vấn tái cơ cấu danh mục đầu tư và nâng hạng Diamond</p>
+        <p class="text-[10px] text-green-600 font-bold mt-1">Ưu tiên: Thấp • Hạn: 30/05/2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Tài liệu đính kèm -->
+<section class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-xl">attach_file</span>
+      <h3 class="text-body-lg font-bold text-primary">Tài liệu đính kèm</h3>
+    </div>
+    <button class="flex items-center gap-1 px-3 py-1.5 bg-secondary-container text-white text-[10px] font-bold rounded-full active:scale-95" onclick="openAttachFileModal()">
+      <span class="material-symbols-outlined text-[14px]">add</span>Thêm file
+    </button>
+  </div>
+  <div class="space-y-2">
+    <div class="flex items-center gap-3 p-2.5 bg-surface-container-low rounded-lg">
+      <div class="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-red-600 text-[18px]">picture_as_pdf</span></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-semibold text-on-surface truncate">CCCD_NguyenLanAnh.pdf</p>
+        <p class="text-[10px] text-on-surface-variant">245 KB • 15/08/2024</p>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+    </div>
+    <div class="flex items-center gap-3 p-2.5 bg-surface-container-low rounded-lg">
+      <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-blue-600 text-[18px]">description</span></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-semibold text-on-surface truncate">HopDong_VayNha_2021.docx</p>
+        <p class="text-[10px] text-on-surface-variant">1.2 MB • 20/06/2021</p>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+    </div>
+    <div class="flex items-center gap-3 p-2.5 bg-surface-container-low rounded-lg">
+      <div class="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-green-600 text-[18px]">table_chart</span></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-label-md font-semibold text-on-surface truncate">SaoKe_TK_T5_2026.xlsx</p>
+        <p class="text-[10px] text-on-surface-variant">89 KB • 01/05/2026</p>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
 <!-- ===== TAB: TỔNG QUAN (FR-2) ===== -->
 <div class="tab-content active" id="tab-overview">
 <main class="mt-4 space-y-5 px-4 pb-28">
 
 <!-- FR-2.1: AI Insights -->
 <section class="bg-primary-container p-4 rounded-xl border border-primary/20 shadow-sm">
-  <div class="flex items-center gap-2 mb-3">
-    <span class="material-symbols-outlined text-primary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-    <h3 class="text-body-lg font-bold text-white">AI Insights & Summary</h3>
+  <div class="flex items-center justify-between mb-3">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      <h3 class="text-body-lg font-bold text-white">AI Insights</h3>
+    </div>
+    <div class="bg-secondary-container px-3 py-1.5 rounded-lg border border-secondary-container/50 text-right">
+      <p class="text-[9px] text-white uppercase font-bold">Engagement</p>
+      <p class="text-label-md font-bold text-white">9.2<span class="text-[10px] font-normal">/10</span></p>
+    </div>
   </div>
   <div class="space-y-3">
-    <p class="text-body-md text-primary-fixed/90 leading-relaxed">
-      Khách hàng có khả năng cao quan tâm đến dòng thẻ <strong>Signature</strong> dựa trên hành vi giao dịch gần đây. Tần suất tương tác qua app tăng <strong>25%</strong> trong tháng qua.
-    </p>
-    <div class="grid grid-cols-2 gap-3">
-      <div class="bg-primary/30 p-3 rounded-lg border border-primary-fixed/20">
-        <p class="text-[10px] text-primary-fixed/70 uppercase font-bold">Engagement Score</p>
-        <p class="text-headline-sm text-white mt-1">9.2<span class="text-label-sm font-normal">/10</span></p>
+    <div class="pt-3 border-t border-primary-fixed/20">
+      <div class="flex justify-between items-center mb-3">
+        <p class="text-label-md font-bold text-white">Gợi ý bán (NBA)</p>
+        <button class="text-[10px] font-bold text-secondary-fixed-dim underline" onclick="showAllNba()">Tất cả</button>
       </div>
-      <div class="bg-primary/30 p-3 rounded-lg border border-primary-fixed/20">
-        <p class="text-[10px] text-primary-fixed/70 uppercase font-bold">Confidence</p>
-        <p class="text-headline-sm text-white mt-1">98%</p>
+      <div class="grid grid-cols-4 gap-3">
+        <div class="text-center space-y-1 cursor-pointer" onclick="showNbaTooltip(this, 'TD: Dựa trên thu nhập ổn định 45M/tháng và lịch sử trả nợ tốt, KH phù hợp gói vay tín chấp lãi suất 8.5%/năm.')">
+          <div class="relative w-12 h-12 mx-auto rounded-full bg-white/20 flex items-center justify-center text-white shadow-sm ring-2 ring-white/40 ring-offset-1 ring-offset-primary-container">
+            <span class="material-symbols-outlined text-xl">account_balance</span>
+          </div>
+          <span class="block text-[10px] font-semibold text-white">TD</span>
+        </div>
+        <div class="text-center space-y-1 cursor-pointer" onclick="showNbaTooltip(this, 'Card: KH chi tiêu trung bình 25M/tháng qua thẻ, phù hợp nâng cấp lên Signature với hoàn tiền 3%.')">
+          <div class="relative w-12 h-12 mx-auto rounded-full bg-white/20 flex items-center justify-center text-white shadow-sm ring-2 ring-white/40 ring-offset-1 ring-offset-primary-container">
+            <span class="material-symbols-outlined text-xl">credit_card</span>
+          </div>
+          <span class="block text-[10px] font-semibold text-white">Card</span>
+        </div>
+        <div class="text-center space-y-1 cursor-pointer" onclick="showNbaTooltip(this, 'UPL: KH có nhu cầu vay tiêu dùng dựa trên hành vi tìm kiếm sản phẩm trên app gần đây.')">
+          <div class="relative w-12 h-12 mx-auto rounded-full bg-white/20 flex items-center justify-center text-white shadow-sm ring-2 ring-white/40 ring-offset-1 ring-offset-primary-container">
+            <span class="material-symbols-outlined text-xl">person</span>
+          </div>
+          <span class="block text-[10px] font-semibold text-white">UPL</span>
+        </div>
+        <div class="text-center space-y-1 cursor-pointer" onclick="showNbaTooltip(this, 'Banca: KH sắp đáo hạn tiết kiệm 500M, phù hợp tư vấn chuyển sang bảo hiểm đầu tư với lợi nhuận kỳ vọng 8%/năm.')">
+          <div class="relative w-12 h-12 mx-auto rounded-full bg-white/20 flex items-center justify-center text-white shadow-sm ring-2 ring-white/40 ring-offset-1 ring-offset-primary-container">
+            <span class="material-symbols-outlined text-xl">shield</span>
+          </div>
+          <span class="block text-[10px] font-semibold text-white">Banca</span>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start gap-2 pt-3 border-t border-primary-fixed/20">
-      <span class="material-symbols-outlined text-secondary-container text-lg mt-0.5">lightbulb</span>
-      <div class="flex-1">
-        <p class="text-label-md font-bold text-white">Next Best Action</p>
-        <p class="text-label-sm text-primary-fixed/80 mt-0.5">Đề xuất gói vay tín chấp với lãi suất ưu đãi 8.5%/năm.</p>
-      </div>
-      <button class="shrink-0 px-3 py-1.5 bg-secondary-container text-white text-[10px] font-bold rounded-full">Thực hiện</button>
     </div>
   </div>
 </section>
@@ -202,7 +369,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <h3 class="text-body-lg font-bold text-primary">Nhiệm vụ hôm nay</h3>
       <span class="bg-secondary-container text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
     </div>
-    <button class="text-label-md text-secondary-container font-semibold">Lịch trình</button>
+    <a href="tasks.html" class="text-label-md text-secondary-container font-semibold">Lịch trình</a>
   </div>
   <div class="space-y-2">
     <label class="flex items-center gap-3 p-2.5 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
@@ -233,43 +400,50 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 <section>
   <div class="flex justify-between items-end mb-3 px-1">
     <h3 class="text-headline-sm font-semibold text-primary">Life Events</h3>
-    <button class="text-label-md text-secondary-container font-semibold">Xem tất cả</button>
+    <button class="text-label-md text-secondary-container font-semibold" onclick="openLifeEventCreate()">+ Tạo mới</button>
   </div>
   <div class="flex overflow-x-auto no-scrollbar gap-4 py-1">
-    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Sinh nhật', '15/08')">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-50 flex items-center justify-center text-secondary-container shadow-sm border border-orange-100">
         <span class="material-symbols-outlined text-2xl" style='font-variation-settings: "FILL" 1;'>cake</span>
       </div>
       <span class="block text-label-md font-semibold text-on-surface leading-tight">Sinh nhật</span>
       <span class="block text-[9px] text-on-surface-variant">15/08</span>
     </div>
-    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center text-primary shadow-sm border border-purple-100">
-        <span class="material-symbols-outlined text-2xl">home</span>
-      </div>
-      <span class="block text-label-md font-semibold text-on-surface leading-tight">Mua nhà</span>
-      <span class="block text-[9px] text-on-surface-variant">06/2021</span>
-    </div>
-    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Tốt nghiệp đại học', '06/2016')">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-sm border border-blue-100">
         <span class="material-symbols-outlined text-2xl">school</span>
       </div>
-      <span class="block text-label-md font-semibold text-on-surface leading-tight">Học tập</span>
-      <span class="block text-[9px] text-on-surface-variant">09/2023</span>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Tốt nghiệp đại học</span>
+      <span class="block text-[9px] text-on-surface-variant">06/2016</span>
     </div>
-    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-sm border border-green-100">
-        <span class="material-symbols-outlined text-2xl">flight</span>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Đi làm', '09/2016')">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center text-primary shadow-sm border border-purple-100">
+        <span class="material-symbols-outlined text-2xl">work</span>
       </div>
-      <span class="block text-label-md font-semibold text-on-surface leading-tight">Du lịch</span>
-      <span class="block text-[9px] text-on-surface-variant">12/2024</span>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Đi làm</span>
+      <span class="block text-[9px] text-on-surface-variant">09/2016</span>
     </div>
-    <div class="flex-shrink-0 w-[76px] text-center space-y-2">
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Kết hôn', '03/2018')">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-red-50 flex items-center justify-center text-red-500 shadow-sm border border-red-100">
         <span class="material-symbols-outlined text-2xl">favorite</span>
       </div>
       <span class="block text-label-md font-semibold text-on-surface leading-tight">Kết hôn</span>
       <span class="block text-[9px] text-on-surface-variant">03/2018</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Chuyển về TP.HCM', '01/2020')">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-sm border border-green-100">
+        <span class="material-symbols-outlined text-2xl">flight_land</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Chuyển về TP.HCM</span>
+      <span class="block text-[9px] text-on-surface-variant">01/2020</span>
+    </div>
+    <div class="flex-shrink-0 w-[76px] text-center space-y-2 cursor-pointer" onclick="openLifeEventDetail(this, 'Mua ô tô', '11/2023')">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600 shadow-sm border border-amber-100">
+        <span class="material-symbols-outlined text-2xl">directions_car</span>
+      </div>
+      <span class="block text-label-md font-semibold text-on-surface leading-tight">Mua ô tô</span>
+      <span class="block text-[9px] text-on-surface-variant">11/2023</span>
     </div>
   </div>
 </section>
@@ -314,40 +488,6 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   </div>
 </section>
 
-<!-- FR-2.5: Gợi ý bán (NBA) -->
-<section>
-  <div class="flex justify-between items-center mb-3 px-1">
-    <h3 class="text-headline-sm font-semibold text-primary">Gợi ý bán (NBA)</h3>
-    <button class="text-label-md text-secondary-container font-semibold">Tất cả</button>
-  </div>
-  <div class="grid grid-cols-4 gap-3">
-    <div class="text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
-        <span class="material-symbols-outlined text-2xl">account_balance</span>
-      </div>
-      <span class="block text-label-md font-semibold text-on-surface">TD</span>
-    </div>
-    <div class="text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
-        <span class="material-symbols-outlined text-2xl">credit_card</span>
-      </div>
-      <span class="block text-label-md font-semibold text-on-surface">Card</span>
-    </div>
-    <div class="text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
-        <span class="material-symbols-outlined text-2xl">person</span>
-      </div>
-      <span class="block text-label-md font-semibold text-on-surface">UPL</span>
-    </div>
-    <div class="text-center space-y-2">
-      <div class="w-14 h-14 mx-auto rounded-full bg-surface-container flex items-center justify-center text-primary shadow-sm border border-outline-variant/30">
-        <span class="material-symbols-outlined text-2xl">shield</span>
-      </div>
-      <span class="block text-label-md font-semibold text-on-surface">Banca</span>
-    </div>
-  </div>
-</section>
-
 <!-- FR-2.6: Báo cáo Nợ -->
 <section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
   <button class="w-full p-4 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -355,31 +495,50 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
     <span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
   </button>
   <div class="px-4 pb-4 space-y-4">
-    <div class="grid grid-cols-2 gap-3">
-      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container">
-        <p class="text-label-md text-on-surface-variant">Tổng dư nợ</p>
-        <p class="font-bold text-headline-sm text-primary">1.5B <span class="text-[10px] font-normal">VND</span></p>
+    <div class="grid grid-cols-2 gap-2">
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container text-center">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Tổng dư nợ</p>
+        <p class="font-bold text-body-lg text-primary mt-1">1.5B</p>
       </div>
-      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container">
-        <p class="text-label-md text-on-surface-variant">Hạn mức còn lại</p>
-        <p class="font-bold text-headline-sm text-secondary-container">500M <span class="text-[10px] font-normal">VND</span></p>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container text-center">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Nhóm nợ</p>
+        <p class="font-bold text-body-lg text-green-600 mt-1">1</p>
+      </div>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container text-center cursor-pointer active:scale-[0.98] transition-transform" onclick="showDebtDetail('overdue')">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Nợ quá hạn</p>
+        <p class="font-bold text-body-lg text-green-600 mt-1">0</p>
+        <p class="text-[9px] text-primary font-semibold mt-0.5">Xem chi tiết →</p>
+      </div>
+      <div class="bg-surface-container-low p-3 rounded-lg border border-surface-container text-center cursor-pointer active:scale-[0.98] transition-transform" onclick="showDebtDetail('upcoming')">
+        <p class="text-[9px] text-on-surface-variant uppercase font-bold">Nợ sắp đến hạn</p>
+        <p class="font-bold text-body-lg text-amber-600 mt-1">60M</p>
+        <p class="text-[9px] text-primary font-semibold mt-0.5">Xem chi tiết →</p>
       </div>
     </div>
-    <div class="space-y-3">
-      <div>
-        <div class="flex items-center justify-between mb-1">
-          <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-primary"></div><span class="text-label-md">Vay mua nhà</span></div>
-          <span class="font-semibold text-label-md">1.200.000.000</span>
-        </div>
-        <div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-full rounded-full" style="width:80%"></div></div>
+    <div class="h-36 w-full relative">
+      <canvas id="debtChart"></canvas>
+      <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <span class="text-headline-sm font-bold text-primary">1.5B</span>
+        <span class="text-[9px] text-on-surface-variant uppercase">Tổng dư nợ</span>
       </div>
-      <div>
-        <div class="flex items-center justify-between mb-1">
-          <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary-container"></div><span class="text-label-md">Thẻ tín dụng</span></div>
-          <span class="font-semibold text-label-md">300.000.000</span>
-        </div>
-        <div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden"><div class="bg-secondary-container h-full rounded-full" style="width:20%"></div></div>
+    </div>
+    <div class="space-y-3 border-t border-surface-container pt-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-primary"></div><span class="text-label-md">Vay mua nhà</span></div>
+        <div class="text-right"><span class="font-semibold text-label-md">1.200M</span><span class="text-[10px] text-on-surface-variant ml-1">còn 8 năm</span></div>
       </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-secondary-container"></div><span class="text-label-md">Thẻ tín dụng</span></div>
+        <div class="text-right"><span class="font-semibold text-label-md">45M</span><span class="text-[10px] text-on-surface-variant ml-1">hạn 25/05</span></div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-blue-500"></div><span class="text-label-md">Vay tiêu dùng</span></div>
+        <div class="text-right"><span class="font-semibold text-label-md">255M</span><span class="text-[10px] text-on-surface-variant ml-1">còn 2 năm</span></div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-100">
+      <span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span>
+      <span class="text-label-md text-green-700 font-semibold">Lịch sử trả nợ: Đúng hạn 100% trong 12 tháng gần nhất</span>
     </div>
   </div>
 </section>
@@ -417,7 +576,15 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 
 <!-- FR-2.8: Hoạt động gần đây -->
 <section class="pb-4">
-  <h3 class="text-headline-sm font-semibold text-primary mb-4 px-1">Hoạt động gần đây</h3>
+  <div class="flex justify-between items-center mb-4 px-1">
+    <h3 class="text-headline-sm font-semibold text-primary">Hoạt động gần đây</h3>
+    <select class="bg-surface-container border border-outline-variant text-label-md rounded-lg py-1.5 pl-3 pr-8 focus:ring-primary text-on-surface-variant font-semibold cursor-pointer">
+      <option>7 ngày</option>
+      <option>30 ngày</option>
+      <option>3 tháng</option>
+      <option>6 tháng</option>
+    </select>
+  </div>
   <div class="space-y-6 relative">
     <div class="absolute left-[15px] top-2 bottom-0 w-px bg-outline-variant"></div>
     <div>
@@ -531,18 +698,6 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   </div>
 </section>
 
-<!-- FR-3.2: Priority Banner -->
-<section class="relative h-28 rounded-xl overflow-hidden shadow-md">
-  <div class="absolute inset-0 bg-gradient-to-r from-[#502070] to-[#7a499a]"></div>
-  <div class="relative h-full flex flex-col justify-center px-6">
-    <h4 class="text-white text-headline-sm">Priority Member</h4>
-    <p class="text-purple-200 text-body-md">Exclusive Banking Benefits</p>
-  </div>
-  <div class="absolute right-4 top-1/2 -translate-y-1/2">
-    <span class="material-symbols-outlined text-4xl text-white/30" style='font-variation-settings: "FILL" 1;'>workspace_premium</span>
-  </div>
-</section>
-
 <!-- FR-3.3: Thông tin liên hệ -->
 <section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
   <div class="p-4 border-b border-outline-variant/30 bg-surface-container-low">
@@ -605,6 +760,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
           <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Hạn mức</p><p class="text-body-md font-bold text-primary">200,000,000đ</p></div>
           <div class="text-right"><p class="text-[10px] text-on-surface-variant uppercase font-bold">Dư nợ</p><p class="text-body-md font-bold text-secondary">12,500,000đ</p></div>
         </div>
+        <p class="text-[10px] text-on-surface-variant mt-2">Hết hạn: 12/2027</p>
       </div>
     </div>
   </div>
@@ -616,6 +772,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
           <div><p class="font-bold text-on-surface">Thẻ ghi nợ Napas</p><p class="text-label-sm text-on-surface-variant">9704 23** **** 1122</p></div>
           <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase shrink-0">Hoạt động</span>
         </div>
+        <p class="text-[10px] text-on-surface-variant mt-2">Hết hạn: 06/2028</p>
       </div>
     </div>
   </div>
@@ -698,7 +855,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   </div>
 
   <!-- Lead 1 -->
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <a href="leads.html?view=detail" class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4 cursor-pointer active:scale-[0.99] transition-all">
     <div class="flex justify-between items-start">
       <div class="flex gap-3">
         <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">savings</span></div>
@@ -720,10 +877,10 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Nguồn khách hàng</p>
       <p class="text-label-md font-semibold text-on-surface">Chiến dịch Marketing Quý 4</p>
     </div>
-  </div>
+  </a>
 
   <!-- Lead 2 -->
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <a href="leads.html?view=detail" class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4 cursor-pointer active:scale-[0.99] transition-all">
     <div class="flex justify-between items-start">
       <div class="flex gap-3">
         <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">directions_car</span></div>
@@ -745,7 +902,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Nguồn khách hàng</p>
       <p class="text-label-md font-semibold text-on-surface">Khách hàng tự đăng ký Web</p>
     </div>
-  </div>
+  </a>
 </main>
 </div>
 
@@ -756,7 +913,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
     <h3 class="text-headline-sm font-semibold text-primary">Cơ hội bán (02)</h3>
   </div>
 
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <a href="opportunities.html?view=detail" class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4 cursor-pointer active:scale-[0.99] transition-all">
     <div class="flex justify-between items-start">
       <div class="flex gap-3">
         <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">credit_card</span></div>
@@ -774,9 +931,9 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Sản phẩm</p><p class="text-label-md font-semibold text-on-surface">Visa Signature</p></div>
       <div><p class="text-[10px] text-on-surface-variant uppercase font-bold">Trạng thái</p><span class="inline-flex px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full uppercase">Thu thập hồ sơ</span></div>
     </div>
-  </div>
+  </a>
 
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <a href="opportunities.html?view=detail" class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4 cursor-pointer active:scale-[0.99] transition-all">
     <div class="flex justify-between items-start">
       <div class="flex gap-3">
         <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">directions_car</span></div>
@@ -798,7 +955,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
       <p class="text-[10px] text-on-surface-variant uppercase font-bold mb-0.5">Ngày đóng</p>
       <p class="text-label-md font-semibold text-on-surface">15/01/2026</p>
     </div>
-  </div>
+  </a>
 </main>
 </div>
 
@@ -809,7 +966,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
     <h3 class="text-headline-sm font-semibold text-primary">Danh sách Cases (02)</h3>
   </div>
 
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <div class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
     <div class="flex gap-3">
       <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">work</span></div>
       <div><p class="font-bold text-on-surface text-body-lg">Tư vấn mở mới khoản vay</p><p class="text-[11px] font-semibold text-primary">C-2024-001</p></div>
@@ -830,7 +987,7 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
     </div>
   </div>
 
-  <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+  <div class="block bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
     <div class="flex gap-3">
       <div class="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-2xl">credit_card</span></div>
       <div><p class="font-bold text-on-surface text-body-lg">Yêu cầu khóa thẻ khẩn cấp</p><p class="text-[11px] font-semibold text-primary">C-2024-002</p></div>
@@ -917,8 +1074,13 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 </main>
 </div>
 
-<!-- ===== FR-1.4: Bottom Navigation ===== -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
+<!-- ===== FR-1.5: FAB ===== -->
+<button class="fixed bottom-20 right-[calc(50%-215px+16px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" id="fab" onclick="window.location.href='opportunities.html?action=create'">
+  <span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+
+<!-- ===== Bottom Navigation ===== -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-2 pb-6 bg-white border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.04)] z-50 rounded-b-[40px]">
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="dashboard.html">
     <span class="material-symbols-outlined text-[24px]">home</span>
     <span class="text-[10px] font-medium mt-0.5">Home</span>
@@ -930,6 +1092,10 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="leads.html">
     <span class="material-symbols-outlined text-[24px]">leaderboard</span>
     <span class="text-[10px] font-medium mt-0.5">Leads</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="opportunities.html">
+    <span class="material-symbols-outlined text-[24px]">trending_up</span>
+    <span class="text-[10px] font-medium mt-0.5">Opps</span>
   </a>
   <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 active:scale-95 transition-transform" href="tasks.html">
     <span class="material-symbols-outlined text-[24px]">assignment</span>
@@ -943,14 +1109,10 @@ body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transpar
 
 <!-- More Menu Overlay -->
 <div id="moreMenuOverlay" class="fixed inset-0 bg-black/30 z-[80] hidden" onclick="toggleMoreMenu()"></div>
-<div id="moreMenu" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[430px] max-w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5" style="animation:slideUp .3s ease-out">
+<div id="moreMenu" class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-2xl z-[85] hidden pb-8 pt-4 px-5" style="animation:slideUp .3s ease-out">
   <div class="w-10 h-1 bg-slate-300 rounded-full mx-auto mb-5"></div>
   <h3 class="text-headline-sm font-bold text-primary mb-4 px-1">Thêm chức năng</h3>
   <div class="grid grid-cols-3 gap-4">
-    <a href="opportunities.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all">
-      <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">trending_up</span></div>
-      <span class="text-label-md text-on-surface text-center leading-tight">Opportunities</span>
-    </a>
     <a href="sales-support.html" class="flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-surface-container-low active:scale-95 transition-all">
       <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-[24px]">support_agent</span></div>
       <span class="text-label-md text-on-surface text-center leading-tight">Sales Support</span>
@@ -970,11 +1132,6 @@ function toggleMoreMenu(){
 }
 </script>
 
-<!-- ===== FR-1.5: FAB ===== -->
-<button class="fixed bottom-20 right-[calc(50%-215px+16px)] w-14 h-14 bg-secondary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" id="fab">
-  <span class="material-symbols-outlined text-[28px]">add</span>
-</button>
-
 </div><!-- end device-frame -->
 
 <!-- ===== Tab Switching Script ===== -->
@@ -992,6 +1149,175 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.getElementById('app').scrollTop = 0;
   });
 });
+</script>
+
+<!-- ===== Utility Functions ===== -->
+<script>
+function showModal(title, subtitle, content) {
+  const app = document.getElementById('app');
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;';
+  overlay.onclick = function(e) { if (e.target === overlay) closeModal(); };
+  const modal = document.createElement('div');
+  modal.className = 'w-full max-w-[360px] bg-white rounded-2xl p-5 space-y-4 shadow-2xl';
+  modal.innerHTML = `<h3 class="text-headline-sm font-bold text-primary text-center">${title}</h3>${subtitle ? '<p class="text-body-md text-on-surface-variant text-center">' + subtitle + '</p>' : ''}${content}`;
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
+function closeModal() {
+  const overlay = document.querySelector('.modal-overlay');
+  if (overlay) overlay.remove();
+}
+
+function showToast(message, type) {
+  const app = document.getElementById('app');
+  const toast = document.createElement('div');
+  toast.className = 'absolute top-20 left-1/2 -translate-x-1/2 z-[200] px-4 py-3 rounded-xl shadow-lg text-label-md font-semibold ' + (type === 'success' ? 'bg-green-600 text-white' : 'bg-inverse-surface text-white');
+  toast.textContent = message;
+  app.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function showPlatinumTooltip(el) {
+  const existing = document.querySelector('.platinum-tooltip');
+  if (existing) { existing.remove(); return; }
+  const app = document.getElementById('app');
+  const appRect = app.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+  const tip = document.createElement('div');
+  tip.className = 'platinum-tooltip absolute z-[100] bg-inverse-surface text-white text-[11px] p-3 rounded-xl shadow-lg leading-relaxed';
+  tip.style.top = (elRect.bottom - appRect.top + app.scrollTop + 8) + 'px';
+  tip.style.left = '16px';
+  tip.style.right = '16px';
+  tip.innerHTML = '<strong>Gợi ý tăng hạng:</strong> KH cần tăng AUM thêm 200M VND hoặc duy trì số dư CASA trung bình 500M/tháng để lên hạng <strong>Diamond</strong> trong tháng tới.';
+  app.appendChild(tip);
+  setTimeout(() => tip.remove(), 5000);
+  document.addEventListener('click', function handler(e) { if (!tip.contains(e.target) && e.target !== el) { tip.remove(); document.removeEventListener('click', handler); } });
+}
+
+function showNbaTooltip(el, text) {
+  const existing = document.querySelector('.nba-tooltip');
+  if (existing) { existing.remove(); }
+  const app = document.getElementById('app');
+  const appRect = app.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+  const tip = document.createElement('div');
+  tip.className = 'nba-tooltip absolute z-[100] bg-inverse-surface text-white text-[11px] p-3 rounded-xl shadow-lg leading-relaxed';
+  tip.style.top = (elRect.bottom - appRect.top + app.scrollTop + 8) + 'px';
+  tip.style.left = '16px';
+  tip.style.right = '16px';
+  tip.innerHTML = text;
+  app.appendChild(tip);
+  setTimeout(() => tip.remove(), 4000);
+}
+
+function showAllNba() {
+  const products = [
+    { icon: 'account_balance', name: 'Tín dụng (TD)', reason: 'Thu nhập ổn định 45M/tháng, lịch sử trả nợ tốt. Phù hợp gói vay tín chấp lãi suất 8.5%/năm.' },
+    { icon: 'credit_card', name: 'Thẻ Signature', reason: 'Chi tiêu trung bình 25M/tháng qua thẻ, phù hợp nâng cấp lên Signature với hoàn tiền 3%.' },
+    { icon: 'person', name: 'Vay tiêu dùng (UPL)', reason: 'Hành vi tìm kiếm sản phẩm vay trên app gần đây cho thấy nhu cầu vay tiêu dùng.' },
+    { icon: 'shield', name: 'Bảo hiểm (Banca)', reason: 'Sổ tiết kiệm 500M sắp đáo hạn, phù hợp tư vấn chuyển sang bảo hiểm đầu tư lợi nhuận 8%/năm.' },
+    { icon: 'savings', name: 'Tiết kiệm lãi suất cao', reason: 'AUM tăng trưởng 12.5%, KH có xu hướng tích lũy. Gợi ý gói tiết kiệm kỳ hạn 12T lãi suất 7%.' },
+    { icon: 'trending_up', name: 'Quỹ đầu tư', reason: 'Credit score 780, engagement cao. Phù hợp tư vấn quỹ mở cân bằng với lợi nhuận kỳ vọng 10-12%/năm.' }
+  ];
+  let items = products.map(p => `
+    <div class="flex items-start gap-3 p-3 bg-surface-container-low rounded-xl border border-surface-container">
+      <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-xl">${p.icon}</span></div>
+      <div class="flex-1"><p class="text-label-md font-bold text-on-surface">${p.name}</p><p class="text-[10px] text-on-surface-variant mt-0.5 leading-relaxed">${p.reason}</p></div>
+    </div>
+  `).join('');
+  showModal('Tất cả gợi ý bán', '', `<div class="space-y-2 text-left max-h-[450px] overflow-y-auto">${items}</div><button class="w-full py-2.5 text-primary font-semibold rounded-xl active:bg-slate-50 mt-3" onclick="closeModal()">Đóng</button>`);
+}
+
+function openAttachFileModal() {
+  showModal('Đính kèm tài liệu', '', `
+    <div class="space-y-4 text-left">
+      <div class="w-full h-32 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container-low">
+        <span class="material-symbols-outlined text-on-surface-variant text-3xl">cloud_upload</span>
+        <p class="text-label-md text-on-surface-variant">Chọn file hoặc kéo thả vào đây</p>
+        <p class="text-[10px] text-on-surface-variant">PDF, DOC, XLS, JPG (tối đa 10MB)</p>
+      </div>
+      <button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('✅ Đã tải lên thành công','success')">Tải lên</button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>
+    </div>
+  `);
+}
+
+function openLifeEventCreate() {
+  showModal('Tạo sự kiện mới', '',
+    `<div class="space-y-4 text-left">
+      <div class="space-y-2"><label class="text-label-md text-on-surface-variant">Sự kiện *</label><input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" placeholder="VD: Sinh nhật, Kết hôn..." type="text"/></div>
+      <div class="space-y-2"><label class="text-label-md text-on-surface-variant">Thời gian *</label><input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" placeholder="VD: 15/08/2025" type="text"/></div>
+      <button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98] transition-all" onclick="closeModal();showToast('✅ Đã thêm sự kiện mới','success')">Lưu sự kiện</button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>
+    </div>`
+  );
+}
+
+function openLifeEventDetail(el, name, time) {
+  const isCustom = el.dataset.custom === 'true';
+  const actions = isCustom 
+    ? `<div class="flex gap-2"><button class="flex-1 py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('✅ Đã cập nhật','success')">Lưu</button><button class="flex-1 py-3 bg-error-container text-error font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('🗑 Đã xóa sự kiện','success')">Xóa</button></div><button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>`
+    : `<button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Đóng</button>`;
+  showModal('Chi tiết sự kiện', '',
+    `<div class="space-y-4 text-left">
+      <div class="space-y-2"><label class="text-label-md text-on-surface-variant">Sự kiện</label><input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" value="${name}" type="text" ${isCustom ? '' : 'readonly'}/></div>
+      <div class="space-y-2"><label class="text-label-md text-on-surface-variant">Thời gian</label><input class="w-full h-12 px-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg outline-none" value="${time}" type="text" ${isCustom ? '' : 'readonly'}/></div>
+      ${actions}
+    </div>`
+  );
+}
+
+function showDebtDetail(type) {
+  if (type === 'overdue') {
+    showModal('Nợ quá hạn', '', `
+      <div class="text-left space-y-4">
+        <div class="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-100">
+          <span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span>
+          <span class="text-label-md text-green-700 font-semibold">Không có khoản nợ quá hạn</span>
+        </div>
+        <div class="border border-outline-variant/50 rounded-xl overflow-hidden">
+          <div class="bg-surface-container-low px-3 py-2 border-b border-outline-variant/50">
+            <p class="text-[10px] text-on-surface-variant uppercase font-bold">Lịch sử nợ quá hạn (12 tháng)</p>
+          </div>
+          <table class="w-full text-[11px]">
+            <thead><tr class="border-b border-outline-variant/30 bg-surface-container-low/50"><th class="py-2 px-2 text-left text-on-surface-variant font-bold">Khoản vay</th><th class="py-2 px-2 text-right text-on-surface-variant font-bold">Số ngày QH</th><th class="py-2 px-2 text-right text-on-surface-variant font-bold">Số tiền</th></tr></thead>
+            <tbody>
+              <tr class="border-b border-outline-variant/20"><td class="py-2 px-2 text-on-surface">—</td><td class="py-2 px-2 text-right text-on-surface">0</td><td class="py-2 px-2 text-right text-on-surface">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-[10px] text-on-surface-variant text-center">KH chưa từng phát sinh nợ quá hạn trong 12 tháng gần nhất</p>
+        <button class="w-full py-2.5 text-primary font-semibold rounded-xl active:bg-slate-50" onclick="closeModal()">Đóng</button>
+      </div>
+    `);
+  } else if (type === 'upcoming') {
+    showModal('Nợ sắp đến hạn', '', `
+      <div class="text-left space-y-4">
+        <div class="flex items-center gap-2 p-3 bg-amber-50 rounded-lg border border-amber-100">
+          <span class="material-symbols-outlined text-amber-600 text-[18px]">schedule</span>
+          <span class="text-label-md text-amber-700 font-semibold">2 khoản nợ đến hạn trong 30 ngày tới</span>
+        </div>
+        <div class="border border-outline-variant/50 rounded-xl overflow-hidden">
+          <div class="bg-surface-container-low px-3 py-2 border-b border-outline-variant/50">
+            <p class="text-[10px] text-on-surface-variant uppercase font-bold">Chi tiết khoản nợ sắp đến hạn</p>
+          </div>
+          <table class="w-full text-[11px]">
+            <thead><tr class="border-b border-outline-variant/30 bg-surface-container-low/50"><th class="py-2 px-2 text-left text-on-surface-variant font-bold">Khoản vay</th><th class="py-2 px-2 text-right text-on-surface-variant font-bold">Ngày đến hạn</th><th class="py-2 px-2 text-right text-on-surface-variant font-bold">Số tiền</th></tr></thead>
+            <tbody>
+              <tr class="border-b border-outline-variant/20"><td class="py-2 px-2 text-on-surface">Thẻ tín dụng</td><td class="py-2 px-2 text-right text-amber-600 font-semibold">25/05/2026</td><td class="py-2 px-2 text-right font-semibold text-on-surface">45,000,000</td></tr>
+              <tr class="border-b border-outline-variant/20"><td class="py-2 px-2 text-on-surface">Vay mua nhà (kỳ)</td><td class="py-2 px-2 text-right text-amber-600 font-semibold">01/06/2026</td><td class="py-2 px-2 text-right font-semibold text-on-surface">15,000,000</td></tr>
+            </tbody>
+            <tfoot><tr class="bg-surface-container-low/50"><td class="py-2 px-2 font-bold text-on-surface">Tổng</td><td class="py-2 px-2"></td><td class="py-2 px-2 text-right font-bold text-primary">60,000,000</td></tr></tfoot>
+          </table>
+        </div>
+        <button class="w-full py-2.5 text-primary font-semibold rounded-xl active:bg-slate-50" onclick="closeModal()">Đóng</button>
+      </div>
+    `);
+  }
+}
 </script>
 
 <!-- ===== AUM Chart Script (Chart.js) ===== -->
@@ -1144,6 +1470,19 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     growthEl.innerHTML = '<span class="material-symbols-outlined text-[14px] ' + color + '">' + icon + '</span><span class="' + color + '">' + data.summary.growth + '</span>';
   });
 })();
+</script>
+
+<!-- ===== Debt Chart Script ===== -->
+<script>
+// Debt Chart
+const debtCtx = document.getElementById('debtChart');
+if (debtCtx) {
+  new Chart(debtCtx.getContext('2d'), {
+    type: 'doughnut',
+    data: { labels: ['Vay mua nhà', 'Thẻ tín dụng', 'Vay tiêu dùng'], datasets: [{ data: [1200, 45, 255], backgroundColor: ['#390259', '#fc7728', '#3b82f6'], borderWidth: 0 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { display: false }, tooltip: { backgroundColor: '#213145', titleFont: { family: 'Manrope', size: 11 }, bodyFont: { family: 'Manrope', size: 11 }, cornerRadius: 8, callbacks: { label: function(ctx) { return ctx.label + ': ' + ctx.parsed + 'M VND'; } } } } }
+  });
+}
 </script>
 </body>
 </html>
