@@ -238,7 +238,7 @@ body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
 
 <!-- Bottom Actions -->
 <div class="fixed bottom-0 left-0 w-full p-4 pb-8 bg-white/90 backdrop-blur-md border-t border-slate-100 grid grid-cols-2 gap-3 z-50 rounded-b-[40px]">
-  <button class="h-12 border border-primary text-primary font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2"><span class="material-symbols-outlined text-[20px]">edit_note</span>Ghi chú</button>
+  <button class="h-12 border border-primary text-primary font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2" onclick="openNotePopup()"><span class="material-symbols-outlined text-[20px]">edit_note</span>Ghi chú</button>
   <button class="h-12 bg-secondary-container text-white font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2" onclick="completeTask()"><span class="material-symbols-outlined text-[20px]">task_alt</span>Hoàn thành</button>
 </div>
 </div>
@@ -370,6 +370,16 @@ function showModal(title, body, actions) {
   overlay.classList.remove('hidden');
 }
 function closeModal() { document.getElementById('modalOverlay').classList.add('hidden'); }
+
+function openNotePopup() {
+  showModal('Ghi chú', '',
+    `<div class="space-y-4 text-left">
+      <textarea class="w-full p-4 rounded-xl bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md outline-none resize-none" rows="4" placeholder="Nhập ghi chú cho công việc này..."></textarea>
+      <button class="w-full py-3 bg-secondary-container text-white font-bold rounded-xl active:scale-[0.98]" onclick="closeModal();showToast('✅ Đã lưu ghi chú','success')">Lưu ghi chú</button>
+      <button class="w-full py-2 text-on-surface-variant font-semibold rounded-xl" onclick="closeModal()">Hủy</button>
+    </div>`
+  );
+}
 
 function completeTask() {
   showModal('Hoàn thành công việc?', 'Đánh dấu task "Thăm viếng KH Nguyễn Văn A" là hoàn thành?',

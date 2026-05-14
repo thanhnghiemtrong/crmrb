@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TPBank CRM - Danh sách KH 360</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#fc7728","surface":"#f8f9ff","surface-container-low":"#eff4ff","primary":"#390259","on-primary":"#ffffff","on-surface":"#0b1c30","on-surface-variant":"#4c444f","outline-variant":"#cfc3d1","surface-container":"#e5eeff","background":"#f8f9ff"},fontFamily:{"headline-sm":["Manrope"],"label-md":["Manrope"],"body-md":["Manrope"],"body-lg":["Manrope"]},fontSize:{"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}
+</script>
+<style>
+body{font-family:'Manrope',sans-serif;-webkit-tap-highlight-color:transparent;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+.device-frame{width:100%;max-width:100%;height:100vh;margin:0 auto;overflow-y:auto;overflow-x:hidden;position:relative;border-radius:0;box-shadow:none;}
+</style>
+</head>
+<body class="bg-background m-0 p-0">
+<div class="device-frame bg-background text-on-surface no-scrollbar" id="app">
+
+<!-- Header -->
+<header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-4 h-16 shadow-sm border-b border-slate-100">
+  <div class="flex items-center gap-3">
+    <a href="cus360.html" class="text-primary active:scale-90 transition-transform"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="text-lg font-bold text-primary">Danh sách KH 360</h1>
+  </div>
+  <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary" onclick="toggleFilters()">
+    <span class="material-symbols-outlined">filter_list</span>
+  </button>
+</header>
+
+<!-- Search Bar -->
+<div class="px-4 py-3 bg-white border-b border-slate-100">
+  <div class="relative">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+    <input type="text" id="searchInput" class="w-full h-11 pl-10 pr-4 rounded-xl bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-md outline-none" placeholder="Tìm theo tên, SĐT, CIF..." oninput="filterList()"/>
+  </div>
+</div>
+
+<!-- Filter Panel -->
+<div id="filterPanel" class="hidden px-4 py-3 bg-surface-container-low border-b border-outline-variant/30 space-y-3">
+  <div class="flex justify-between items-center">
+    <p class="text-label-md font-bold text-on-surface-variant uppercase">Bộ lọc</p>
+    <button class="text-[10px] text-primary font-bold" onclick="toggleFilters()">Đóng</button>
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Phân khúc KH</option>
+      <option>Mass</option>
+      <option>Premier</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Nhóm KH</option>
+      <option>Cá nhân</option>
+      <option>Doanh nghiệp</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Hạng thành viên</option>
+      <option>Platinum</option>
+      <option>Gold</option>
+      <option>Silver</option>
+      <option>Standard</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">SP đang sử dụng</option>
+      <option>Thẻ tín dụng</option>
+      <option>Vay mua nhà</option>
+      <option>Tiết kiệm</option>
+      <option>Bảo hiểm</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">SP chưa sử dụng</option>
+      <option>Thẻ tín dụng</option>
+      <option>Vay mua nhà</option>
+      <option>Tiết kiệm</option>
+      <option>Bảo hiểm</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Chi nhánh</option>
+      <option>CN Bến Nghé</option>
+      <option>CN Hội Sở</option>
+      <option>CN Tân Bình</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Phòng ban</option>
+      <option>PGD Bến Nghé</option>
+      <option>PGD Tân Bình</option>
+    </select>
+    <select class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md text-on-surface outline-none">
+      <option value="">Cán bộ phụ trách</option>
+      <option>Nguyễn Văn A</option>
+      <option>Trần Thị B</option>
+    </select>
+  </div>
+  <div class="space-y-2">
+    <label class="text-label-md text-on-surface-variant">Ngày mở CIF</label>
+    <div class="grid grid-cols-2 gap-2">
+      <input type="date" class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md outline-none"/>
+      <input type="date" class="w-full h-10 px-3 rounded-lg bg-white border border-outline-variant text-label-md outline-none"/>
+    </div>
+  </div>
+  <div class="flex gap-2">
+    <button class="flex-1 py-2 text-label-md font-semibold text-primary rounded-lg border border-primary/20 active:bg-slate-50">Xóa lọc</button>
+    <button class="flex-1 py-2 text-label-md font-bold text-white bg-secondary-container rounded-lg active:scale-[0.98]">Áp dụng</button>
+  </div>
+</div>
+
+<!-- Customer List -->
+<main class="px-4 py-3 pb-10 space-y-3" id="customerList">
+  <p class="text-label-md text-on-surface-variant">Hiển thị <strong>8</strong> khách hàng</p>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-purple-100 flex items-center justify-center text-primary font-bold text-sm shrink-0">LA</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Nguyễn Lan Anh</h3>
+          <span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold rounded-full">Platinum</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>0906 789 012</span>
+          <span>•</span>
+          <span>CIF: 12345678</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-orange-100 flex items-center justify-center text-secondary-container font-bold text-sm shrink-0">KV</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Đặng Khánh Vy</h3>
+          <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-[9px] font-bold rounded-full">Gold</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>098 765 4321</span>
+          <span>•</span>
+          <span>CIF: 87654321</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm shrink-0">MT</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Nguyễn Minh Tuấn</h3>
+          <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-full">Silver</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>091 234 5678</span>
+          <span>•</span>
+          <span>CIF: 54321098</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-sm shrink-0">TL</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Phạm Thành Lương</h3>
+          <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-full">Standard</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>090 111 2233</span>
+          <span>•</span>
+          <span>CIF: 43210987</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-red-100 flex items-center justify-center text-red-500 font-bold text-sm shrink-0">HD</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Đỗ Hùng Dũng</h3>
+          <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-full">Standard</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>097 888 9900</span>
+          <span>•</span>
+          <span>CIF: 10987654</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-purple-100 flex items-center justify-center text-primary font-bold text-sm shrink-0">MA</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Lê Thị Mai Anh</h3>
+          <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-[9px] font-bold rounded-full">Gold</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>093 456 7890</span>
+          <span>•</span>
+          <span>CIF: 65432109</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 font-bold text-sm shrink-0">MQ</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Trần Minh Quân</h3>
+          <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-full">Silver</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>096 555 4433</span>
+          <span>•</span>
+          <span>CIF: 32109876</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="cus360.html" class="customer-item block bg-white p-4 rounded-xl border border-outline-variant/50 shadow-sm active:scale-[0.99] transition-all">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-sm shrink-0">VA</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-start">
+          <h3 class="text-body-md font-bold text-on-surface">Nguyễn Văn A</h3>
+          <span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold rounded-full">Platinum</span>
+        </div>
+        <div class="flex items-center gap-3 mt-1 text-[11px] text-on-surface-variant">
+          <span>091 222 3344</span>
+          <span>•</span>
+          <span>CIF: 98765432</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</main>
+
+</div>
+
+<script>
+function toggleFilters() {
+  document.getElementById('filterPanel').classList.toggle('hidden');
+}
+
+function filterList() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const items = document.querySelectorAll('.customer-item');
+  let count = 0;
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    const match = text.includes(query);
+    item.style.display = match ? '' : 'none';
+    if (match) count++;
+  });
+}
+</script>
+</body>
+</html>
